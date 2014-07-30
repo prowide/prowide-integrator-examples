@@ -12,10 +12,9 @@ import com.prowidesoftware.swift.validator.ValidationProblem;
 
 
 /**
- * Extended class for validation testing.
+ * Example of MT547 message validation test.
  * 
- * @author rob
- * @since 1.0
+ * @author www.prowidesoftware.com
  */
 public class MT547_ValidationEngineTest extends BaseTestCase {
 

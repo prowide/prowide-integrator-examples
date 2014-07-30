@@ -11,13 +11,11 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
 /**
- * Extended class for validation testing.
+ * Example of MT546 message validation test.
  * 
- * @author rob
- * @since 1.0
+ * @author www.prowidesoftware.com
  */
 public class MT546_ValidationEngineTest extends BaseTestCase {
-
 	
 	/**
 	 * Test no errors
@@ -45,7 +43,7 @@ public class MT546_ValidationEngineTest extends BaseTestCase {
 			":98A::ESET//20090101\n" +			//13
 			":35B:ISIN IT0003430813\n" +		//14
 			"/XX/B0N64J1\n" +
-			"SAFILO GROUP\n" +
+			"MYCOMP GROUP\n" +
 			"EUR0.25\n" +
 			":70E::SPRO///COMPLETE/\n" +		//15
 			":16S:TRADDET\n" +					//16
@@ -85,4 +83,5 @@ public class MT546_ValidationEngineTest extends BaseTestCase {
 		dumpProblems(r);
 		assertTrue(r.isEmpty());
 	}
+	
 }

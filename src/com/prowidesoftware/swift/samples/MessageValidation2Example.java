@@ -1,6 +1,3 @@
-/*
- * Copyright (c) http://www.prowidesoftware.com/, 2013. All rights reserved.
- */
 package com.prowidesoftware.swift.samples;
 
 import java.io.IOException;

@@ -1,30 +1,19 @@
-/*
- * Copyright (c) http://www.prowidesoftware.com/, 2008. All rights reserved.
- */
 package com.prowidesoftware.swift.samples;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.scheme.Scheme;
-import com.prowidesoftware.swift.scheme.SchemeManager;
-import com.prowidesoftware.swift.validator.FieldProblem;
-import com.prowidesoftware.swift.validator.SemanticProblem;
-import com.prowidesoftware.swift.validator.StructureProblem;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
 /**
+ * Example of MT540 message validation test.
  * 
  * @author www.prowidesoftware.com
- * @since 1.0
  */
 public class MT540_ValidationEngineTest extends BaseTestCase {
 
@@ -48,7 +37,7 @@ public class MT540_ValidationEngineTest extends BaseTestCase {
 			":98A::TRAD//20090101\n" +			//6
 			":35B:ISIN IT0004176001\n" +		//7
 			"1000000-0\n" +	
-			"PRYSMIAN SPA COMMON\n" +
+			"FOOSAAAN SPA COMMON\n" +
 			":16S:TRADDET\n" +					//8
 			
 			//Financial Instrument/Account

@@ -11,9 +11,16 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
 /**
+ * Example of MT900 message validation test.
+ * 
+ * @author www.prowidesoftware.com
  */
 public class MT900_ValidationEngineTest extends BaseTestCase {
 	
+	/**
+	 * Test no error.
+	 * @throws Exception
+	 */
 	@Test
 	public void test900_1() throws Exception {
 		String s = "{1:F01FOOABCD0AXXX3048000056}{2:I900AAAAAAAAXXXXN}{4:\n" +

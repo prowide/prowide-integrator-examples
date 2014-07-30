@@ -6,6 +6,11 @@ import java.util.List;
 
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
+/**
+ * Base class with helper API for JUnit test samples.
+ *  
+ * @author www.prowidesoftware.com
+ */
 public class BaseTestCase extends ValidationEngineTest {
 
 	public void dumpProblems(List<ValidationProblem> list) {

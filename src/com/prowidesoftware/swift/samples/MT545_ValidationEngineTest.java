@@ -12,14 +12,12 @@ import com.prowidesoftware.swift.validator.ValidationProblem;
 
 
 /**
- * Extended class for validation testing.
+ * Example of MT545 message validation test.
  * 
- * @author rob
- * @since 1.0
+ * @author www.prowidesoftware.com
  */
 public class MT545_ValidationEngineTest extends BaseTestCase {
 
-	
 	/**
 	 * Test no errors
 	 * @throws Exception
@@ -46,7 +44,7 @@ public class MT545_ValidationEngineTest extends BaseTestCase {
 			":98A::ESET//20090101\n" +			//13
 			":35B:ISIN IT0003211601\n" +		//14
 			"/XX/7277528\n" +
-			"BANCA CARIGE SPA-CASSA RISP GENOVA\n" +
+			"BANCA FOO ABC-CASSA RISP GENOVA\n" +
 			"EUR1\n" +
 			":70E::SPRO///COMPLETE/\n" +		//15
 			":16S:TRADDET\n" +					//16

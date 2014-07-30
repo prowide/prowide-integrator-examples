@@ -6,6 +6,11 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
+/**
+ * Helper API for example and test cases.
+ * 
+ * @author www.prowidesoftware.com
+ */
 public class Lib {
 	public static final String B1 = "{1:F01FOOSEDR0AXXX0000000000}";
 	public static final String B2_103 = "{2:I103FOORECV0XXXXN}";

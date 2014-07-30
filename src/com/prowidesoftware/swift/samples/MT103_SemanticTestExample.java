@@ -7,7 +7,7 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
-public class MT103_Samples {
+public class MT103_SemanticTestExample {
 
 	void showSemantic2() throws Exception {
 		
@@ -149,7 +149,7 @@ public class MT103_Samples {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		final MT103_Samples main = new MT103_Samples();
+		final MT103_SemanticTestExample main = new MT103_SemanticTestExample();
 		System.out.println("SEMANTIC RULE 2");
 		main.showSemantic2();
 		System.out.println("SEMANTIC RULE 150");

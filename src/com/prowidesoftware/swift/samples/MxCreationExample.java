@@ -11,7 +11,7 @@ import com.prowidesoftware.swift.mx.model.dic.GroupHeader48;
 import com.prowidesoftware.swift.mx.model.dic.PartyIdentification43;
 import com.prowidesoftware.swift.mx.model.dic.PaymentInstruction9;
 
-public class MxCreation {
+public class MxCreationExample {
 
     public static void main (String[] args) {
     	MxPain001001Iso20022 pain001001 = new MxPain001001Iso20022();

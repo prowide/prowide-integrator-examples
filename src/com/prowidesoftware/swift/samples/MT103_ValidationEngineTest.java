@@ -1,6 +1,3 @@
-/*
- * Copyright (c) http://www.prowidesoftware.com/, 2013. All rights reserved.
- */
 package com.prowidesoftware.swift.samples;
 
 import java.util.List;
@@ -18,19 +15,23 @@ import com.prowidesoftware.swift.validator.ValidationProblem;
  */
 public class MT103_ValidationEngineTest extends BaseTestCase {
 
+	/**
+	 * Test no error.
+	 * @throws Exception
+	 */
 	@Test
 	public void test103_1() throws Exception {
-		String s = "{1:F01CARBVEC0AXXX0344000050}{2:I103CARAANC0XXXXN}{4:\n"+
+		String s = "{1:F01FOOBVEC0AXXX0344000050}{2:I103FOOAANC0XXXXN}{4:\n"+
 					":20:TBEXO200909031\n"+
 					":23B:CRED\n"+
 					":32A:090903USD23453,\n"+
-					":50K:/01111001759234567890\n"+
-					"ROMAN GUILLEN DOBOZI \n"+
+					":50K:/01111001444234567890\n"+
+					"JOE DOE\n"+
 					"R00000V0574734\n"+
-					":53B:/00010013800002001234\n"+
+					":53B:/00010333800002001234\n"+
 					"MI BANCO\n"+
-					":59:/00013500510020179998\n"+
-					"PDVSA GAS\n"+
+					":59:/00013533310020179998\n"+
+					"COMPANY\n"+
 					"R00000V000034534\n"+
 					":71A:OUR\n"+
 					":72:/TIPO/422\n"+
@@ -41,26 +42,25 @@ public class MT103_ValidationEngineTest extends BaseTestCase {
 		dumpProblems(r, msg);
 	}
 
-	/*
+	/**
 	 * This example contains a non-existing field 99.
-	 * During execution a stack trace is printed, this is NOT an error but the correct execution of this code
 	 */
 	@SuppressWarnings("boxing")
 	@Test
 	public void test103_2() throws Exception {
-		String s = "{1:F01CARBVEC0AXXX0344000050}{2:I103CARAANC0XXXXN}{4:\n"+
+		String s = "{1:F01FOOBVEC0AXXX0344000050}{2:I103FOOAANC0XXXXN}{4:\n"+
 					//":20:TBEXO200909031\n"+
 					":23B:CRED\n"+
 					":32A:090903USD23453,\n"+
-					":99:RFSAMPPGN0031091\n" +
-					":50K:/01111001759234567890\n"+
-					"ROMAN GUILLEN DOBOZI \n"+
+					":99:RFSAMPPGN0039991\n" +
+					":50K:/01111001711131117890\n"+
+					"JOE DOE\n"+
 					"R00000V0574734\n"+
 					":53B:00010013800002001234\n"+
-					"MI BANCO\n"+
-					":59:/00013500510020179998\n"+
-					"PDVSA GAS\n"+
-					"R00000V000034534\n"+
+					"MY BANK\n"+
+					":59:/00013500510023333998\n"+
+					"COMPFOO CORP\n"+
+					"R00000V000034111\n"+
 					":71A:OUR\n"+
 					":72:/TIPO/422\n"+
 					"-}";

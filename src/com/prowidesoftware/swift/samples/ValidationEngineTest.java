@@ -1,6 +1,3 @@
-/*
- * Copyright (c) http://www.prowidesoftware.com/, 2013. All rights reserved.
- */
 package com.prowidesoftware.swift.samples;
 
 
@@ -12,7 +9,6 @@ import org.junit.Ignore;
 
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.swift.validator.SemanticProblem;
 import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
@@ -69,6 +65,7 @@ public class ValidationEngineTest  {
 	protected int count(List<ValidationProblem> problems, Enum problemCode) {
 		return count(problems, problemCode.name());
 	}
+	
 	protected int count(final List<ValidationProblem> problems, final String key) {
 		int k = 0;
 		for (final ValidationProblem p : problems) {

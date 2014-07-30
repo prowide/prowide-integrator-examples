@@ -1,6 +1,3 @@
-/*
- * Copyright (c) http://www.prowidesoftware.com/, 2013. All rights reserved.
- */
 package com.prowidesoftware.swift.samples;
 
 import java.io.FileReader;
@@ -13,7 +10,7 @@ import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
 /**
- * Example of SWIFT message validation with custom rules
+ * Example of SWIFT message validation with custom rules.
  * Reading and validating a valid SWIFT message from disk.
  * 
  * @author www.prowidesoftware.com
