@@ -5,7 +5,7 @@ import java.util.List;
 import com.prowidesoftware.swift.model.BICRecord;
 
 /*
- * 
+ * Sample program to list all entries in the internal bic directory, used to validate BICs in messages.
  */
 public class BICDirectory {
 
