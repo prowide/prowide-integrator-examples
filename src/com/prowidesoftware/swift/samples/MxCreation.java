@@ -3,19 +3,18 @@
  */
 package com.prowidesoftware.swift.samples;
 
-
-import iso.std.iso._20022.tech.xsd.pain_001_001.CustomerCreditTransferInitiationV05;
-import iso.std.iso._20022.tech.xsd.pain_001_001.Document;
-import iso.std.iso._20022.tech.xsd.pain_001_001.GroupHeader48;
-import iso.std.iso._20022.tech.xsd.pain_001_001.PaymentInstruction9;
-import swift.xsd.camt_006_001.PaymentInstruction1;
-
 import java.math.BigDecimal;
+
+import com.prowidesoftware.swift.mx.model.MxPain001001Iso20022;
+import com.prowidesoftware.swift.mx.model.dic.CustomerCreditTransferInitiationV05;
+import com.prowidesoftware.swift.mx.model.dic.GroupHeader48;
+import com.prowidesoftware.swift.mx.model.dic.PartyIdentification43;
+import com.prowidesoftware.swift.mx.model.dic.PaymentInstruction9;
 
 public class MxCreation {
 
     public static void main (String[] args) {
-        Document pain001001 = new Document();
+    	MxPain001001Iso20022 pain001001 = new MxPain001001Iso20022();
 
         CustomerCreditTransferInitiationV05 ccti = new CustomerCreditTransferInitiationV05();
         GroupHeader48 groupHeader = new GroupHeader48();
@@ -25,7 +24,9 @@ public class MxCreation {
 
 
         PaymentInstruction9 pi = new PaymentInstruction9();
-        pi.setDbtr();
+        PartyIdentification43 dbtr = new PartyIdentification43();
+        dbtr.setNm("foo");
+		pi.setDbtr(dbtr);
         ccti.getPmtInf().add(pi);
 
         pain001001.setCstmrCdtTrfInitn(ccti);
