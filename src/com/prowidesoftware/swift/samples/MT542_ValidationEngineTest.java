@@ -12,10 +12,9 @@ import com.prowidesoftware.swift.validator.ValidationProblem;
 
 
 /**
- * Extended class for validation testing.
+ * Example of MT542 message validation test.
  * 
- * @author rob
- * @since 1.0
+ * @author www.prowidesoftware.com
  */
 public class MT542_ValidationEngineTest extends BaseTestCase {
 	
@@ -39,7 +38,7 @@ public class MT542_ValidationEngineTest extends BaseTestCase {
 			":98A::TRAD//20090101\n" +			//6
 			":35B:ISIN IT0003430813\n" +		//7
 			"1000000-2\n" +	
-			"SAFILO GROUP SPA COMMON\n" +
+			"SAFOO GROUP CORP\n" +
 			":16S:TRADDET\n" +					//8
 			
 			//Financial Instrument/Account

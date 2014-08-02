@@ -1,9 +1,5 @@
-/*
- * Copyright (c) http://www.prowidesoftware.com/, 2013. All rights reserved.
- */
 package com.prowidesoftware.swift.samples;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.List;
@@ -16,7 +12,7 @@ import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
 /**
- * Example of SWIFT message validation ignoring specific errors
+ * Example of SWIFT message validation ignoring specific errors.
  * 
  * @author www.prowidesoftware.com
  */

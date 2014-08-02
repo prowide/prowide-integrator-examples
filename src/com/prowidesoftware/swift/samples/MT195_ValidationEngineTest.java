@@ -1,6 +1,3 @@
-/*
- * Copyright (c) http://www.prowidesoftware.com/, 2012. All rights reserved.
- */
 package com.prowidesoftware.swift.samples;
 
 import java.util.List;
@@ -13,13 +10,14 @@ import com.prowidesoftware.swift.validator.StructureProblem;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
 /**
+ * Example of MT195 message validation test.
  * 
  * @author www.prowidesoftware.com
  */
 public class MT195_ValidationEngineTest extends BaseTestCase {
 
 	/**
-	 * field 79 not present, additional fields not present
+	 * No error. Field 79 not present, additional fields not present
 	 * @throws Exception
 	 */
 	@Test

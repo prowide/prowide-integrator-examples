@@ -11,14 +11,12 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
 /**
- * Extended class for validation testing.
+ * Example of MT544 message validation test.
  * 
- * @author rob
- * @since 1.0
+ * @author www.prowidesoftware.com
  */
 public class MT544_ValidationEngineTest extends BaseTestCase {
 
-	
 	/**
 	 * Test no errors
 	 * @throws Exception
@@ -45,7 +43,7 @@ public class MT544_ValidationEngineTest extends BaseTestCase {
 			":98A::ESET//20090101\n" +			//12
 			":35B:ISIN IT0004176001\n" +		//13
 			"/XX/B1W4V69\n" +
-			"PRYSMIAN SPA\n" +
+			"JOEJOE SPA\n" +
 			"EUR0.10\n" +
 			":70E::SPRO//COMPLETE\n" +			//14
 			":16S:TRADDET\n" +					//15

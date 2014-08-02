@@ -1,10 +1,5 @@
-/*
- * Copyright (c) http://www.prowidesoftware.com/, 2008. All rights reserved.
- */
 package com.prowidesoftware.swift.samples;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -13,18 +8,19 @@ import org.junit.Test;
 
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.validator.FieldProblem;
-import com.prowidesoftware.swift.validator.SemanticProblem;
-import com.prowidesoftware.swift.validator.StructureProblem;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
 /**
+ * Example of MT202 message validation test.
  * 
  * @author www.prowidesoftware.com
- * @since 1.0
  */
 public class MT202_ValidationEngineTest extends BaseTestCase {
 
+	/**
+	 * Test no error.
+	 * @throws Exception
+	 */
 	@Test
 	public void test202() throws Exception {
 		String s = "{1:F01BICFOOYYAXXX8628453424}{2:O2021300050901IRVTLULXALTA06556102830509011300N}{4:\n" + 

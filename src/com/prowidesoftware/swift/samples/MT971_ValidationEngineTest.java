@@ -11,10 +11,14 @@ import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
 /**
+ * Example of MT971 message validation test.
+ * 
+ * @author www.prowidesoftware.com
  */
 public class MT971_ValidationEngineTest extends BaseTestCase {
 	
 	/**
+	 * Test no error.
 	 * @throws Exception
 	 */
 	@Test
@@ -32,6 +36,5 @@ public class MT971_ValidationEngineTest extends BaseTestCase {
 	    dumpProblems(r);
 	    assertEquals(0, r.size());
 	}
-	
 
 }
