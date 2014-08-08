@@ -68,45 +68,10 @@ import com.prowidesoftware.swift.io.writer.XMLWriterVisitor;
 	<field>
 		<name>23E</name>
 		<component number="1">SDVA</component>
-		<component number="2">null</component>
 	</field>
 	<field>
 		<name>72</name>
 		<component number="1">/BNF/TRANSF. BCO. FOO</component>
-		<component number="2">null</component>
-		<component number="3">null</component>
-		<component number="4">null</component>
-		<component number="5">null</component>
-		<component number="6">null</component>
-		<component number="7">null</component>
-		<component number="8">null</component>
-		<component number="9">null</component>
-		<component number="10">null</component>
-		<component number="11">null</component>
-		<component number="12">null</component>
-		<component number="13">null</component>
-		<component number="14">null</component>
-		<component number="15">null</component>
-		<component number="16">null</component>
-		<component number="17">null</component>
-		<component number="18">null</component>
-		<component number="19">null</component>
-		<component number="20">null</component>
-		<component number="21">null</component>
-		<component number="22">null</component>
-		<component number="23">null</component>
-		<component number="24">null</component>
-		<component number="25">null</component>
-		<component number="26">null</component>
-		<component number="27">null</component>
-		<component number="28">null</component>
-		<component number="29">null</component>
-		<component number="30">null</component>
-		<component number="31">null</component>
-		<component number="32">null</component>
-		<component number="33">null</component>
-		<component number="34">null</component>
-		<component number="35">null</component>
 	</field>
 </block4>
 <block5>
@@ -120,6 +85,7 @@ import com.prowidesoftware.swift.io.writer.XMLWriterVisitor;
 	</tag>
 </block5>
 </message>
+
 
 
 </pre> 
