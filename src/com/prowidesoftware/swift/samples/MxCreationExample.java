@@ -11,6 +11,26 @@ import com.prowidesoftware.swift.model.mx.dic.GroupHeader48;
 import com.prowidesoftware.swift.model.mx.dic.PartyIdentification43;
 import com.prowidesoftware.swift.model.mx.dic.PaymentInstruction9;
 
+/**
+ * Outputs this:
+ * <pre>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.05">
+    <CstmrCdtTrfInitn>
+        <GrpHdr>
+            <CtrlSum>100</CtrlSum>
+        </GrpHdr>
+        <PmtInf>
+            <Dbtr>
+                <Nm>foo</Nm>
+            </Dbtr>
+        </PmtInf>
+    </CstmrCdtTrfInitn>
+</Document>
+</pre>
+ *
+ * @since 7.6
+ */
 public class MxCreationExample {
 
     public static void main (String[] args) {
@@ -31,5 +51,6 @@ public class MxCreationExample {
 
         pain001001.setCstmrCdtTrfInitn(ccti);
 
+        System.out.println(pain001001.message());
     }
 }
