@@ -3,11 +3,14 @@
  */
 package com.prowidesoftware.swift.samples;
 
-import com.prowidesoftware.swift.model.mx.AbstractMX;
 import com.prowidesoftware.swift.model.mx.MxCamt04800103;
 
 /**
- *
+ * Running this will produce:
+ * <pre>
+MsgId: 001
+CARE... CARE
+</pre>
  * @since 7.6
  */
 public class MxReadExample {
@@ -36,7 +39,7 @@ public class MxReadExample {
     	/*
     	 * This API is not final, a more friendly API will be released, it is only provided for early tests 
     	 */
-    	MxCamt04800103 camt48 = (MxCamt04800103) AbstractMX.read(MxCamt04800103.NAMESPACE, new MxCamt04800103(), xml, MxCamt04800103._classes);
+    	MxCamt04800103 camt48 = MxCamt04800103.parse(xml);
 
     	/*
     	 * aceess message data from the java model 
