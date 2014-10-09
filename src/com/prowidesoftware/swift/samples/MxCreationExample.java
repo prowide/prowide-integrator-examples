@@ -5,7 +5,7 @@ package com.prowidesoftware.swift.samples;
 
 import java.math.BigDecimal;
 
-import com.prowidesoftware.swift.model.mx.MxPain00100105Iso20022;
+import com.prowidesoftware.swift.model.mx.MxPain00100105;
 import com.prowidesoftware.swift.model.mx.dic.CustomerCreditTransferInitiationV05;
 import com.prowidesoftware.swift.model.mx.dic.GroupHeader48;
 import com.prowidesoftware.swift.model.mx.dic.PartyIdentification43;
@@ -34,7 +34,7 @@ import com.prowidesoftware.swift.model.mx.dic.PaymentInstruction9;
 public class MxCreationExample {
 
     public static void main (String[] args) {
-    	MxPain00100105Iso20022 pain001001 = new MxPain00100105Iso20022();
+    	MxPain00100105 pain001001 = new MxPain00100105();
 
         CustomerCreditTransferInitiationV05 ccti = new CustomerCreditTransferInitiationV05();
         GroupHeader48 groupHeader = new GroupHeader48();
