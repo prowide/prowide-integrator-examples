@@ -13,44 +13,44 @@ import com.prowidesoftware.swift.model.mx.dic.PaymentInstruction9;
 
 /**
  * Outputs this:
+ * 
  * <pre>
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.05">
-    <CstmrCdtTrfInitn>
-        <GrpHdr>
-            <CtrlSum>100</CtrlSum>
-        </GrpHdr>
-        <PmtInf>
-            <Dbtr>
-                <Nm>foo</Nm>
-            </Dbtr>
-        </PmtInf>
-    </CstmrCdtTrfInitn>
-</Document>
-</pre>
+<?xml version="1.0" encoding="UTF-8"?>
+ <Doc:Document xmlns:Doc="urn:iso:std:iso:20022:tech:xsd:pain.001.001.05" xmlns:xsi="{http://www.w3.org/2000/xmlns/}Doc">
+  <Doc:CstmrCdtTrfInitn>
+   <Doc:GrpHdr>
+    <Doc:CtrlSum>100</Doc:CtrlSum>
+   </Doc:GrpHdr>
+  
+   <Doc:PmtInf>
+    <Doc:Dbtr>
+     <Doc:Nm>foo</Doc:Nm>
+    </Doc:Dbtr>
+   </Doc:PmtInf>
+  </Doc:CstmrCdtTrfInitn>
+ </Doc:Document>
+ * </pre>
  *
  * @since 7.6
  */
 public class MxCreationExample {
 
-    public static void main (String[] args) {
-    	MxPain00100105 pain001001 = new MxPain00100105();
+    public static void main(String[] args) {
+	MxPain00100105 pain001001 = new MxPain00100105();
 
-        CustomerCreditTransferInitiationV05 ccti = new CustomerCreditTransferInitiationV05();
-        GroupHeader48 groupHeader = new GroupHeader48();
-        groupHeader.setCtrlSum(new BigDecimal(100));
+	PaymentInstruction9 pi = new PaymentInstruction9()
+		.setDbtr(new PartyIdentification43()
+			.setNm("foo")
+		);
+	
+	CustomerCreditTransferInitiationV05 ccti = new CustomerCreditTransferInitiationV05()
+		.setGrpHdr(new GroupHeader48()
+			.setCtrlSum(new BigDecimal(100))
+		)
+		.addPmtInf(pi);
 
-        ccti.setGrpHdr(groupHeader);
+	pain001001.setCstmrCdtTrfInitn(ccti);
 
-
-        PaymentInstruction9 pi = new PaymentInstruction9();
-        PartyIdentification43 dbtr = new PartyIdentification43();
-        dbtr.setNm("foo");
-		pi.setDbtr(dbtr);
-        ccti.getPmtInf().add(pi);
-
-        pain001001.setCstmrCdtTrfInitn(ccti);
-
-        System.out.println(pain001001.message());
+	System.out.println(pain001001.message());
     }
 }
