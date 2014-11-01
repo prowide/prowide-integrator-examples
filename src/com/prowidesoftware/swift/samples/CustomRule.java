@@ -20,42 +20,42 @@ import com.prowidesoftware.swift.validator.internal.AffectedMTs;
  */
 @AffectedMTs(103)
 public class CustomRule extends ValidationRule {
-	public static class AmountTooBigProblem extends ValidationProblem {
-		private Field field;
-		
-		public AmountTooBigProblem(Field f) {
-			setProblemType(ProblemType.CUSTOM);
-			this.field = f;
-		}
+    public static class AmountTooBigProblem extends ValidationProblem {
+	private Field field;
 
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public String getMessage(Locale locale) {
-			return "AmountTooBig[field: "+this.field.getName()+"]";
-		}
+	public AmountTooBigProblem(Field f) {
+	    setProblemType(ProblemType.CUSTOM);
+	    this.field = f;
 	}
 
-	private int amountLimit;
-	
-	public CustomRule() {
-		this(1000000);
-	}
-	
-	public CustomRule(int limit) {
-		this.amountLimit = limit;
-	}
+	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected List<ValidationProblem> eval(SwiftMessage msg, String mt) {
-		List<ValidationProblem> result = new ArrayList<ValidationProblem>();
-		if (msg.isMT("103")) {
-			final Field32A f32A = (Field32A) msg.getBlock4().getFieldByName("32A");
-			if (f32A != null && f32A.getComponent3AsNumber().intValue() >= amountLimit) {
-				result.add(new AmountTooBigProblem(f32A));
-			}
-		}
-		return result;
+	public String getMessage(Locale locale) {
+	    return "AmountTooBig[field: " + this.field.getName() + "]";
 	}
+    }
+
+    private int amountLimit;
+
+    public CustomRule() {
+	this(1000000);
+    }
+
+    public CustomRule(int limit) {
+	this.amountLimit = limit;
+    }
+
+    @Override
+    protected List<ValidationProblem> eval(SwiftMessage msg, String mt) {
+	List<ValidationProblem> result = new ArrayList<ValidationProblem>();
+	if (msg.isMT("103")) {
+	    final Field32A f32A = (Field32A) msg.getBlock4().getFieldByName("32A");
+	    if (f32A != null && f32A.getComponent3AsNumber().intValue() >= amountLimit) {
+		result.add(new AmountTooBigProblem(f32A));
+	    }
+	}
+	return result;
+    }
 
 }
