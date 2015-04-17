@@ -1,7 +1,4 @@
-/*
- * Copyright (c) http://www.prowidesoftware.com/, 2012. All rights reserved.
- */
-package com.prowidesoftware.swift.samples;
+package com.prowidesoftware.swift.samples.integrator;
 
 import java.math.BigDecimal;
 
@@ -12,7 +9,8 @@ import com.prowidesoftware.swift.model.mx.dic.PartyIdentification43;
 import com.prowidesoftware.swift.model.mx.dic.PaymentInstruction9;
 
 /**
- * Outputs this:
+ * This example shows how to create a new MX message using the Java model to set its content.<br>
+ * Outputs this:<br>
  * 
  * <pre>
 <?xml version="1.0" encoding="UTF-8"?>
@@ -36,21 +34,30 @@ import com.prowidesoftware.swift.model.mx.dic.PaymentInstruction9;
 public class MxCreationExample {
 
     public static void main(String[] args) {
-	MxPain00100105 pain001001 = new MxPain00100105();
-
-	PaymentInstruction9 pi = new PaymentInstruction9()
-		.setDbtr(new PartyIdentification43()
-			.setNm("foo")
-		);
+    	/*
+    	 * Initialize the MX object
+    	 */
+		MxPain00100105 pain001001 = new MxPain00100105();
 	
-	CustomerCreditTransferInitiationV05 ccti = new CustomerCreditTransferInitiationV05()
-		.setGrpHdr(new GroupHeader48()
-			.setCtrlSum(new BigDecimal(100))
-		)
-		.addPmtInf(pi);
-
-	pain001001.setCstmrCdtTrfInitn(ccti);
-
-	System.out.println(pain001001.message());
+		/*
+		 * Construct element content using the business dictionary
+		 */
+		PaymentInstruction9 pi = new PaymentInstruction9()
+			.setDbtr(new PartyIdentification43()
+				.setNm("foo")
+			);
+		
+		CustomerCreditTransferInitiationV05 ccti = new CustomerCreditTransferInitiationV05()
+			.setGrpHdr(new GroupHeader48()
+				.setCtrlSum(new BigDecimal(100))
+			)
+			.addPmtInf(pi);
+	
+		pain001001.setCstmrCdtTrfInitn(ccti);
+	
+		/*
+		 * Print the generated message in its XML format
+		 */
+		System.out.println(pain001001.message());
     }
 }
