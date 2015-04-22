@@ -54,12 +54,12 @@ public class MtPathExample {
     	 * of each second instance of a sequence B1b
     	 */
     	found = MtPath.evaluate("parent::B1b[2]/35B/4", mt);
-
+    	
 		/*
 		 * get the MIR logical terminal address from header block 2
 		 */
-		found = MtPath.evaluate("b2/" + SwiftBlock2OutputField.MIRLogicalTerminal, mt);
-		System.out.println(found.get(0).getComponent());
+    	found = MtPath.evaluate("b2/" + SwiftBlock2OutputField.MIRLogicalTerminal, mt);
+    	System.out.println(found.get(0).getComponent());
 
     }
     
