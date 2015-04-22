@@ -44,7 +44,7 @@ public class MtPathExample {
     	/*
     	 * get all fields 95P within a sequence B or any of its subsequences
     	 */
-		found = MtPath.evaluate("B[*]/93B", mt);
+    	found = MtPath.evaluate("B[*]/93B", mt);
     	for (MtPathResult f : found) {
     		System.out.println(f.getField().getValue());
     	}
@@ -53,13 +53,13 @@ public class MtPathExample {
     	 * get the forth component of fields 35B, found in the parent sequence
     	 * of each second instance of a sequence B1b
     	 */
-		found = MtPath.evaluate("parent::B1b[2]/35B/4", mt);
+    	found = MtPath.evaluate("parent::B1b[2]/35B/4", mt);
 
 		/*
 		 * get the MIR logical terminal address from header block 2
 		 */
 		found = MtPath.evaluate("b2/" + SwiftBlock2OutputField.MIRLogicalTerminal, mt);
-    	System.out.println(found.get(0).getComponent());
+		System.out.println(found.get(0).getComponent());
 
     }
     
