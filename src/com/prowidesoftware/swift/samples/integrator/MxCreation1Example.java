@@ -31,7 +31,7 @@ import com.prowidesoftware.swift.model.mx.dic.PaymentInstruction9;
  *
  * @since 7.6
  */
-public class MxCreationExample {
+public class MxCreation1Example {
 
     public static void main(String[] args) {
     	/*
