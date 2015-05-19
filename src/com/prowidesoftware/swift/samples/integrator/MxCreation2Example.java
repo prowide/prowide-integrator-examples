@@ -29,102 +29,102 @@ import com.prowidesoftware.swift.model.mx.dic.SettlementMethod1Code;
  * 
  * Outputs this MX message:<br>
  * <pre>
-<?xml version="1.0" encoding="UTF-8"?>
- <Doc:Document xmlns:Doc="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02" xmlns:xsi="{http://www.w3.org/2000/xmlns/}Doc">
-  <Doc:FIToFICstmrCdtTrf>
-   <Doc:GrpHdr>
-    <Doc:MsgId>TBEXO12345</Doc:MsgId>
-   
-    <Doc:CreDtTm>2015-05-19T13:15:23.336-03:00</Doc:CreDtTm>
-   
-    <Doc:NbOfTxs>1</Doc:NbOfTxs>
-   
-    <Doc:SttlmInf>
-     <Doc:SttlmMtd>INDA</Doc:SttlmMtd>
-    
-     <Doc:SttlmAcct>
-      <Doc:Id>
-       <Doc:Othr>
-        <Doc:Id>00010013800002001234</Doc:Id>
-       </Doc:Othr>
-      </Doc:Id>
-     </Doc:SttlmAcct>
-    </Doc:SttlmInf>
-   
-    <Doc:InstgAgt>
-     <Doc:FinInstnId>
-      <Doc:BIC>FOOBARC0XXX</Doc:BIC>
-     </Doc:FinInstnId>
-    </Doc:InstgAgt>
-   
-    <Doc:InstdAgt>
-     <Doc:FinInstnId>
-      <Doc:BIC>BANKANC0XXX</Doc:BIC>
-     </Doc:FinInstnId>
-    </Doc:InstdAgt>
-   </Doc:GrpHdr>
-  
-   <Doc:CdtTrfTxInf>
-    <Doc:PmtId>
-     <Doc:InstrId>TBEXO12345</Doc:InstrId>
-    
-     <Doc:EndToEndId>TBEXO12345</Doc:EndToEndId>
-    
-     <Doc:TxId>TBEXO12345</Doc:TxId>
-    </Doc:PmtId>
-   
-    <Doc:IntrBkSttlmAmt Ccy="USD" >23453</Doc:IntrBkSttlmAmt>
-   
-    <Doc:IntrBkSttlmDt>2015-05-19T13:15:23.352-03:00</Doc:IntrBkSttlmDt>
-   
-    <Doc:ChrgBr>DEBT</Doc:ChrgBr>
-   
-    <Doc:Dbtr>
-     <Doc:Nm>JOE DOE</Doc:Nm>
-    
-     <Doc:PstlAdr>
-      <Doc:AdrLine>310 Field Road, NY</Doc:AdrLine>
-     </Doc:PstlAdr>
-    </Doc:Dbtr>
-   
-    <Doc:DbtrAcct>
-     <Doc:Id>
-      <Doc:Othr>
-       <Doc:Id>01111001759234567890</Doc:Id>
-      </Doc:Othr>
-     </Doc:Id>
-    </Doc:DbtrAcct>
-   
-    <Doc:DbtrAgt>
-     <Doc:FinInstnId>
-      <Doc:BIC>FOOBARC0XXX</Doc:BIC>
-     </Doc:FinInstnId>
-    </Doc:DbtrAgt>
-   
-    <Doc:CdtrAgt>
-     <Doc:FinInstnId>
-      <Doc:BIC>BANKANC0XXX</Doc:BIC>
-     </Doc:FinInstnId>
-    </Doc:CdtrAgt>
-   
-    <Doc:Cdtr>
-     <Doc:Nm>TEST CORP</Doc:Nm>
-    
-     <Doc:PstlAdr>
-      <Doc:AdrLine>Nellis ABC, NV</Doc:AdrLine>
-     </Doc:PstlAdr>
-    </Doc:Cdtr>
-   
-    <Doc:CdtrAcct>
-     <Doc:Id>
-      <Doc:Othr>
-       <Doc:Id>00013500510020179998</Doc:Id>
-      </Doc:Othr>
-     </Doc:Id>
-    </Doc:CdtrAcct>
-   </Doc:CdtTrfTxInf>
-  </Doc:FIToFICstmrCdtTrf>
- </Doc:Document>
+ * <?xml version="1.0" encoding="UTF-8"?>
+ * <Doc:Document xmlns:Doc="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02" xmlns:xsi="{http://www.w3.org/2000/xmlns/}Doc">
+ *  <Doc:FIToFICstmrCdtTrf>
+ *   <Doc:GrpHdr>
+ *    <Doc:MsgId>TBEXO12345</Doc:MsgId>
+ *   
+ *    <Doc:CreDtTm>2015-05-19T13:15:23.336-03:00</Doc:CreDtTm>
+ *   
+ *    <Doc:NbOfTxs>1</Doc:NbOfTxs>
+ *   
+ *    <Doc:SttlmInf>
+ *     <Doc:SttlmMtd>INDA</Doc:SttlmMtd>
+ *    
+ *     <Doc:SttlmAcct>
+ *      <Doc:Id>
+ *       <Doc:Othr>
+ *        <Doc:Id>00010013800002001234</Doc:Id>
+ *       </Doc:Othr>
+ *      </Doc:Id>
+ *     </Doc:SttlmAcct>
+ *    </Doc:SttlmInf>
+ *   
+ *    <Doc:InstgAgt>
+ *     <Doc:FinInstnId>
+ *      <Doc:BIC>FOOBARC0XXX</Doc:BIC>
+ *     </Doc:FinInstnId>
+ *    </Doc:InstgAgt>
+ *   
+ *    <Doc:InstdAgt>
+ *     <Doc:FinInstnId>
+ *      <Doc:BIC>BANKANC0XXX</Doc:BIC>
+ *     </Doc:FinInstnId>
+ *    </Doc:InstdAgt>
+ *   </Doc:GrpHdr>
+ *  
+ *   <Doc:CdtTrfTxInf>
+ *    <Doc:PmtId>
+ *     <Doc:InstrId>TBEXO12345</Doc:InstrId>
+ *    
+ *     <Doc:EndToEndId>TBEXO12345</Doc:EndToEndId>
+ *    
+ *     <Doc:TxId>TBEXO12345</Doc:TxId>
+ *    </Doc:PmtId>
+ *   
+ *    <Doc:IntrBkSttlmAmt Ccy="USD" >23453</Doc:IntrBkSttlmAmt>
+ *   
+ *    <Doc:IntrBkSttlmDt>2015-05-19T13:15:23.352-03:00</Doc:IntrBkSttlmDt>
+ *   
+ *    <Doc:ChrgBr>DEBT</Doc:ChrgBr>
+ *   
+ *    <Doc:Dbtr>
+ *     <Doc:Nm>JOE DOE</Doc:Nm>
+ *    
+ *     <Doc:PstlAdr>
+ *      <Doc:AdrLine>310 Field Road, NY</Doc:AdrLine>
+ *     </Doc:PstlAdr>
+ *    </Doc:Dbtr>
+ *   
+ *    <Doc:DbtrAcct>
+ *     <Doc:Id>
+ *      <Doc:Othr>
+ *       <Doc:Id>01111001759234567890</Doc:Id>
+ *      </Doc:Othr>
+ *    </Doc:Id>
+ *    </Doc:DbtrAcct>
+ *   
+ *    <Doc:DbtrAgt>
+ *     <Doc:FinInstnId>
+ *      <Doc:BIC>FOOBARC0XXX</Doc:BIC>
+ *     </Doc:FinInstnId>
+ *    </Doc:DbtrAgt>
+ *   
+ *    <Doc:CdtrAgt>
+ *     <Doc:FinInstnId>
+ *      <Doc:BIC>BANKANC0XXX</Doc:BIC>
+ *     </Doc:FinInstnId>
+ *    </Doc:CdtrAgt>
+ *   
+ *    <Doc:Cdtr>
+ *     <Doc:Nm>TEST CORP</Doc:Nm>
+ *    
+ *     <Doc:PstlAdr>
+ *      <Doc:AdrLine>Nellis ABC, NV</Doc:AdrLine>
+ *     </Doc:PstlAdr>
+ *    </Doc:Cdtr>
+ *   
+ *    <Doc:CdtrAcct>
+ *     <Doc:Id>
+ *      <Doc:Othr>
+ *       <Doc:Id>00013500510020179998</Doc:Id>
+ *      </Doc:Othr>
+ *     </Doc:Id>
+ *    </Doc:CdtrAcct>
+ *   </Doc:CdtTrfTxInf>
+ *  </Doc:FIToFICstmrCdtTrf>
+ * </Doc:Document>
  * </pre><br><br>
  *
  * This MX messages is the equivalent to the MT103 simple credit transfer:
