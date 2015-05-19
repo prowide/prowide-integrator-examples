@@ -13,20 +13,20 @@ import com.prowidesoftware.swift.model.mx.dic.PaymentInstruction9;
  * Outputs this:<br>
  * 
  * <pre>
-<?xml version="1.0" encoding="UTF-8"?>
- <Doc:Document xmlns:Doc="urn:iso:std:iso:20022:tech:xsd:pain.001.001.05" xmlns:xsi="{http://www.w3.org/2000/xmlns/}Doc">
-  <Doc:CstmrCdtTrfInitn>
-   <Doc:GrpHdr>
-    <Doc:CtrlSum>100</Doc:CtrlSum>
-   </Doc:GrpHdr>
-  
-   <Doc:PmtInf>
-    <Doc:Dbtr>
-     <Doc:Nm>foo</Doc:Nm>
-    </Doc:Dbtr>
-   </Doc:PmtInf>
-  </Doc:CstmrCdtTrfInitn>
- </Doc:Document>
+ * <?xml version="1.0" encoding="UTF-8"?>
+ * <Doc:Document xmlns:Doc="urn:iso:std:iso:20022:tech:xsd:pain.001.001.05" xmlns:xsi="{http://www.w3.org/2000/xmlns/}Doc">
+ *  <Doc:CstmrCdtTrfInitn>
+ *   <Doc:GrpHdr>
+ *    <Doc:CtrlSum>100</Doc:CtrlSum>
+ *   </Doc:GrpHdr>
+ *  
+ *   <Doc:PmtInf>
+ *    <Doc:Dbtr>
+ *     <Doc:Nm>foo</Doc:Nm>
+ *    </Doc:Dbtr>
+ *   </Doc:PmtInf>
+ *  </Doc:CstmrCdtTrfInitn>
+ * </Doc:Document>
  * </pre>
  *
  * @since 7.6
