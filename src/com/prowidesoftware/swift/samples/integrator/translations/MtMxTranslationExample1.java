@@ -2,6 +2,7 @@ package com.prowidesoftware.swift.samples.integrator.translations;
 
 import com.prowidesoftware.swift.model.mt.mt5xx.MT564;
 import com.prowidesoftware.swift.model.mx.MxSeev03900202;
+import com.prowidesoftware.swift.translations.LogicalMessageCriteriaException;
 import com.prowidesoftware.swift.translations.MT564_MxSeev03900202_Translation;
 import com.prowidesoftware.swift.translations.TranslationPreconditionException;
 
@@ -12,7 +13,7 @@ import com.prowidesoftware.swift.translations.TranslationPreconditionException;
  * @author sebastian@prowidesoftware.com
  * @since 7.7
  */
-public class MtMxTranslationExample {
+public class MtMxTranslationExample1 {
 	
 	public static void main(String[] args) {
 		/*
@@ -34,14 +35,12 @@ public class MtMxTranslationExample {
 			/*
 			 * Print content from the translated message
 			 */
-			System.out.println("Cancellation Reason Code: "+mx.getCorpActnCxlAdvc().getCxlAdvcGnlInf().getCxlRsnCd().name());
-			System.out.println("Processing Completness: "+mx.getCorpActnCxlAdvc().getCxlAdvcGnlInf().getPrcgSts().getEvtSts().getEvtCmpltnsSts().name());
-			System.out.println("Corporate Action Id: "+mx.getCorpActnCxlAdvc().getCorpActnGnlInf().getCorpActnEvtId());
-			System.out.println("Event Type Code: "+mx.getCorpActnCxlAdvc().getCorpActnGnlInf().getEvtTp().getCd().name());
-			System.out.println("Underlying Security ISIN: "+mx.getCorpActnCxlAdvc().getCorpActnGnlInf().getUndrlygSctyId().getISIN());
-			
-		} catch (TranslationPreconditionException e) {
-			System.out.println(e.getMessage());
+			System.out.println(mx.message());
+		
+		} catch (final LogicalMessageCriteriaException e1) {
+			System.out.println("logical message criteria exception: " + e1.getMessage());
+		} catch (final TranslationPreconditionException e2) {
+			System.out.println("precondition exception: " + e2.getMessage());
 		}
 	}
 
