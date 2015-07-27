@@ -47,7 +47,7 @@ public class MT103_SemanticTestExample {
 		        + ":72:/TELE/ IN FAVOUR OF\n" + "//A/C R-000000\n-}";
 	
 		SwiftMessage msg = new SwiftParser(mt).message();
-		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg, false);
+		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg);
 		// List<ValidationProblem> r = engine.validateMessage(msg, "103_STP");
 		ExamplesLib.dumpProblems(r, msg);
     }
@@ -60,7 +60,7 @@ public class MT103_SemanticTestExample {
 		        + ":72:/TELE/ IN FAVOUR OF\n" + "//A/C R-000000\n-}";
 	
 		SwiftMessage msg = new SwiftParser(mt).message();
-		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg, false);
+		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg);
 		// List<ValidationProblem> r = engine.validateMessage(msg, "103_STP");
 		ExamplesLib.dumpProblems(r, msg);
     }
@@ -71,7 +71,7 @@ public class MT103_SemanticTestExample {
 		        + ":72:/TELE/ IN FAVOUR OF\n" + "//A/C R-000000\n-}";
 	
 		SwiftMessage msg = new SwiftParser(mt).message();
-		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg, false);
+		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg);
 		// List<ValidationProblem> r = engine.validateMessage(msg, "103_STP");
 		ExamplesLib.dumpProblems(r, msg);
     }
@@ -82,7 +82,7 @@ public class MT103_SemanticTestExample {
 		        + "//A/C R-000000\n-}";
 	
 		SwiftMessage msg = new SwiftParser(mt).message();
-		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg, false);
+		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg);
 		// List<ValidationProblem> r = engine.validateMessage(msg, "103_STP");
 		ExamplesLib.dumpProblems(r, msg);
     }
@@ -93,7 +93,7 @@ public class MT103_SemanticTestExample {
 		        + ":72:/TELE/ IN FAVOUR OF\n" + "//A/C R-000000\n-}";
 	
 		SwiftMessage msg = new SwiftParser(mt).message();
-		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg, false);
+		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg);
 		// List<ValidationProblem> r = engine.validateMessage(msg, "103_STP");
 		ExamplesLib.dumpProblems(r, msg);																			
     }
