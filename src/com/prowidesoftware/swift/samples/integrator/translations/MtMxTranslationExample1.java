@@ -7,8 +7,10 @@ import com.prowidesoftware.swift.translations.MT564_MxSeev03900202_Translation;
 import com.prowidesoftware.swift.translations.TranslationPreconditionException;
 
 /**
- * This example shows hot to perform a translation from ant MT to its correspondent MX
+ * This example shows how to perform a translation from a MT to its correspondent MX
  * using API from Prowide Integrator Translations module.
+ * <br>
+ * Example using specific translation class.
  * 
  * @author sebastian@prowidesoftware.com
  * @since 7.7
@@ -30,7 +32,7 @@ public class MtMxTranslationExample1 {
 			/*
 			 * Call the translation process
 			 */
-			final MxSeev03900202 mx = translator.translate(source);
+			final MxSeev03900202 mx = (MxSeev03900202) translator.translate(source);
 			
 			/*
 			 * Print content from the translated message

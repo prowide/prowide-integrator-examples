@@ -9,8 +9,10 @@ import com.prowidesoftware.swift.translations.MT564_MxSeev03900202_Translation;
 import com.prowidesoftware.swift.translations.PreconditionError;
 
 /**
- * This example shows hot to perform a translation from ant MT to its correspondent MX
+ * This example shows how to perform a translation from a MT to its correspondent MX
  * using API from Prowide Integrator Translations module. Checking preconditions by API.
+ * <br>
+ * Example checking preconditions.
  * 
  * @author sebastian@prowidesoftware.com
  * @since 7.7
@@ -39,7 +41,13 @@ public class MtMxTranslationExample2 {
 				final MxSeev03900202 mx = translator.translate(source);
 				
 				/*
-				 * Print content from the translated message
+				 * Print content from the translated message:
+				 * 
+				 * Cancellation Reason Code: PROC
+				 * Processing Completness: COMP
+				 * Corporate Action Id: FOOBAR
+				 * Event Type Code: DVCA
+				 * Underlying Security ISIN: JAC9E9G9I9K9
 				 */
 				System.out.println("Cancellation Reason Code: "+mx.getCorpActnCxlAdvc().getCxlAdvcGnlInf().getCxlRsnCd().name());
 				System.out.println("Processing Completness: "+mx.getCorpActnCxlAdvc().getCxlAdvcGnlInf().getPrcgSts().getEvtSts().getEvtCmpltnsSts().name());

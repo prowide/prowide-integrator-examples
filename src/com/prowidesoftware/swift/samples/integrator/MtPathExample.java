@@ -2,10 +2,10 @@ package com.prowidesoftware.swift.samples.integrator;
 
 import java.util.List;
 
-import com.prowidesoftware.swift.model.MtPath;
-import com.prowidesoftware.swift.model.MtPathResult;
 import com.prowidesoftware.swift.model.SwiftBlock2OutputField;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
+import com.prowidesoftware.swift.myformat.MtPath;
+import com.prowidesoftware.swift.myformat.MtPathResult;
 
 /**
  * Sample program to show main features of the MT path API.<br> 

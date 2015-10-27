@@ -10,8 +10,10 @@ import com.prowidesoftware.swift.translations.MtTranslator;
 import com.prowidesoftware.swift.translations.TranslationPreconditionException;
 
 /**
- * This example shows hot to perform a translation from ant MT to its correspondent MX
+ * This example shows how to perform a translation from a MT to its correspondent MX
  * using API from Prowide Integrator Translations module. Using the generic interface.
+ * <br>
+ * Example with abstract generic API calls.
  * 
  * @author sebastian@prowidesoftware.com
  * @since 7.7
