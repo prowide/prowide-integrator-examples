@@ -52,32 +52,32 @@ public class MT2MXExample {
 		 * 
 		 * <?xml version="1.0" encoding="UTF-8" ?>
 		 * <message>
-		 * 	<AppHdr>
-		 *  	<Fr>
-		 *  		<FIId>
-		 *  			<BrnchId>
-		 *  				<Id>id12345</Id>
-		 *  				<PstlAdr>
-		 *  					<PstCd>1602</PstCd>
-		 *  				</PstlAdr>
-		 *  			</BrnchId>
-		 *  		</FIId>
-		 *  	</Fr>
-		 *  	<To>
-		 *  		<FIId>
-		 *  			<BrnchId>
-		 *  				<Id>foo</Id>
-		 *  			</BrnchId>
-		 *  		</FIId>
-		 *  	</To>
-		 *  </AppHdr>
-		 *  <Doc:Document xmlns:Doc="urn:swift:xsd:camt.003.001.05" xmlns:xsi="{http://www.w3.org/2000/xmlns/}Doc">
-		 *  	<Doc:GetAcct>
-		 *  		<Doc:AcctQryDef>
-		 *  			<Doc:QryTp>CHNG</Doc:QryTp>
-		 *  		</Doc:AcctQryDef>
-		 *  	</Doc:GetAcct>
-		 *  </Doc:Document>
+		 * 	 <AppHdr>
+		 *     <Fr>
+		 *       <FIId>
+		 *         <BrnchId>
+		 *           <Id>id12345</Id>
+		 *           <PstlAdr>
+		 *             <PstCd>1602</PstCd>
+		 *           </PstlAdr>
+		 *         </BrnchId>
+		 *       </FIId>
+		 *     </Fr>
+		 *     <To>
+		 *       <FIId>
+		 *         <BrnchId>
+		 *           <Id>foo</Id>
+		 *         </BrnchId>
+		 *       </FIId>
+		 *     </To>
+		 *   </AppHdr>
+		 *   <Doc:Document xmlns:Doc="urn:swift:xsd:camt.003.001.05" xmlns:xsi="{http://www.w3.org/2000/xmlns/}Doc">
+		 *     <Doc:GetAcct>
+		 *       <Doc:AcctQryDef>
+		 *         <Doc:QryTp>CHNG</Doc:QryTp>
+		 *       </Doc:AcctQryDef>
+		 *     </Doc:GetAcct>
+		 *   </Doc:Document>
 		 * </message>
 		 */
 		System.out.println(mx.message("message"));
