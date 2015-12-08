@@ -3,6 +3,7 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
+import com.prowidesoftware.swift.myformat.mt.MtWriter;
 
 /**
  * This example shows how to convert and XML into an MT
@@ -20,7 +21,7 @@ public class XML2MTExample {
 		/*
 		 * Create de mapping table instance
 		 */
-		MappingTable table = new MappingTable(FileFormat.XML, FileFormat.MT);
+		MappingTable table = new MappingTable(FileFormat.XML, new MtWriter());
 		/*
 		 * Load mapping rules from Excel
 		 */
