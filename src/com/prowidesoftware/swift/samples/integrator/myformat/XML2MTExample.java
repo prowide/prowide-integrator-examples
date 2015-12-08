@@ -21,7 +21,7 @@ public class XML2MTExample {
 		/*
 		 * Create de mapping table instance
 		 */
-		MappingTable table = new MappingTable(FileFormat.XML, new MtWriter());
+		MappingTable table = new MappingTable(FileFormat.XML, FileFormat.MT);
 		/*
 		 * Load mapping rules from Excel
 		 */

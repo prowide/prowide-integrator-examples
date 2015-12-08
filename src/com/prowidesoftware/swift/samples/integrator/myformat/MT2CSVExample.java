@@ -61,7 +61,7 @@ public class MT2CSVExample {
 		 * programmatic mapping rules
 		 * notice this rules could also be loaded from Excel spreadsheet or database.
 		 */
-		MappingTable t = new MappingTable(FileFormat.MT, new CsvWriter(6));
+		MappingTable t = new MappingTable(FileFormat.MT, FileFormat.CSV);
 		t.add(new MappingRule("20", "0")); 
 		t.add(new MappingRule("21", "1"));
 		t.add(new MappingRule("B/32B/1", "2"));
