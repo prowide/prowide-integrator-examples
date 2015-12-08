@@ -1,7 +1,5 @@
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +14,7 @@ import com.prowidesoftware.swift.myformat.Transformation;
 import com.prowidesoftware.swift.myformat.Transformation.Key;
 
 /**
- * This example shows how to convert and MT into an MT
+ * This example shows how to convert and MT into an MX
  * using API from Prowide Integrator MyFormat module.
  * <br>
  * The mapping rules in this example are defined programmatically.
