@@ -9,6 +9,8 @@ import com.prowidesoftware.swift.myformat.MyFormatEngine;
 import com.prowidesoftware.swift.myformat.Transformation;
 import com.prowidesoftware.swift.myformat.Transformation.Key;
 import com.prowidesoftware.swift.myformat.WriteMode;
+import com.prowidesoftware.swift.myformat.csv.CsvFileReader;
+import com.prowidesoftware.swift.myformat.csv.CsvReader;
 import com.prowidesoftware.swift.myformat.mt.MtWriter;
 
 /**
@@ -34,7 +36,7 @@ public class CSV2MTExample {
 		 * programmatic mapping rules
 		 * notice this rules could also be loaded from Excel spreadsheet or database.		 
 		 */
-		MappingTable t = new MappingTable(FileFormat.CSV, new MtWriter(MtType.MT300));
+		MappingTable t = new MappingTable(FileFormat.CSV, FileFormat.MT);
 		t.add(new MappingRule("0", "20")); 
 		t.add(new MappingRule("1", "21"));
 		t.add(new MappingRule("2", "B/32B/1"));
@@ -49,29 +51,39 @@ public class CSV2MTExample {
 		if (t.validate().isEmpty()) {
 			
 			/*
-			 * sample line from CSV file
+			 * create the file reader
 			 */
-			final String line = "QCOUCN,NEW,CLP,3794630000.,#9301011483,L1710833-1-1";
+			CsvFileReader reader = new CsvFileReader(CSV2MTExample.class.getResourceAsStream("messages.csv"));
 			
-			/*
-			 * translation call
-			 */
-			final String target = MyFormatEngine.translate(line, t);
+			while (reader.hasNext()) {
+				/*
+				 * read a row from the CSV file
+				 */
+				String line = reader.next();
+				System.out.println("processing: "+line);
+				
+				/*
+				 * translation call
+				 */
+				MtWriter writer = new MtWriter(MtType.MT300);
+				MyFormatEngine.translate(new CsvReader(line), writer, t.getRules());
+				
+				/*
+				 * parse and print content from the created MT:
+				 * 
+				 * Sender's Reference: QCOUCN
+				 * Related Reference: NEW
+				 * Transaction Amount: CLP3794630000,
+				 * Account: /9301011483
+				 */
+				MT300 mt = (MT300) writer.mt();
+				System.out.println(mt.getField20().getLabel() + ": " + mt.getField20().getValue());
+				System.out.println(mt.getField21().getLabel() + ": " + mt.getField21().getValue());
+				System.out.println(mt.getField32B().get(0).getLabel() + ": " + mt.getField32B().get(0).getValue());
+				System.out.println("Account: " + mt.getField58A().get(0).getValue());
+			}
 			
-			/*
-			 * parse and print content from the created MT:
-			 * 
-			 * Sender's Reference: QCOUCN
-			 * Related Reference: NEW
-			 * Transaction Amount: CLP3794630000,
-			 * Account: /9301011483
-			 * 
-			 */
-			MT300 mt = MT300.parse(target);
-			System.out.println(mt.getField20().getLabel() + ": " + mt.getField20().getValue());
-			System.out.println(mt.getField21().getLabel() + ": " + mt.getField21().getValue());
-			System.out.println(mt.getField32B().get(0).getLabel() + ": " + mt.getField32B().get(0).getValue());
-			System.out.println("Account: " + mt.getField58A().get(0).getValue());
+			reader.close();
 		}
 	}
 }
