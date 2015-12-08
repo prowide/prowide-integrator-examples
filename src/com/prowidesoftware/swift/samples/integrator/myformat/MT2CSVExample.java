@@ -1,12 +1,16 @@
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.StringWriter;
+
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingRule;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
 import com.prowidesoftware.swift.myformat.Transformation;
 import com.prowidesoftware.swift.myformat.Transformation.Key;
-import com.prowidesoftware.swift.myformat.csv.CsvWriter;
+import com.prowidesoftware.swift.myformat.csv.CsvFileWriter;
 
 /**
  * This example shows how to convert and MT into a CSV row
@@ -24,7 +28,7 @@ import com.prowidesoftware.swift.myformat.csv.CsvWriter;
  * @since 7.8
  */
 public class MT2CSVExample {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		/*
 		 * source message
 		 */
@@ -73,17 +77,25 @@ public class MT2CSVExample {
 		 * check if the mapping table is valid
 		 */
 		if (t.validate().isEmpty()) {
-			
 			/*
 			 * translation call
 			 */
-			final String target = MyFormatEngine.translate(msg, t);
+			final String line = MyFormatEngine.translate(msg, t);
 			
 			/*
 			 * print the result:
 			 * QCOUCN,NEW,CLP,3794630000.,#9301011483,L1710833-1-1
 			 */
-			System.out.println(target);
+			System.out.println(line);
+			
+			/*
+			 * if multiple MT source messages should be processed and put into a single CSV file
+			 * then the CSV file writer can be used.
+			 */
+			StringWriter out = new StringWriter();
+			CsvFileWriter writer = new CsvFileWriter(out);
+			writer.write(line);
+			writer.close();
 		}
 	}
 }
