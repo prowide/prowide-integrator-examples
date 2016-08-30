@@ -1,6 +1,6 @@
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
-import com.prowidesoftware.swift.model.mt.MtType;
+import com.prowidesoftware.swift.model.mt.MtStandard;
 import com.prowidesoftware.swift.model.mt.mt3xx.MT300;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingRule;
@@ -65,7 +65,7 @@ public class CSV2MTExample {
 				/*
 				 * translation call
 				 */
-				MtWriter writer = new MtWriter(MtType.MT300);
+				MtWriter writer = new MtWriter(MtStandard.SRU2016.type("MT300"));
 				MyFormatEngine.translate(new CsvReader(line), writer, t.getRules());
 				
 				/*
