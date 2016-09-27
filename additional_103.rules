@@ -1,8 +1,0 @@
-# This format enables to add multiple classes with simple names
-# Each name in rules will be used as a replacement of the {name}
-# variable in rule_mask
-# {name} will be replaced by each value in rules 
-rule_mask=com.prowidesoftware.swift.samples.{name}
-
-# Uncomment this to add these two custom rules to validation process
-rules=CustomRule

@@ -9,14 +9,26 @@ import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
 /**
- * Validation test, to see how the semantic validations are detected are reported.
+ * Simple validation example forcing several semantic problems, to see how 
+ * the semantic validations are detected are reported.
+ * 
+ * <p>
+ * The example produces the following output:
+ * <pre>
+ * MALFORMED MESSAGE, 4 VALIDATION PROBLEMS FOUND.
+ * 1/4 23E: INVALID_FIELD_QUALIFIER tag index 2 --> Invalid qualifier FOOO found in field 23E, expecting one of: CHQB, CORT, HOLD, INTC, PHOB, PHON, PHOI, REPA, SDVA, TELB, TELE, TELI. (errorcode: K23) (sequence: main)
+ * 2/4: E02 --> If field 23B contains SSTD or SPAY, 23E must not be used.
+ * 3/4: D97 --> Component 2 of field 23E is only allowed when component 1 consists of PHON, PHOB, PHOI, TELE, TELB, TELI, HOLD or REPA for not STP and REPA for STP.
+ * 4/4: E15 --> If field 71A contains BEN, field 71F is mandatory and field 71G is not allowed.
+ * </pre>
+ * </p>
  * 
  * @author sebastian@prowidesoftware.com
  */
-public class MT103_SemanticTestExample {
+public class MessageValidation3Example {
 
     public static void main(String[] args) throws Exception {
-		final MT103_SemanticTestExample main = new MT103_SemanticTestExample();
+		final MessageValidation3Example main = new MessageValidation3Example();
 		System.out.println("SEMANTIC RULE 2");
 		main.showSemantic2();
 		System.out.println("SEMANTIC RULE 150");
