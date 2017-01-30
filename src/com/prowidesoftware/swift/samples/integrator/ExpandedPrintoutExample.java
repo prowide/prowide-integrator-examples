@@ -322,7 +322,10 @@ public class ExpandedPrintoutExample {
 					final String value = f.getComponent(component);
 					if (value != null) {
 						final String label = f.getComponentLabel(component);
-						out.append("\t").append(label).append(": ");
+						out.append("\t");
+						if (StringUtils.isNotBlank(label)) {
+							out.append(label).append(": ");
+						}
 						if (StringUtils.equals("BIC", label)) {
 							/*
 							 * if component is a BIC, expand the institution data
