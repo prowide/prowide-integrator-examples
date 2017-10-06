@@ -20,8 +20,8 @@ import com.prowidesoftware.swift.model.mx.AbstractMX;
 import com.prowidesoftware.swift.model.mx.MxSeev03900202;
 import com.prowidesoftware.swift.translations.LogicalMessageCriteriaException;
 import com.prowidesoftware.swift.translations.MT564_MxSeev03900202_Translation;
-import com.prowidesoftware.swift.translations.MtTranslator;
 import com.prowidesoftware.swift.translations.TranslationPreconditionException;
+import com.prowidesoftware.swift.translations.Translator;
 
 /**
  * This example shows how to perform a translation from a MT to its correspondent MX
@@ -34,10 +34,11 @@ import com.prowidesoftware.swift.translations.TranslationPreconditionException;
  */
 public class MtMxTranslationExample3 {
 	
-	private static AbstractMX doTranslation(final MtTranslator translator, final AbstractMT msg) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private static AbstractMX doTranslation(final Translator translator, final AbstractMT msg) {
 		AbstractMX mx = null;
 		try {
-			mx = translator.translate(msg);
+			mx = (AbstractMX) translator.translate(msg);
 		} catch (final LogicalMessageCriteriaException e1) {
 			System.out.println("logical message criteria exception: " + e1.getMessage());
 		} catch (final TranslationPreconditionException e2) {
@@ -60,7 +61,7 @@ public class MtMxTranslationExample3 {
 		/*
 		 * Print content from the translated message
 		 */
-		System.out.println(mx.message());
+		System.out.println(mx.message("message", true));
 	}
 
 	public final static String sample =

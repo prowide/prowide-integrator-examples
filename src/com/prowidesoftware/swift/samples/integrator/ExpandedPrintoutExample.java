@@ -207,7 +207,7 @@ public class ExpandedPrintoutExample {
 		 */
 		Locale locale = Locale.getDefault();
 		MTInfo info = new MTInfo(locale, msg);
-		Scheme scheme = MtStandard.SRU2016.type(msg.getMtId()).scheme();
+		Scheme scheme = MtStandard.SRU2017.type(msg.getMtId()).scheme();
 		
 		/*
 		 * Create builder for output

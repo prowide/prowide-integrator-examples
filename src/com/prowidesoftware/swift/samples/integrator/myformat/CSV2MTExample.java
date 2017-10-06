@@ -79,7 +79,7 @@ public class CSV2MTExample {
 				/*
 				 * translation call
 				 */
-				MtWriter writer = new MtWriter(MtStandard.SRU2016.type("MT300"));
+				MtWriter writer = new MtWriter(MtStandard.SRU2017.type("MT300"));
 				MyFormatEngine.translate(new CsvReader(line), writer, t.getRules());
 				
 				/*
@@ -91,9 +91,9 @@ public class CSV2MTExample {
 				 * Account: /9301011483
 				 */
 				MT300 mt = (MT300) writer.mt();
-				System.out.println(mt.getField20().getLabel() + ": " + mt.getField20().getValue());
-				System.out.println(mt.getField21().getLabel() + ": " + mt.getField21().getValue());
-				System.out.println(mt.getField32B().get(0).getLabel() + ": " + mt.getField32B().get(0).getValue());
+				System.out.println("Sender's Reference: " + mt.getField20().getValue());
+				System.out.println("Related Reference: " + mt.getField21().getValue());
+				System.out.println("Transaction Amount: " + mt.getField32B().get(0).getValue());
 				System.out.println("Account: " + mt.getField58A().get(0).getValue());
 			}
 			

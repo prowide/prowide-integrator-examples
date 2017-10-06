@@ -14,7 +14,6 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 
