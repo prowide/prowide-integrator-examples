@@ -5,7 +5,7 @@ Source code examples for "Prowide Integrator".
 
 IMPORTANT: This code is intended for Integrator customers or developers using an Integrator trial. Code in this repo will not compile without a running version of the Integrator library jars. In order to run the examples you should unpack your acquired jars in the lib dir and run ant here.
 
-If you are interested on this software package you may request a trial download here: http://www.prowidesoftware.com/contact.jsp
+If you are interested on this software package you may request a trial download here: http://www.prowidesoftware.com/contact-us
 
 
 Quick Overview
@@ -21,5 +21,5 @@ It is intended for organizations looking for reduced efforts in the implementati
 
 The Integrator is distributed as an SDK with a range of optional modules. It can thus be tailored to fit your own SWIFT Integration needs. The SDK is the cornerstone of the package; as it implements the model and parser for both FIN MT and MX standards on which functional modules are implemented. Each optional module provides specific features.
 
-For additional information please check: http://www.prowidesoftware.com/integrator.jsp
+For additional information please check: http://www.prowidesoftware.com/products/integrator
 
