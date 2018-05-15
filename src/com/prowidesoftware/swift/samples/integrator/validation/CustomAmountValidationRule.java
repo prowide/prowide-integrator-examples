@@ -80,11 +80,9 @@ public class CustomAmountValidationRule extends ValidationRule {
     @Override
     protected List<ValidationProblem> eval(SwiftMessage msg, String mt) {
 		List<ValidationProblem> result = new ArrayList<ValidationProblem>();
-		if (isAnnotatedMT(msg)) {
-		    final Field32A f32A = (Field32A) msg.getBlock4().getFieldByName("32A");
-		    if (f32A != null && f32A.getAmountBigDecimal().compareTo(limit) >= 0) {
-		    	result.add(new AmountTooBigProblem(f32A, this.limit, f32A.getAmountBigDecimal()));
-		    }
+	    final Field32A f32A = (Field32A) msg.getBlock4().getFieldByName("32A");
+	    if (f32A != null && f32A.getAmountBigDecimal().compareTo(limit) >= 0) {
+	    	result.add(new AmountTooBigProblem(f32A, this.limit, f32A.getAmountBigDecimal()));
 		}
 		return result;
     }

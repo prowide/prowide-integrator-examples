@@ -1,1 +1,1 @@
-you should place here the jars you received with your integrator trial/purchase
+you should place here the pw-swift*.jar you received with your Integrator trial/purchase

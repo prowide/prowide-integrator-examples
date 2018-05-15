@@ -2,7 +2,6 @@ package com.prowidesoftware.swift.samples.integrator.validation;
 
 import java.util.List;
 
-import com.prowidesoftware.swift.validator.BaseTestCase;
 import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
@@ -38,12 +37,12 @@ public class MessageValidation4Example {
 		System.out.println("-----------------------");
 		System.out.println("Message OK test:");
 		List<ValidationProblem> result = validator.validateMtMessage(mt540_ok);
-		BaseTestCase.dumpProblems(result);
+		System.out.print(ValidationProblem.printout(result));
 		
 		System.out.println("-----------------------");
 		System.out.println("Message with validation problem test:");
 		result = validator.validateMtMessage(mt540_errors);
-		BaseTestCase.dumpProblems(result);
+		System.out.print(ValidationProblem.printout(result));
 		
 		validator.dispose();
 	}

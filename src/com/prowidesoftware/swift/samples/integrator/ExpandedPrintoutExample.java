@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.prowidesoftware.swift.BICDirectory;
 import com.prowidesoftware.swift.model.BICRecord;
@@ -33,7 +33,7 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.field.GenericField;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mt.MTInfo;
-import com.prowidesoftware.swift.model.mt.MtStandard;
+import com.prowidesoftware.swift.model.mt.MtType;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt2xx.MT202;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT515;
@@ -207,7 +207,7 @@ public class ExpandedPrintoutExample {
 		 */
 		Locale locale = Locale.getDefault();
 		MTInfo info = new MTInfo(locale, msg);
-		Scheme scheme = MtStandard.SRU2017.type(msg.getMtId()).scheme();
+		Scheme scheme = MtType.valueOf(msg.getMtId()).scheme();
 		
 		/*
 		 * Create builder for output
@@ -485,7 +485,7 @@ public class ExpandedPrintoutExample {
 			":16S:SETDET\n" +
 			"-}{5:{CHK:3916EF336FF7}}");
 	
-	static MT940 mt940 = MT940.parse("{1:F01BACOARB1A0B20000000000}{2:I940BSCHGB2LXEQUN}{108:FOOB3926BE868XXX}{4:\n" +
+	static MT940 mt940 = MT940.parse("{1:F01ANASCH20AXXX0000000000}{2:I940BSCHGB2LXEQUN}{3:{108:FOOB3926BE868XXX}}{4:\n" +
             ":20:123456\n"+
 			":25:123-304958\n"+
 			":28C:123/1\n"+
@@ -503,7 +503,7 @@ public class ExpandedPrintoutExample {
 			":86:PRIME RATE AS OF TODAY 11 PCT\n"+ 
             "-}{5:{CHK:3916EF336FF7}}");
 	
-	static MT202 mt202 = MT202.parse("{1:F01BICFOOYYAXXX8628453424}{2:O2021300050901IRVTLULXALTA06556102830509011300N}{108:FOOB3926BE868XXX}{4:\n" + 
+	static MT202 mt202 = MT202.parse("{1:F01ANASCH20AXXX0000000000}{2:O2021300050901IRVTLULXALTA06556102830509011300N}{3:{108:FOOB3926BE868XXX}}{4:\n" + 
 			":20:RFSAMPPGN0031091\n" + 
 			":21:RFSAMPPGN0031091\n" + 
 			":13C:/RNCTIME/1356+0000\n" +
