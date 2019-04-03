@@ -73,14 +73,14 @@ public class CSV2MTExample {
 				/*
 				 * read a row from the CSV file
 				 */
-				String line = reader.next();
+				CsvReader line = reader.next();
 				System.out.println("processing: "+line);
 				
 				/*
 				 * translation call
 				 */
 				MtWriter writer = new MtWriter(MtType.MT300);
-				MyFormatEngine.translate(new CsvReader(line), writer, t.getRules());
+				MyFormatEngine.translate(line, writer, t.getRules());
 				
 				/*
 				 * parse and print content from the created MT:
