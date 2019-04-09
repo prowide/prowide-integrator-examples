@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+ * Copyright (c) 2019 Prowide Inc.
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Lesser General Public License as 
@@ -24,7 +24,6 @@ import com.prowidesoftware.swift.validator.ValidationProblem;
 /**
  * Helper API for example and test cases.
  * 
- * @author www.prowidesoftware.com
  */
 public class ExamplesLib {
     public static final String B1 = "{1:F01FOOSEDR0AXXX0000000000}";

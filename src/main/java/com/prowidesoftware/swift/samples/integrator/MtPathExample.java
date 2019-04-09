@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+ * Copyright (c) 2019 Prowide Inc.
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Lesser General Public License as 
@@ -26,7 +26,6 @@ import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
  * This is a feature of Prowide Integrator SDK, used to retrieve content from 
  * MT messages using concepts derived from XPath expressions.
  * 
- * @author www.prowidesoftware.com
  * @since 7.7
  */
 public class MtPathExample {

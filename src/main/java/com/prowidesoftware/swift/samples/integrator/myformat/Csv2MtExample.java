@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+ * Copyright (c) 2019 Prowide Inc.
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Lesser General Public License as 
@@ -41,10 +41,9 @@ import com.prowidesoftware.swift.myformat.mt.MtWriter;
  * line. Meaning reading lines from the actual file is out of the
  * translation scope covered by MyFormat.
  * 
- * @author sebastian@prowidesoftware.com
  * @since 7.8
  */
-public class CSV2MTExample {
+public class Csv2MtExample {
 	public static void main(String[] args) {
 		/*
 		 * programmatic mapping rules
@@ -67,7 +66,7 @@ public class CSV2MTExample {
 			/*
 			 * create the file reader
 			 */
-			CsvFileReader reader = new CsvFileReader(CSV2MTExample.class.getResourceAsStream("/messages.csv"));
+			CsvFileReader reader = new CsvFileReader(Csv2MtExample.class.getResourceAsStream("/messages.csv"));
 			
 			while (reader.hasNext()) {
 				/*

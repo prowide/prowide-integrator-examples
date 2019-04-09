@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+ * Copyright (c) 2019 Prowide Inc.
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Lesser General Public License as 
@@ -33,10 +33,9 @@ import com.prowidesoftware.swift.myformat.Transformation.Key;
  * <br>
  * The mapping rules in this example are defined programmatically.
  * 
- * @author sebastian@prowidesoftware.com
  * @since 7.8
  */
-public class MT2MXExample {
+public class Mt2MxExample {
 	public static void main(String[] args) {
 		/*
 		 * source message

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+ * Copyright (c) 2019 Prowide Inc.
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Lesser General Public License as 
@@ -26,7 +26,6 @@ import com.prowidesoftware.swift.validator.ValidationProblem;
  * Example of SWIFT messages validation.<br> 
  * Creating and validating an invalid SWIFT message.
  * 
- * @author www.prowidesoftware.com
  */
 public class MessageValidation2Example  {
 

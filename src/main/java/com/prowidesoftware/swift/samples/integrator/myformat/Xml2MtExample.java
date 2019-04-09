@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+ * Copyright (c) 2019 Prowide Inc.
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Lesser General Public License as 
@@ -17,7 +17,6 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
-import com.prowidesoftware.swift.myformat.mt.MtWriter;
 
 /**
  * This example shows how to convert and XML into an MT
@@ -26,10 +25,9 @@ import com.prowidesoftware.swift.myformat.mt.MtWriter;
  * The mapping rules in this example are loaded from an
  * Excel spreadsheet.
  * 
- * @author sebastian@prowidesoftware.com
  * @since 7.8
  */
-public class XML2MTExample {
+public class Xml2MtExample {
 	
 	public static void main(String[] args) {
 		/*
@@ -39,7 +37,7 @@ public class XML2MTExample {
 		/*
 		 * Load mapping rules from Excel
 		 */
-		MappingTable.loadFromSpreadsheet(XML2MTExample.class.getResourceAsStream("/sample.xls"), null, table);
+		MappingTable.loadFromSpreadsheet(Xml2MtExample.class.getResourceAsStream("/sample.xls"), null, table);
 		
 		/*
 		 * Source message content

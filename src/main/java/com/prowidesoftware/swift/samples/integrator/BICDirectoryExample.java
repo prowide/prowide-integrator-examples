@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2016 Prowide Inc.
+ * Copyright (c) 2019 Prowide Inc.
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Lesser General Public License as 
@@ -22,7 +22,6 @@ import com.prowidesoftware.swift.model.BICRecord;
  * Sample program to list all entries in the internal BIC directory, used to
  * validate BICs in messages.
  * 
- * @author www.prowidesoftware.com
  */
 public class BICDirectoryExample {
 

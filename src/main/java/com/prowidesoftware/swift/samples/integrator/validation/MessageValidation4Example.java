@@ -26,7 +26,6 @@ MALFORMED MESSAGE, 8 VALIDATION PROBLEMS FOUND.
 8/8: MISSING_COMPONENT tag index 10 --> Field 36B: Missing required amount component.
 </pre>
  * 
- * @author sebastian
  */
 public class MessageValidation4Example {
 	
