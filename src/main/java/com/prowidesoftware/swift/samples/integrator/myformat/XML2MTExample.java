@@ -39,7 +39,7 @@ public class XML2MTExample {
 		/*
 		 * Load mapping rules from Excel
 		 */
-		MappingTable.loadFromSpreadsheet(XML2MTExample.class.getResourceAsStream("sample.xls"), null, table);
+		MappingTable.loadFromSpreadsheet(XML2MTExample.class.getResourceAsStream("/sample.xls"), null, table);
 		
 		/*
 		 * Source message content

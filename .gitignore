@@ -1,5 +1,14 @@
 *.class
-pw-swift*.jar
-/bin/
+lib/pw-swift-integrator*.jar
+bin
+out
+build
 *.log
 *.settings
+.idea
+.gradle
+.classpath
+.project
+*.iml
+*.ipr
+*.iws

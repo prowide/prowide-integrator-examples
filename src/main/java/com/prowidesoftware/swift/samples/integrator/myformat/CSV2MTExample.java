@@ -67,7 +67,7 @@ public class CSV2MTExample {
 			/*
 			 * create the file reader
 			 */
-			CsvFileReader reader = new CsvFileReader(CSV2MTExample.class.getResourceAsStream("messages.csv"));
+			CsvFileReader reader = new CsvFileReader(CSV2MTExample.class.getResourceAsStream("/messages.csv"));
 			
 			while (reader.hasNext()) {
 				/*

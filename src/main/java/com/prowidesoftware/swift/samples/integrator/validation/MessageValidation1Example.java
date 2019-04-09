@@ -34,7 +34,7 @@ public class MessageValidation1Example {
 		/*
 		 * Load a message from file
 		 */
-    	String msg = Lib.readFile("mt103.txt");
+    	String msg = Lib.readResource("mt103.txt");
 	
 		/*
 		 * Create and initialize the validation engine
