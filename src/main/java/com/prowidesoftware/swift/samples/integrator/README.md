@@ -9,5 +9,5 @@ Additional subdirectories contain examples for specific Prowide Integrator modul
 
 
 To run this examples you need a license or trial of Prowide Integrator and the specific modules.
-For additional information please check: http://www.prowidesoftware.com/integrator.jsp
+For additional information please check: https://www.prowidesoftware.com/products/integrator
 
