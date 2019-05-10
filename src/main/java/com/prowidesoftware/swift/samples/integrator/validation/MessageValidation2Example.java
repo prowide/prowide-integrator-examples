@@ -45,6 +45,6 @@ public class MessageValidation2Example  {
 		ValidationEngine engine = new ValidationEngine();
 		engine.initialize();
 		List<ValidationProblem> r = engine.validateMessage(m);
-		ExamplesLib.dumpProblems(r, m.getSwiftMessage());
+		System.out.println(ValidationProblem.printout(r));
     }
 }

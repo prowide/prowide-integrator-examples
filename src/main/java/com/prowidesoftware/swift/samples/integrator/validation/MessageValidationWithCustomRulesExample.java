@@ -95,7 +95,7 @@ public class MessageValidationWithCustomRulesExample {
 		 * Run the validation and print results
 		 */
 		List<ValidationProblem> r = engine.validateMessage(mt);
-		ExamplesLib.dumpProblems(r);
+		System.out.println(ValidationProblem.printout(r));
 		
 		/*
 		 * Release engine

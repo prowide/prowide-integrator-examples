@@ -16,6 +16,6 @@ dependencies {
         transitive = false
     }
     compile files('lib/pw-swift-integrator-data.jar')
-    compile files('lib/pw-swift-integrator-SRU2018-develop-licensed.jar')
+    compile files('lib/pw-swift-integrator-SRU2019-develop-licensed.jar') // replace with your trial version
     testImplementation 'junit:junit:4.12', 'xmlunit:xmlunit:1.6'
 }

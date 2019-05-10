@@ -76,7 +76,7 @@ public class MessageValidationIgnoringCustomExample {
 		 */
 		List<ValidationProblem> r = engine.validateMtMessage(msg);
 		System.out.println("Results without ignore configuration");
-		ExamplesLib.dumpProblems(r);
+		System.out.println(ValidationProblem.printout(r));
 	
 		/*
 		 * Configuration is set to ignore the reported errors.
@@ -91,6 +91,6 @@ public class MessageValidationIgnoringCustomExample {
 		engine.getConfig().addIgnoredValidationProblem(SemanticProblem.D75);
 		r = engine.validateMtMessage(msg);
 		System.out.println("Results after ignore configuration");
-		ExamplesLib.dumpProblems(r);
+		System.out.println(ValidationProblem.printout(r));
     }
 }

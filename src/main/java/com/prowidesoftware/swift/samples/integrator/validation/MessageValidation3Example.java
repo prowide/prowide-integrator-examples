@@ -39,8 +39,10 @@ import com.prowidesoftware.swift.validator.ValidationProblem;
  * 
  */
 public class MessageValidation3Example {
+	public static final String B1 = "{1:F01FOOSEDR0AXXX0000000000}";
+	public static final String B2_103 = "{2:I103FOORECV0XXXXN}";
 
-    public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 		final MessageValidation3Example main = new MessageValidation3Example();
 		System.out.println("SEMANTIC RULE 2");
 		main.showSemantic2();
@@ -57,28 +59,26 @@ public class MessageValidation3Example {
     }
     
     void showSemantic2() throws Exception {
-		MT103 mt = MT103.parse(ExamplesLib.B1 + ExamplesLib.B2_103 + "{4:\n:20:777777M350\n" + ":23B:SSTD\n" + ":32A:010113USD200,00\n" + ":33B:USD200,00\n" + ":50K:TRUST BANK\n"
+		MT103 mt = MT103.parse(B1 + B2_103 + "{4:\n:20:777777M350\n" + ":23B:SSTD\n" + ":32A:010113USD200,00\n" + ":33B:USD200,00\n" + ":50K:TRUST BANK\n"
 		        + "FUND\n" + ":53B:/1111YYYYYY\n" + ":57A:CHASUS33\n" + ":59:/222YYYYYY\n" + "JP\n" + ":71A:BEN\n" + ":71G:EUR10,\n"
 		        + ":72:/TELE/ IN FAVOUR OF\n" + "//A/C R-000000\n-}");
 	
 		List<ValidationProblem> r = new ValidationEngine().validateMessage(mt);
-		ExamplesLib.dumpProblems(r, mt);
-		
+		System.out.println(ValidationProblem.printout(r));
     }
 
     void showSemantic150() throws Exception {
-		String mt = ExamplesLib.B1 + ExamplesLib.B2_103 + "{4:\n:20:777777M350\n" + ":23B:SSTD\n" + ":32A:010113USD200,00\n" + ":33B:USD200,00\n" + ":50K:TRUST BANK\n"
+		String mt = B1 + B2_103 + "{4:\n:20:777777M350\n" + ":23B:SSTD\n" + ":32A:010113USD200,00\n" + ":33B:USD200,00\n" + ":50K:TRUST BANK\n"
 		        + "FUND\n" + ":53B:/1111YYYYYY\n" + ":57A:CHASUS33\n" + ":59:/222YYYYYY\n" + "JP\n" + ":71A:SHA\n" + ":71G:USD10,\n"
 		        + ":72:/TELE/ IN FAVOUR OF\n" + "//A/C R-000000\n-}";
 	
 		SwiftMessage msg = new SwiftParser(mt).message();
 		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg);
-		// List<ValidationProblem> r = engine.validateMessage(msg, "103_STP");
-		ExamplesLib.dumpProblems(r, msg);
+		System.out.println(ValidationProblem.printout(r));
     }
 
     void showSemantic151() throws Exception {
-		String mt = ExamplesLib.B1 + ExamplesLib.B2_103 + "{4:\n:20:777777M350\n" + ":23B:SSTD\n" + ":32A:010113USD200,00\n"
+		String mt = B1 + B2_103 + "{4:\n:20:777777M350\n" + ":23B:SSTD\n" + ":32A:010113USD200,00\n"
 		        +
 		        // ":33B:ARS200,00\n"+
 		        ":50K:TRUST BANK\n" + "FUND\n" + ":53B:/1111YYYYYY\n" + ":57A:CHASUS33\n" + ":59:/222YYYYYY\n" + "JP\n" + ":71A:OUR\n" + ":71G:USD10,\n"
@@ -86,41 +86,37 @@ public class MessageValidation3Example {
 	
 		SwiftMessage msg = new SwiftParser(mt).message();
 		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg);
-		// List<ValidationProblem> r = engine.validateMessage(msg, "103_STP");
-		ExamplesLib.dumpProblems(r, msg);
+		System.out.println(ValidationProblem.printout(r));
     }
 
     void showSemantic157() throws Exception {
-		String mt = ExamplesLib.B1 + ExamplesLib.B2_103 + "{4:\n:20:777777M350\n" + ":23B:SSTD\n" + ":32A:010113USD200,00\n" + ":33B:USD200,00\n" + ":50K:TRUST BANK\n"
+		String mt = B1 + B2_103 + "{4:\n:20:777777M350\n" + ":23B:SSTD\n" + ":32A:010113USD200,00\n" + ":33B:USD200,00\n" + ":50K:TRUST BANK\n"
 		        + "FUND\n" + ":53B:/1111YYYYYY\n" + ":57A:CHASUS33\n" + ":59:/222YYYYYY\n" + "JP\n" + ":71A:BEN\n" + ":71G:USD0,\n"
 		        + ":72:/TELE/ IN FAVOUR OF\n" + "//A/C R-000000\n-}";
 	
 		SwiftMessage msg = new SwiftParser(mt).message();
 		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg);
-		// List<ValidationProblem> r = engine.validateMessage(msg, "103_STP");
-		ExamplesLib.dumpProblems(r, msg);
+		System.out.println(ValidationProblem.printout(r));
     }
 
     void showSemantic175() throws Exception {
-		String mt = ExamplesLib.B1 + ExamplesLib.B2_103 + "{4:\n:20:777777M350\n" + ":23B:SSTD\n" + ":32A:010113USD200,00\n" + ":33B:ARS200,00\n" + ":50K:TRUST BANK\n"
+		String mt = B1 + B2_103 + "{4:\n:20:777777M350\n" + ":23B:SSTD\n" + ":32A:010113USD200,00\n" + ":33B:ARS200,00\n" + ":50K:TRUST BANK\n"
 		        + "FUND\n" + ":53B:/1111YYYYYY\n" + ":57A:CHASUS33\n" + ":59:/222YYYYYY\n" + "JP\n" + ":71A:OUR\n" + ":72:/TELE/ IN FAVOUR OF\n"
 		        + "//A/C R-000000\n-}";
 	
 		SwiftMessage msg = new SwiftParser(mt).message();
 		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg);
-		// List<ValidationProblem> r = engine.validateMessage(msg, "103_STP");
-		ExamplesLib.dumpProblems(r, msg);
+		System.out.println(ValidationProblem.printout(r));
     }
 
     void showSemantic197() throws Exception {
-		String mt = ExamplesLib.B1 + ExamplesLib.B2_103 + "{4:\n:20:777777M350\n" + ":23B:SSTD\n" + ":23E:FOOO/1234567\n" + ":32A:010113USD200,00\n" + ":33B:USD200,00\n"
+		String mt = B1 + B2_103 + "{4:\n:20:777777M350\n" + ":23B:SSTD\n" + ":23E:FOOO/1234567\n" + ":32A:010113USD200,00\n" + ":33B:USD200,00\n"
 		        + ":50K:TRUST BANK\n" + "FUND\n" + ":53B:/1111YYYYYY\n" + ":57A:CHASUS33\n" + ":59:/222YYYYYY\n" + "JP\n" + ":71A:BEN\n" + ":71G:USD10,\n"
 		        + ":72:/TELE/ IN FAVOUR OF\n" + "//A/C R-000000\n-}";
 	
 		SwiftMessage msg = new SwiftParser(mt).message();
 		List<ValidationProblem> r = new ValidationEngine().validateMessage(msg);
-		// List<ValidationProblem> r = engine.validateMessage(msg, "103_STP");
-		ExamplesLib.dumpProblems(r, msg);																			
+		System.out.println(ValidationProblem.printout(r));																			
     }
 
 }

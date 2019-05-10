@@ -45,7 +45,7 @@ public class MessageValidation1Example {
 		 * Run the validation and print results
 		 */
 		List<ValidationProblem> r = engine.validateMtMessage(msg);
-		ExamplesLib.dumpProblems(r);
+		System.out.println(ValidationProblem.printout(r));
 		
 		/*
 		 * Release engine

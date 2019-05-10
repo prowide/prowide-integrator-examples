@@ -16,6 +16,7 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mx.MxPain00100103;
 import com.prowidesoftware.swift.myformat.FileFormat;
+import com.prowidesoftware.swift.myformat.MappingRule;
 import com.prowidesoftware.swift.myformat.MappingTable;
 
 import java.io.IOException;
@@ -94,7 +95,19 @@ public class Mx2CsvExample {
         System.out.println(mx.message());
 
         MappingTable t = new MappingTable(FileFormat.MX, FileFormat.CSV);
-        //WIP
+
+        // ignore repetition of PmtInf
+        t.add(new MappingRule("/Document/CstmrCdtTrfInitn/PmtInf/CdtTrfTxInf[m]/CdtrAcct/Id/IBAN", "1"));
+        t.add(new MappingRule("/Document/CstmrCdtTrfInitn/PmtInf/CdtTrfTxInf[m]/Amt/InstdAmt", "2"));
+        t.add(new MappingRule("/Document/CstmrCdtTrfInitn/PmtInf/CdtTrfTxInf[m]/Amt/InstdAmt/@Ccy", "3"));
+        // then for each CdtTrfTxInf use relative path to get the parent debtor account
+        t.add(new MappingRule("/Document/CstmrCdtTrfInitn/PmtInf/CdtTrfTxInf[m]/../DbtrAcct/Id/IBAN", "0"));
+
+        // group by PmtInf DbtrAcct
+        t.add(new MappingRule("/Document/CstmrCdtTrfInitn/PmtInf[n]/DbtrAcct/Id/IBAN", "0"));
+        t.add(new MappingRule("/Document/CstmrCdtTrfInitn/PmtInf[n:/DbtrAcct/Id/IBAN]/CdtTrfTxInf[m]/CdtrAcct/Id/IBAN", "1"));
+        t.add(new MappingRule("/Document/CstmrCdtTrfInitn/PmtInf[n:/DbtrAcct/Id/IBAN]/CdtTrfTxInf[m]/Amt/InstdAmt", "2"));
+        t.add(new MappingRule("/Document/CstmrCdtTrfInitn/PmtInf[n:/DbtrAcct/Id/IBAN]/CdtTrfTxInf[m]/Amt/InstdAmt/@Ccy", "3"));
     }
 
 }
