@@ -1,146 +1,87 @@
-/*******************************************************************************
- * Copyright (c) 2019 Prowide Inc.
- *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
- *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
-import java.io.IOException;
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.prowidesoftware.swift.myformat.FileFormat;
-import com.prowidesoftware.swift.myformat.MappingRule;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
-import com.prowidesoftware.swift.myformat.Transformation;
-import com.prowidesoftware.swift.myformat.Transformation.Key;
-import com.prowidesoftware.swift.myformat.csv.CsvFileWriter;
+
+import java.util.List;
 
 /**
- * This example shows how to convert and MT into a CSV 
- * using API from Prowide Integrator MyFormat module.
- * <br>
- * The mapping rules in this example are defined programmatically.
- * <br>
- * The example takes a couple of MT300 as input, and produces as result an
- * a CSV  with information gathered from the MTs, one CSV row per source MT.
- * 
- * @since 7.8
+ * This example shows how to convert and MT into a CSV using API from Prowide Integrator MyFormat module.
+ * <p>
+ * The mapping rules in this example are loaded from a spreadsheet.
+ * <p>
+ * The example takes an MT102 with repetitive content, and produces as result a CSV with different rows
+ * for the repetitive information, creating also a row identifier. Data from sequence A will go to a header
+ * line in the CSV, the repetitive sequences B will go to multiple transaction rows and finally data from
+ * sequence C will go to a final footer row.
  */
 public class Mt2CsvExample {
-	public static void main(String[] args) throws IOException {
-		
-		// programmatic mapping rules (this rules could also be loaded from Excel spreadsheet)
-		MappingTable t = new MappingTable(FileFormat.MT, FileFormat.CSV);
-		t.add(new MappingRule("20", "0")); 
-		t.add(new MappingRule("21", "1"));
-		t.add(new MappingRule("B/32B/1", "2"));
-		t.add(new MappingRule("B/32B/2", "3", new Transformation(Key.replace, ",", ".")));
-		t.add(new MappingRule("B/58A/2", "4", new Transformation(Key.prepend, "#")));
-		t.add(new MappingRule("C/72/Line[2]", "5", new Transformation(Key.stripStart, "/")));
 
-		// create the CSV writer.
-		StringWriter out = new StringWriter();
-		CsvFileWriter writer = new CsvFileWriter(out);
+    public static void main(String[] args) {
+        // create de mapping table instance with source and target formats
+        MappingTable table = new MappingTable(FileFormat.MT, FileFormat.CSV);
 
-		// load the source messages
-		List<String> messages = new ArrayList<>();
-		messages.add(msg);
-		messages.add(msg2);
+        // load mapping rules from Excel
+        MappingTable.loadFromSpreadsheet(Xml2MtExample.class.getResourceAsStream("/mapping-examples.xls"), "mt2csv", table);
 
-		// iterate source messages calling translation
-		for (String msg : messages) {
-			
-			// translation call
-			final String line = MyFormatEngine.translate(msg, t);
-		
-			// append row to writer
-			writer.write(line);
-		}
-		
-		// close the writer
-		writer.close();
-		
-		/*
-		 * print output
-		 * QCOUCN111,NEW111,CLP,3794630000.,#9301011483,L1710833-1-1
-		 * QCOUCN222,NEW222,CLP,1234530000.,#848473332,L1710999-2-2
-		 */
-		System.out.println(out);
-	}
-	
-	/*
-	 * source message
-	 */
-	static String msg = "{1:F01ABCBUS33AXXX3768156193}{2:O3001139050822XYZBUS33AFXO29569650200508221139N}{3:{108:FC003105ded7970a}}{4:\n" +
-			   ":15A:\n" +
-			   ":20:QCOUCN111\n" +
-			   ":21:NEW111\n" +
-			   ":22A:CANC\n" +
-			   ":22C:ABCB334209XYZB33\n" +
-			   ":82A:XYZBUS33FXO\n" +
-			   ":87A:ABCBUS33XXX\n" +
-			   ":77D:/VALD/20040509\n" +
-			   "/SETC/USD\n" +
-			   ":15B:\n" +
-			   ":30T:20070422\n" +
-			   ":30V:20070513\n" +
-			   ":36:542,09\n" +
-			   ":32B:CLP3794630000,\n" +
-			   ":53A:XYZBUS33FXO\n" +
-			   ":57D:NET SETTLEMENT\n" +
-			   ":33B:USD7000000,00\n" +
-			   ":53A:ABCBUS33XXX\n" +
-			   ":57D:NET SETTLEMENT\n" +
-			   ":58A:/9301011483\n" +
-			   "ABCBUS33XXX\n" +
-			   ":15C:\n" +
-			   ":24D:BROK\n" +
-			   ":88D:GFI-NY\n" +
-			   ":72:/ACC/GTMS:\n" +
-			   "//L1710833-1-1\n" +
-			   "-}";
-	
-	/*
-	 * source message
-	 */
-	static String msg2 = "{1:F01ABCBUS33AXXX3768156193}{2:O3001139050822XYZBUS33AFXO29569650200508221139N}{3:{108:FC003105ded7970a}}{4:\n" +
-			   ":15A:\n" +
-			   ":20:QCOUCN222\n" +
-			   ":21:NEW222\n" +
-			   ":22A:CANC\n" +
-			   ":22C:ABCB334209XYZB33\n" +
-			   ":82A:XYZBUS33FXO\n" +
-			   ":87A:ABCBUS33XXX\n" +
-			   ":77D:/VALD/20040509\n" +
-			   "/SETC/USD\n" +
-			   ":15B:\n" +
-			   ":30T:20070422\n" +
-			   ":30V:20070513\n" +
-			   ":36:542,09\n" +
-			   ":32B:CLP1234530000,\n" +
-			   ":53A:XYZBUS33FXO\n" +
-			   ":57D:NET SETTLEMENT\n" +
-			   ":33B:USD7000000,00\n" +
-			   ":53A:ABCBUS33XXX\n" +
-			   ":57D:NET SETTLEMENT\n" +
-			   ":58A:/848473332\n" +
-			   "ABCBUS33XXX\n" +
-			   ":15C:\n" +
-			   ":24D:BROK\n" +
-			   ":88D:GFI-NY\n" +
-			   ":72:/ACC/GTMS:\n" +
-			   "//L1710999-2-2\n" +
-			   "-}";
+        // validate mapping table
+        List<String> problems = table.validate();
+        for (String s : problems) {
+            System.out.println(s);
+        }
+
+        // source message
+        final String fin = "{1:F01FOOBVEC0AXXX5480000053}{2:I102FOOBARAAXXXXN}{3:{103:YVE}}{4:\n" +
+                // sequence A
+                ":20:5362/MPB\n" +
+                ":23:CREDIT\n" +
+                ":50K:/1234567890\n" +
+                "FOOBAR CORP\n" +
+                "FRIEDRICHSTRASSE, 234\n" +
+                "8022-ZURICH\n" +
+                ":71A:OUR\n" +
+                ":36:1,6\n" +
+
+                // sequence B
+                ":21:ABC/123\n" +
+                ":32B:EUR1250,\n" +
+                ":59:/001161685134\n" +
+                "JOE DOE\n" +
+                "RUE JOSEPH II, 123\n" +
+                "1040 BRUSSELS\n" +
+                ":70:PENSION PAYMENT MAR 2019\n" +
+                ":33B:CHF2000,\n" +
+                ":71G:EUR5,\n" +
+
+                // sequence B
+                ":21:ABC/124\n" +
+                ":32B:EUR1875,\n" +
+                ":59:/510007547061\n" +
+                "JOAN SURNAME\n" +
+                "AVENUE LOUISE 456\n" +
+                "1050 BRUSSELS\n" +
+                ":70:PENSION PAYMENT MAR 2019\n" +
+                ":33B:CHF3000,\n" +
+                ":71G:EUR5,\n" +
+
+                // sequence C
+                ":32A:090828EUR3135,\n" +
+                ":19:3125,\n" +
+                ":71G:EUR10,\n" +
+
+                "-}";
+
+        // call translation
+        final String csv = MyFormatEngine.translate(fin, table);
+
+        // print the created output
+        System.out.println(csv);
+        /*
+            HR,5362/MPB,1234567890,FOOBAR CORP
+            TX,123,EUR,1250.0
+            TX,124,EUR,1875.0
+            FR,EUR,3135.0
+         */
+    }
 }
