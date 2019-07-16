@@ -91,7 +91,7 @@ public class MxMtTranslationExample1 {
 			/*
 			 * Call the translation process
 			 */
-			final MT567 mt = (MT567) translator.translate(source);
+			final MT567 mt = translator.translate(source);
 			
 			/*
 			 * Print content from the translated message

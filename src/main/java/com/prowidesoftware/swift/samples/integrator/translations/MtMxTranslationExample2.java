@@ -25,9 +25,9 @@ import com.prowidesoftware.swift.translations.PreconditionError;
 /**
  * This example shows how to perform a translation from a MT to its correspondent MX
  * using API from Prowide Integrator Translations module. Checking preconditions by API.
- * <br>
+ * <p>
  * Example checking preconditions.
- * 
+ *
  * @since 7.7
  */
 public class MtMxTranslationExample2 {
@@ -44,7 +44,10 @@ public class MtMxTranslationExample2 {
 		MT564_MxSeev03900202_Translation translator = new MT564_MxSeev03900202_Translation();
 
 		try {
-			
+
+			// The precondition being check is:
+			// IF ((B2[*]\97a Account\SAFE\97C\Account Code ContainsString 'GENR') And ((B2[*]\95a Party\ACOW IsPresent) Or ((B2[*]\94a Place\SAFE IsPresent) Or (B2[*]\93a Balance IsPresent))))
+			// this pseudo-code is available in the translator javadoc
 			List<PreconditionError> p = translator.preconditionsCheck(source);
 			
 			if (p.isEmpty()) {
@@ -102,11 +105,15 @@ public class MtMxTranslationExample2 {
 			":16R:FIA\n" +
 			":94B::PLIS//EXCH/ENXB\n" +
 			":16S:FIA\n" +
-			":16R:ACCTINFO\n" +
-			":97A::SAFE//z\n" +
-			":93B::ELIG/8C/AMOR/250000,\n" +
-			":93B::UNBA/8C/AMOR/10000,00\n" +
-			":16S:ACCTINFO\n" +
+				":16R:ACCTINFO\n" +
+
+				// precondition check happens here, with option C precondition fails
+				":97A::SAFE//1234\n" +
+				//":97C::SAFE//GENR\n" +
+
+				":93B::ELIG/8C/AMOR/250000,\n" +
+				":93B::UNBA/8C/AMOR/10000,00\n" +
+				":16S:ACCTINFO\n" +
 			":16S:USECU\n" +
 
 			":16R:INTSEC\n" +
