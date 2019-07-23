@@ -17,14 +17,11 @@ package com.prowidesoftware.swift.samples.integrator.translations;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT564;
 import com.prowidesoftware.swift.model.mx.AbstractMX;
-import com.prowidesoftware.swift.model.mx.MxSeev03900202;
-import com.prowidesoftware.swift.translations.LogicalMessageCriteriaException;
-import com.prowidesoftware.swift.translations.MT564_MxSeev03900202_Translation;
-import com.prowidesoftware.swift.translations.TranslationPreconditionException;
 import com.prowidesoftware.swift.translations.Translator;
+import com.prowidesoftware.swift.translations.TranslatorFactory;
 
 /**
- * This example shows how to perform a translation from a MT to its correspondent MX
+ * This example shows how to perform automatic translation from a MT to its correspondent MX
  * using API from Prowide Integrator Translations module. Using the generic interface.
  * <br>
  * Example with abstract generic API calls.
@@ -32,35 +29,30 @@ import com.prowidesoftware.swift.translations.Translator;
  * @since 7.7
  */
 public class MtMxTranslationExample3 {
-	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static AbstractMX doTranslation(final Translator translator, final AbstractMT msg) {
-		AbstractMX mx = null;
-		try {
-			mx = (AbstractMX) translator.translate(msg);
-		} catch (final LogicalMessageCriteriaException e1) {
-			System.out.println("logical message criteria exception: " + e1.getMessage());
-		} catch (final TranslationPreconditionException e2) {
-			System.out.println("precondition exception: " + e2.getMessage());
-		}
-		return mx;
-	}
-	
+
 	public static void main(String[] args) {
 		/*
 		 * Parse the source message
 		 */
 		final MT564 source = MT564.parse(sample);
-		
+
 		/*
-		 * Call the generic translation
+		 * Get a translator for the available equivalent MX
 		 */
-		final MxSeev03900202 mx = (MxSeev03900202) doTranslation(new MT564_MxSeev03900202_Translation(), source);
-				
-		/*
-		 * Print content from the translated message
-		 */
-		System.out.println(mx.message("message", true));
+		Translator<AbstractMT, AbstractMX> t = TranslatorFactory.getTranslator(source);
+
+		if (t != null) {
+			/*
+			 * Call the translation
+			 */
+			AbstractMX mx = t.translate(source);
+
+			/*
+			 * Print content from the translated message
+			 */
+			System.out.println(mx.message("message", true));
+		}
+
 	}
 
 	public final static String sample =
