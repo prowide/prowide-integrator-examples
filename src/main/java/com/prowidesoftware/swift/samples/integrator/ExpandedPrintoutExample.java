@@ -14,26 +14,7 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.samples.integrator;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.BICDirectory;
-import com.prowidesoftware.swift.model.BICRecord;
-import com.prowidesoftware.swift.model.LogicalTerminalAddress;
-import com.prowidesoftware.swift.model.SwiftBlock2Input;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.swift.model.field.Field;
-import com.prowidesoftware.swift.model.field.GenericField;
-import com.prowidesoftware.swift.model.mt.AbstractMT;
-import com.prowidesoftware.swift.model.mt.MTInfo;
-import com.prowidesoftware.swift.model.mt.MtType;
+import com.prowidesoftware.swift.io.printout.PrintoutWriter;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt2xx.MT202;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT515;
@@ -41,16 +22,12 @@ import com.prowidesoftware.swift.model.mt.mt5xx.MT518;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
 import com.prowidesoftware.swift.model.mt.mt6xx.MT671;
 import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
-import com.prowidesoftware.swift.scheme.Scheme;
-import com.prowidesoftware.swift.scheme.SchemeSequence;
 
 /**
  * This example shows how to generate text printout of messages generically (for any message type)
- * using features from Prowide Integrator SDK as the BIC directory to expand BICs and the MTInfo 
- * helper class to gather sequence labels. 
- * <br />
- * It can be used as base code to extend custom pritouts of MT content.
- * 
+ * using the expanded printout from Prowide Integrator SDK.
+ *
+ * <p>The output for an MT515 looks like this:</p>
  *<pre> 
 ------------------------- Instance Type and Transmission -------------------------
 Copy sent to SWIFT
@@ -170,254 +147,18 @@ CHK: 3916EF336FF7
  */
 public class ExpandedPrintoutExample {
 
-	public static void main(String[] args) throws IOException {
-		//System.out.println(expanded(mt103.getSwiftMessage()));
-		System.out.println(expanded(mt515.getSwiftMessage()));
-		//System.out.println(expanded(mt940.getSwiftMessage()));
-		//System.out.println(expanded(mt202.getSwiftMessage()));
-		//System.out.println(expanded(mt518.getSwiftMessage()));
-		//System.out.println(expanded(mt535.getSwiftMessage()));
-		//System.out.println(expanded(mt671.getSwiftMessage()));
-		//files(mt103, mt515, mt940, mt202, mt518, mt535, mt671);
+	public static void main(String[] args) {
+		final PrintoutWriter w = new PrintoutWriter();
+		System.out.println(w.print(mt515));
+		//System.out.println(w.print(mt103));
+		//System.out.println(w.print(mt515));
+		//System.out.println(w.print(mt940));
+		//System.out.println(w.print(mt202));
+		//System.out.println(w.print(mt518));
+		//System.out.println(w.print(mt535));
+		//System.out.println(w.print(mt671));
 	}
 		
-	public static void files(AbstractMT ... mts) throws IOException {
-		for (AbstractMT mt : mts) {
-			File f = new File("/tmp/mt"+mt.getMessageType()+".txt");
-			BufferedWriter writer = new BufferedWriter(new FileWriter(f));
-		    writer.write(expanded(mt.getSwiftMessage()));
-		    writer.close();
-		}
-	}
-	
-	/**
-	 * Takes any message as parameter and returns a formatted printout.
-	 * @param msg SwiftMessage can be loaded from any source using specific MTnnn classes or the generic SwiftParser
-	 * @return formatted print out
-	 */
-	private static String expanded(final SwiftMessage msg) {
-		/*
-		 * create directory instance (only available in Prowide Integrator)
-		 */
-		BICDirectory repo = new BICDirectory();
-		
-		/*
-		 * create instances of MTinfo and Scheme (only available in Prowide Integrator)
-		 */
-		Locale locale = Locale.getDefault();
-		MTInfo info = new MTInfo(locale, msg);
-		Scheme scheme = MtType.valueOf(msg.getMtId()).scheme();
-		
-		/*
-		 * Create builder for output
-		 */
-		StringBuilder out = new StringBuilder();
-		
-		out.append("------------------------- Instance Type and Transmission -------------------------").append("\n");
-		
-		if (msg.isIncoming()) {
-			out.append("Copy received from SWIFT").append("\n");
-		} else if (msg.isOutgoing()) {
-			out.append("Copy sent to SWIFT").append("\n");
-		}
-		
-		if (msg.getBlock2().getMessagePriorityType() != null) {
-			out.append("Priority/Delivery : ");
-			out.append(msg.getBlock2().getMessagePriorityType().getLabel());
-			if (msg.isOutgoing()) {
-				SwiftBlock2Input b2i = (SwiftBlock2Input) msg.getBlock2();
-				if (b2i.getDeliveryMonitoringType() != null) {
-					out.append("/").append(b2i.getDeliveryMonitoringType().getLabel());
-				}
-			}
-			out.append("\n");
-		}
-		
-		if (msg.isIncoming()) {
-			out.append("Message Input Reference : ").append(msg.getMIR()).append("\n");;
-		}
-		
-		out.append("\n------------------------- Message Header -----------------------------------------").append("\n");
-		out.append("Swift    : ").append(StringUtils.replace(msg.getMtId().id(), "fin.", "FIN "));
-		final String name = info.mtName();
-		if (name != null) {
-			out.append(" ").append(name);
-		}
-		out.append("\n");
-		
-		/*
-		 * expand sender
-		 */
-		out.append("Sender   : ").append(msg.getSender());
-		final String expandedSender = expandLT(repo, msg.getSender());
-		if (expandedSender != null) {
-			out.append(" - ").append(expandedSender);
-		}
-		out.append("\n");
-		
-		/*
-		 * expand receiver
-		 */
-		out.append("Receiver : ").append(msg.getReceiver());
-		final String expandedReceiver = expandLT(repo, msg.getReceiver());
-		if (expandedReceiver != null) {
-			out.append(" - ").append(expandedReceiver);
-		}
-		out.append("\n");
-		
-		if (msg.getMUR() != null) {
-			out.append("MUR      : ").append(msg.getMUR()).append("\n");
-		}
-		
-		out.append("\n------------------------- Message Text -------------------------------------------").append("\n");
-				
-		boolean inSequence = false;
-		String currentSequence = null;
-		/*
-		 * iterate message fields detecting sequences start/end
-		 */
-		for (Tag tag : msg.getBlock4().getTags()) {
-			if ("16R".equals(tag.getName())) {
-				/*
-				 * start sequence
-				 */
-				SchemeSequence seq = scheme.getSequenceBy16RQualifier(tag.getValue());
-				currentSequence = seq.getName();
-				inSequence = true;
-				/*
-				 * print sequence name and description
-				 */
-				out.append("\n").append(currentSequence).append(" - ").append(info.sequenceName(currentSequence)).append("\n");
-			} else if ("16S".equals(tag.getName())) {
-				/*
-				 * close current sequence
-				 */
-				currentSequence = null;
-			} else if (tag.getNumber() == 15) {
-				currentSequence = tag.getLetterOption();
-				if (inSequence) {
-					/*
-					 * close current sequence
-					 */
-				}
-				inSequence = true;
-				/*
-				 * start sequence
-				 * print sequence name and description
-				 */
-				out.append("\n").append(currentSequence).append(" - ").append(info.sequenceName(tag.getLetterOption())).append("\n");
-			} else {
-				/*
-				 * print field components
-				 */
-				String fieldLabel = info.fieldName(tag.getName(), currentSequence);
-				Field f = tag.asField();
-				out.append(f.getName()).append(": ");
-				if (f.getName().length() < 3) {
-					out.append(" ");
-				}
-				out.append(fieldLabel).append("\n");
-				for (int component=1; component<=f.getComponents().size(); component++) {
-					final String value = f.getComponent(component);
-					if (value != null) {
-						final String label = f.getComponentLabel(component);
-						out.append("\t");
-						if (StringUtils.isNotBlank(label)) {
-							out.append(label).append(": ");
-						}
-						if (StringUtils.equals("BIC", label)) {
-							/*
-							 * if component is a BIC, expand the institution data
-							 */
-							out.append(value);
-							final String expandedBICInfo = expandBIC(repo, value.trim());
-							if (expandedBICInfo != null) {
-								out.append(" - ").append(expandedBICInfo);
-							}
-						} else {
-							String s = null;
-							if (component == 1 && f instanceof GenericField) {
-								/*
-								 * for generic fields, expand the qualifier
-								 * (this could also be used as more specific field label)
-								 */
-								s = info.qualifierName(f.getName(), value, currentSequence);
-							}
-							if (s == null) {
-								/*
-								 * try to use formatted output from field
-								 */
-								s = f.getValueDisplay(component, locale);
-							}
-							if (s == null) {
-								/*
-								 * default with component value as is
-								 */
-								s = value;
-							}
-							out.append(s);
-						}
-						out.append("\n");
-					}
-				}
-			}
-		}
-		
-		if (msg.getBlock5() != null) {
-			out.append("\n------------------------- Message Trailer -----------------------------------------\n");
-			for (Tag t : msg.getBlock5().getTags()) {
-				out.append(t.getName()).append(": ").append(StringUtils.trimToEmpty(t.getValue())).append("\n");
-			}
-		}
-		
-		return out.toString();
-	}
-
-	/**
-	 * extracts the BIC from a logical terminal address from message header and 
-	 * calls the expansion method to get the institution name
-	 * @param repo BIC directory catalog
-	 * @param lt a logical terminal address from message header
-	 * @return expanded info or null if BIC is not found in the repository
-	 */
-	private static String expandLT(final BICDirectory repo, final String lt) {
-		LogicalTerminalAddress address = new LogicalTerminalAddress(lt);
-		return expandBIC(repo, address.getBic11());
-	}
-	
-	/**
-	 * Searches the parameter BIC in the repository, and if found,
-	 * returns a string with the institution name and, if present,
-	 * branch information and country
-	 * @param repo BIC directory catalog
-	 * @param bic a BIC 8 or BIC 11 from message header or field BIC components
-	 * @return expanded info or null if BIC is not found in the repository
-	 */
-	private static String expandBIC(final BICDirectory repo, final String bic) {
-		List<BICRecord> found = repo.query(bic, true);
-		if (!found.isEmpty()) {
-			if (found.size() > 1) {
-				//log warning, expected one and found n
-			}
-			BICRecord br = found.get(0);
-			final String name = StringUtils.trimToNull(br.getInstitutionName());
-			if (name != null) {
-				StringBuilder result = new StringBuilder();
-				result.append(name);
-				if (br.getBranchInformation() != null) {
-					result.append(" - ").append(br.getBranchInformation());
-				}
-				if (br.getCountryName() != null) {
-					result.append(" (").append(br.getCountryName()).append(")");
-				}
-				return result.toString();
-			}
-		} else {
-			//log warning not found
-		}
-		return null;
-	}
-	
 	/*
 	 * sample data
 	 */
