@@ -15,9 +15,12 @@
 package com.prowidesoftware.swift.samples.integrator.validation;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import com.prowidesoftware.swift.model.field.Field20;
+import com.prowidesoftware.swift.model.field.Field32A;
+import com.prowidesoftware.swift.model.field.Field59A;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
@@ -37,6 +40,8 @@ public class MessageValidation2Example  {
 		m.setSender("FOOSEDR0AXXX");
 		m.setReceiver("FOORECV0XXXX");
 		m.addField(new Field20("REFERENCE"));
+		m.addField(new Field32A().setDate(Calendar.getInstance()).setCurrency("USD"));
+		m.addField(new Field59A().setBIC("ABCDZZXXXX"));
 		System.out.println(m.message());
 		
 		/*

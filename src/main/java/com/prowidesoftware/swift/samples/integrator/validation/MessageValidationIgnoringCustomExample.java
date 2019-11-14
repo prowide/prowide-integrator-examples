@@ -14,15 +14,10 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.samples.integrator.validation;
 
+import com.prowidesoftware.swift.validator.*;
+
 import java.io.IOException;
 import java.util.List;
-
-import com.prowidesoftware.swift.validator.FieldProblem;
-import com.prowidesoftware.swift.validator.GeneralProblem;
-import com.prowidesoftware.swift.validator.SemanticProblem;
-import com.prowidesoftware.swift.validator.StructureProblem;
-import com.prowidesoftware.swift.validator.ValidationEngine;
-import com.prowidesoftware.swift.validator.ValidationProblem;
 
 /**
  * Example of SWIFT message validation ignoring specific errors.
@@ -43,7 +38,7 @@ public class MessageValidationIgnoringCustomExample {
 		/*
 		 * Load a message
 		 */
-		String msg = "{1:X01BICFOOY0AXXX8683497519}{2:O1031535051028ESPBESMMAXXX54237522470510281535N}{3:{113:ROMF}{108:0510280182794665}{119:STP}}{4:\n"
+		String msg = "{1:X01BICFOOY0AXXX8683497519}{2:O1031535051028ESPBESMMAXXX54237522470510281535N}{3:{113:ROMF}{108:0510280182794665}{119:STP}{121:4086d27c-e724-4e12-8a73-b450ec6b2f94}}{4:\n"
 		        + ":20:0061350113089908\n" 
 				+ ":13C:/RNCTIME/1534+0000\n" 
 		        + ":23B:FOO\n" 
@@ -82,12 +77,13 @@ public class MessageValidationIgnoringCustomExample {
 		 * Configuration is set to ignore the reported errors.
 		 * As result of this configuration, the message will be reported to be valid.
 		 */
-		engine.getConfig().addIgnoredValidationProblem(GeneralProblem.EXTRA_DATA_IN_MESSAGE);
-		engine.getConfig().addIgnoredValidationProblem(StructureProblem.INVALID_FIELD_QUALIFIER);
-		engine.getConfig().addIgnoredValidationProblem(StructureProblem.BLOCK1_APPLICATION_ID);
-		engine.getConfig().addIgnoredValidationProblem(FieldProblem.COMPONENT_BAD_SIZE);
-		engine.getConfig().addIgnoredValidationProblem(FieldProblem.BAD_CURRENCY);
-		engine.getConfig().addIgnoredValidationProblem(FieldProblem.COMPONENT_NOT_BIC);
+		engine.getConfig().addIgnoredValidationProblem(StructureProblem.P16);
+		engine.getConfig().addIgnoredValidationProblem(StructureProblem.H02);
+		engine.getConfig().addIgnoredValidationProblem(StructureProblem.H10);
+		engine.getConfig().addIgnoredValidationProblem(StructureProblem.KNN);
+		engine.getConfig().addIgnoredValidationProblem(FieldProblem.T34);
+		engine.getConfig().addIgnoredValidationProblem(FieldProblem.T52);
+		engine.getConfig().addIgnoredValidationProblem(FieldProblem.T27);
 		engine.getConfig().addIgnoredValidationProblem(SemanticProblem.D75);
 		r = engine.validateMtMessage(msg);
 		System.out.println("Results after ignore configuration");
