@@ -28,15 +28,12 @@ import com.prowidesoftware.swift.myformat.Transformation.Key;
 import com.prowidesoftware.swift.myformat.csv.CsvFileWriter;
 
 /**
- * This example shows how to convert and MT into a CSV 
- * using API from Prowide Integrator MyFormat module.
- * <br>
- * The mapping rules in this example are defined programmatically.
- * <br>
- * The example takes a couple of MT300 as input, and produces as result an
- * a CSV  with information gathered from the MTs, one CSV row per source MT.
- * 
- * @since 7.8
+ * This example shows how to convert and MT into a CSV using API from Prowide Integrator MyFormat module.
+ *
+ * <p>The mapping rules in this example are defined programmatically.
+ *
+ * <p>The example takes a couple of MT300 as input, and produces as result an a CSV  with information gathered
+ * from the MTs, one CSV row per source MT.
  */
 public class Mt2CsvProgrammaticExample {
 	public static void main(String[] args) throws IOException {

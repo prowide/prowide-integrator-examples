@@ -22,12 +22,10 @@ import com.prowidesoftware.swift.myformat.MappingTable;
 import java.io.IOException;
 
 /**
- * This example shows how to convert and MX with multiple payments records into a CSV
- * with one payment per line using API from Prowide Integrator MyFormat module.
- * <br>
- * The mapping rules in this example are defined programmatically.
+ * This example shows how to convert and MX with multiple payments records into a CSV with one payment per line using
+ * API from Prowide Integrator MyFormat module.
  *
- * @since 7.10.9
+ * <p>The mapping rules in this example are defined programmatically.
  */
 public class Mx2CsvExample {
     public static void main(String[] args) throws IOException {

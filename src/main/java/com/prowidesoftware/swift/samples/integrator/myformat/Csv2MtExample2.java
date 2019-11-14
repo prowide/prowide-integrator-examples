@@ -16,34 +16,21 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mt.MtType;
 import com.prowidesoftware.swift.model.mt.mt3xx.MT300;
-import com.prowidesoftware.swift.myformat.FileFormat;
-import com.prowidesoftware.swift.myformat.MappingRule;
-import com.prowidesoftware.swift.myformat.MappingTable;
-import com.prowidesoftware.swift.myformat.MyFormatEngine;
-import com.prowidesoftware.swift.myformat.Transformation;
+import com.prowidesoftware.swift.myformat.*;
 import com.prowidesoftware.swift.myformat.Transformation.Key;
-import com.prowidesoftware.swift.myformat.WriteMode;
 import com.prowidesoftware.swift.myformat.csv.CsvFileReader;
 import com.prowidesoftware.swift.myformat.csv.CsvReader;
 import com.prowidesoftware.swift.myformat.mt.MtWriter;
 
 /**
- * This example shows how to convert a CSV file row into an MT300
- * using API from Prowide Integrator MyFormat module.
- * <br>
- * The mapping rules in this example are defined programmatically.
- * <br>
- * The example takes single row from a CSV, and produces as result 
- * the corresponding MT message with information gathered from the
- * CSV row content.
- * To parse a CSV file with multiples lines, each corresponding to
- * a message, the translation call should be run on each source 
- * line. Meaning reading lines from the actual file is out of the
- * translation scope covered by MyFormat.
- * 
- * @since 7.8
+ * This example shows how to convert a CSV file row into an MT300 using API from Prowide Integrator MyFormat module.
+ *
+ * <p>The mapping rules in this example are defined programmatically.
+ *
+ * <p>The example uses a CsvFileReader to iterate the input file lines, and for each CSV row an MT300 instance is
+ * created.
  */
-public class Csv2MtExample {
+public class Csv2MtExample2 {
 	public static void main(String[] args) {
 		/*
 		 * programmatic mapping rules
@@ -52,11 +39,13 @@ public class Csv2MtExample {
 		MappingTable t = new MappingTable(FileFormat.CSV, FileFormat.MT);
 		t.add(new MappingRule("0", "20")); 
 		t.add(new MappingRule("1", "21"));
-		t.add(new MappingRule("2", "B/32B/1"));
-		t.add(new MappingRule("3", "B/32B/2", WriteMode.APPEND, new Transformation(Key.replace, ".", ",")));
-		t.add(new MappingRule("4", "B/58A/2", new Transformation(Key.stripStart, "#")));
-		t.add(new MappingRule("\"/ACC/GTMS:\"", "C/72/Line[1]"));
-		t.add(new MappingRule("5", "C/72/Line[2]", WriteMode.APPEND, new Transformation(Key.prepend, "//")));
+		t.add(new MappingRule("LITERAL(\"\")", "15B"));
+		t.add(new MappingRule("2", "32B/1"));
+		t.add(new MappingRule("3", "32B/2", WriteMode.APPEND, new Transformation(Key.replace, ".", ",")));
+		t.add(new MappingRule("4", "58A/2", new Transformation(Key.stripStart, "#")));
+		t.add(new MappingRule("LITERAL(\"\")", "15C"));
+		t.add(new MappingRule("\"/ACC/GTMS:\"", "72/Line[1]"));
+		t.add(new MappingRule("5", "72/Line[2]", WriteMode.APPEND, new Transformation(Key.prepend, "//")));
 		
 		/*
 		 * check if the mapping table is valid
@@ -66,7 +55,7 @@ public class Csv2MtExample {
 			/*
 			 * create the file reader
 			 */
-			CsvFileReader reader = new CsvFileReader(Csv2MtExample.class.getResourceAsStream("/messages.csv"));
+			CsvFileReader reader = new CsvFileReader(Csv2MtExample2.class.getResourceAsStream("/messages.csv"));
 			
 			while (reader.hasNext()) {
 				/*

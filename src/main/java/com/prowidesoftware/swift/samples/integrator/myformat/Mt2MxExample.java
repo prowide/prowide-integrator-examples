@@ -28,12 +28,9 @@ import com.prowidesoftware.swift.myformat.Transformation;
 import com.prowidesoftware.swift.myformat.Transformation.Key;
 
 /**
- * This example shows how to convert and MT into an MX
- * using API from Prowide Integrator MyFormat module.
- * <br>
- * The mapping rules in this example are defined programmatically.
- * 
- * @since 7.8
+ * This example shows how to convert and MT into an MX using API from Prowide Integrator MyFormat module.
+ *
+ * <p>The mapping rules in this example are defined programmatically.
  */
 public class Mt2MxExample {
 	public static void main(String[] args) {

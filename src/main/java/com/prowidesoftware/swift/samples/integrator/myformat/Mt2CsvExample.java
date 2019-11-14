@@ -23,7 +23,7 @@ public class Mt2CsvExample {
         MappingTable table = new MappingTable(FileFormat.MT, FileFormat.CSV);
 
         // load mapping rules from Excel
-        MappingTable.loadFromSpreadsheet(Xml2MtExample.class.getResourceAsStream("/mapping-examples.xls"), "mt2csv", table);
+        MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/mt2csv.xls"), "mt2csv", table);
 
         // validate mapping table
         List<String> problems = table.validate();

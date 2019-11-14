@@ -1,14 +1,10 @@
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mx.MxPacs00800102;
-import com.prowidesoftware.swift.model.mx.MxPain00100103;
 import com.prowidesoftware.swift.model.mx.MxType;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
-import com.prowidesoftware.swift.myformat.csv.CsvFieldsDef;
-import com.prowidesoftware.swift.myformat.csv.CsvReader;
-import com.prowidesoftware.swift.myformat.mx.MxWriter;
 
 import java.util.List;
 
@@ -24,7 +20,7 @@ public class Csv2MxExample1 {
         MappingTable table = new MappingTable(FileFormat.CSV, FileFormat.MX.setMxType(MxType.pacs_008_001_02));
 
         // Load mapping rules from Excel
-        MappingTable.loadFromSpreadsheet(Xml2MtExample.class.getResourceAsStream("/myformat/csv2mx.xls"), "example1", table);
+        MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls"), "example1", table);
 
         // Validate mapping rules syntax
         List<String> problems = table.validate();

@@ -24,7 +24,7 @@ public class Csv2MxExample3 {
         MappingTable table = new MappingTable(FileFormat.CSV, FileFormat.MX.setMxType(MxType.pain_001_001_03));
 
         // Load mapping rules from Excel
-        MappingTable.loadFromSpreadsheet(Xml2MtExample.class.getResourceAsStream("/myformat/csv2mx.xls"), "example3", table);
+        MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls"), "example3", table);
 
         // Validate mapping rules syntax
         List<String> problems = table.validate();

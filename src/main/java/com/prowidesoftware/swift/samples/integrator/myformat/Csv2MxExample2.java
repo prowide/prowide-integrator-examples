@@ -35,7 +35,7 @@ public class Csv2MxExample2 {
             .addField("ADDR3", "4");
 
         // Load mapping rules from Excel
-        MappingTable.loadFromSpreadsheet(Xml2MtExample.class.getResourceAsStream("/myformat/csv2mx.xls"), "example2", table);
+        MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls"), "example2", table);
 
         // Validate mapping rules syntax
         List<String> problems = table.validate();
