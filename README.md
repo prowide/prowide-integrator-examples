@@ -25,6 +25,10 @@ Run
 The primary intention of the examples is to show code. Although, all examples are provided as single classes with a main
 that you can run in your IDE.
 
+Issues
+===
+For Prowide Integration questions or issues please use the Prowide Customer Jira portal
+
 
 Quick Overview
 ==============
