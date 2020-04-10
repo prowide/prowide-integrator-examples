@@ -87,6 +87,7 @@ public class MxMtTranslationExample1 {
 		 */
 		MxSeev03400202_MT567_Translation translator = new MxSeev03400202_MT567_Translation();
 
+		System.out.println(source.message());
 		try {
 			/*
 			 * Call the translation process

@@ -15,10 +15,11 @@
 package com.prowidesoftware.swift.samples.integrator.translations;
 
 import com.prowidesoftware.swift.model.mt.AbstractMT;
-import com.prowidesoftware.swift.model.mt.mt5xx.MT564;
 import com.prowidesoftware.swift.model.mx.AbstractMX;
 import com.prowidesoftware.swift.translations.Translator;
 import com.prowidesoftware.swift.translations.TranslatorFactory;
+
+import java.io.IOException;
 
 /**
  * This example shows how to perform automatic translation from a MT to its correspondent MX
@@ -30,27 +31,22 @@ import com.prowidesoftware.swift.translations.TranslatorFactory;
  */
 public class MtMxTranslationExample3 {
 
-	public static void main(String[] args) {
-		/*
-		 * Parse the source message
-		 */
-		final MT564 source = MT564.parse(sample);
+	public static void main(String[] args) throws IOException {
 
-		/*
-		 * Get a translator for the available equivalent MX
-		 */
+		// parse the unknown source message
+		final AbstractMT source = AbstractMT.parse(sample);
+
+		// get a translator for the available equivalent MX
 		Translator<AbstractMT, AbstractMX> t = TranslatorFactory.getTranslator(source);
 
+		// check the translator exist
 		if (t != null) {
-			/*
-			 * Call the translation
-			 */
+
+			// call the translation
 			AbstractMX mx = t.translate(source);
 
-			/*
-			 * Print content from the translated message
-			 */
-			System.out.println(mx.message("message", true));
+			// print content from the translated message
+			System.out.println(mx.message());
 		}
 
 	}

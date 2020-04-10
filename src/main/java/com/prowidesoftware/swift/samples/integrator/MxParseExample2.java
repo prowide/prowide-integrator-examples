@@ -14,20 +14,19 @@
  *******************************************************************************/
 package com.prowidesoftware.swift.samples.integrator;
 
-import com.prowidesoftware.swift.model.mx.MxCamt04800103;
+import com.prowidesoftware.swift.io.parser.MxParser;
+import com.prowidesoftware.swift.model.MxId;
+import com.prowidesoftware.swift.model.mx.AbstractMX;
 
 /**
- * This examples shows how to parse and read content from an MX messages.<br>
- * Running this will produce:<br>
- * 
- * <pre>
- * Message Identification: 001
- * Amount: 1234.0
- * </pre>
- * 
+ * This examples shows how to parse an MX messages when the message type is unknown.
+ *
+ * <p>The generic AbstractMX is useful as parameter for other modules, such as validation or translations. You can also
+ * check the message type and cast the message to a specific instance if required.
+ *
  * @since 7.6
  */
-public class MxReadExample {
+public class MxParseExample2 {
 
     public static void main(String[] args) {
 		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Doc:Document xmlns:Doc=\"urn:swift:xsd:camt.048.001.03\" xmlns:xsi=\"httDoc://www.w3.org/2001/XMLSchema-instance\">\n"
@@ -49,16 +48,14 @@ public class MxReadExample {
 		        + "    </Doc:NewRsvatnValSet>\n" 
 		        + "  </Doc:ModfyRsvatn>\n" 
 		        + "</Doc:Document>";
+
+		// detect message
+		MxId id = new MxParser(xml).detectMessage();
+
+		// parse into generic structure
+		AbstractMX mx = AbstractMX.parse(xml, id);
 	
-		/*
-		 * Parse the XML message content
-		 */
-		MxCamt04800103 camt48 = MxCamt04800103.parse(xml);
-	
-		/*
-		 * Access message data from the java model
-		 */
-		System.out.println("Message Identification: " + camt48.getModfyRsvatn().getMsgHdr().getMsgId());
-		System.out.println("Amount: " + camt48.getModfyRsvatn().getNewRsvatnValSet().getAmt().getAmtWthtCcy());
+		System.out.println("Namespace: " + mx.getNamespace());
     }
+
 }
