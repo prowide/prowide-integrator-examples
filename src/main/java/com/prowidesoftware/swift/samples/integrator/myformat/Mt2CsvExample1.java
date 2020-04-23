@@ -16,14 +16,14 @@ import java.util.List;
  * line in the CSV, the repetitive sequences B will go to multiple transaction rows and finally data from
  * sequence C will go to a final footer row.
  */
-public class Mt2CsvExample {
+public class Mt2CsvExample1 {
 
     public static void main(String[] args) {
         // create de mapping table instance with source and target formats
         MappingTable table = new MappingTable(FileFormat.MT, FileFormat.CSV);
 
         // load mapping rules from Excel
-        MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/mt2csv.xls"), "mt2csv", table);
+        MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/mt2csv.xls"), "example 1", table);
 
         // validate mapping table
         List<String> problems = table.validate();
