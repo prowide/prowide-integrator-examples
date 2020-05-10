@@ -1,5 +1,5 @@
 *.class
-lib/pw-swift-integrator*.jar
+lib/pw-*.jar
 bin
 out
 build
