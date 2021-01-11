@@ -13,13 +13,17 @@ import java.io.IOException;
 
 import java.util.List;
 
+/**
+ * This example shows how to convert a single CSV file row into an MT940 using API from Prowide Integrator MyFormat module.
+ * THe CSV contains multiple rows with transactions that are added into a single MT940 report output.
+ */
 public class Csv2MT940 {
 
     //
     // sample input
     //
-    static String csvFileName      = "/MT940/MT940.csv";
-    static String tableFileName    = "/MT940/CsvToMT940.xls";
+    static String csvFileName      = "/myformat/MT940/MT940.csv";
+    static String tableFileName    = "/myformat/MT940/CsvToMT940.xls";
 
     public static void main(String[] args) {
 

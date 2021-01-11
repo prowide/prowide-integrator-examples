@@ -1,15 +1,10 @@
 package com.prowidesoftware.swift.samples.integrator.myformat.mt940;
 
-import com.prowidesoftware.swift.model.field.*;
-import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
-import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
-import com.prowidesoftware.swift.myformat.csv.CsvReader;
 import com.prowidesoftware.swift.myformat.csv.CsvWriter;
 import com.prowidesoftware.swift.myformat.mt.MtReader;
-import com.prowidesoftware.swift.myformat.mt.MtWriter;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,13 +13,17 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+/**
+ * This example shows how to convert and MT940 into a CSV using API from Prowide Integrator MyFormat module.
+ * Each transaction in the input report is written into a row in the output CSV
+ */
 public class MT9402Csv {
 
     //
     // sample input
     //
-    static String mtFileName       = "/MT940/MT940.txt";
-    static String tableFileName    = "/MT940/MT940ToCsv.xls";
+    static String mtFileName       = "/myformat/MT940/MT940.txt";
+    static String tableFileName    = "/myformat/MT940/MT940ToCsv.xls";
 
     public static void main(String[] args) {
 
