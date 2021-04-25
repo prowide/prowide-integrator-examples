@@ -7,7 +7,6 @@ Module examples
 ===============
 Additional subdirectories contain examples for specific Prowide Integrator modules.
 
-
-To run this examples you need a license or trial of Prowide Integrator and the specific modules.
-For additional information please check: https://www.prowidesoftware.com/products/integrator
+To run this examples you need a license or trial of Prowide Integrator and the specific modules. For additional
+information please check: https://www.prowidesoftware.com/products/integrator
 

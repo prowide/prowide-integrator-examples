@@ -1,17 +1,8 @@
-/*******************************************************************************
- * Copyright (c) 2019 Prowide Inc.
- *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Lesser General Public License as 
- *     published by the Free Software Foundation, either version 3 of the 
- *     License, or (at your option) any later version.
- *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
- *     
- *     Check the LGPL at <http://www.gnu.org/licenses/> for more details.
- *******************************************************************************/
+/*
+ * Copyright (c) 2021 Prowide Inc.
+ * All rights reserved. This program and the accompanying materials are made available under the terms of private
+ * license agreements between Prowide Inc. and its commercial customers and partners.
+ */
 package com.prowidesoftware.swift.samples.integrator;
 
 import com.prowidesoftware.swift.io.parser.MxParser;
@@ -29,33 +20,33 @@ import com.prowidesoftware.swift.model.mx.AbstractMX;
 public class MxParseExample2 {
 
     public static void main(String[] args) {
-		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Doc:Document xmlns:Doc=\"urn:swift:xsd:camt.048.001.03\" xmlns:xsi=\"httDoc://www.w3.org/2001/XMLSchema-instance\">\n"
-		        + "  <Doc:ModfyRsvatn>\n"
-		        + "    <Doc:MsgHdr>\n"
-		        + "      <Doc:MsgId>001</Doc:MsgId>\n"
-		        + "    </Doc:MsgHdr>\n"
-		        + "    <Doc:RsvatnId>\n"
-		        + "      <Doc:Cur>\n"
-		        + "        <Doc:Tp>\n"
-		        + "          <Doc:Cd>CARE</Doc:Cd>\n"
-		        + "        </Doc:Tp>\n"
-		        + "      </Doc:Cur>\n"
-		        + "    </Doc:RsvatnId>\n"
-		        + "    <Doc:NewRsvatnValSet>\n"
-		        + "      <Doc:Amt>\n"
-		        + "        <Doc:AmtWthtCcy>1234.0</Doc:AmtWthtCcy>\n"
-		        + "      </Doc:Amt>\n" 
-		        + "    </Doc:NewRsvatnValSet>\n" 
-		        + "  </Doc:ModfyRsvatn>\n" 
-		        + "</Doc:Document>";
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Doc:Document xmlns:Doc=\"urn:swift:xsd:camt.048.001.03\" xmlns:xsi=\"httDoc://www.w3.org/2001/XMLSchema-instance\">\n"
+                + "  <Doc:ModfyRsvatn>\n"
+                + "    <Doc:MsgHdr>\n"
+                + "      <Doc:MsgId>001</Doc:MsgId>\n"
+                + "    </Doc:MsgHdr>\n"
+                + "    <Doc:RsvatnId>\n"
+                + "      <Doc:Cur>\n"
+                + "        <Doc:Tp>\n"
+                + "          <Doc:Cd>CARE</Doc:Cd>\n"
+                + "        </Doc:Tp>\n"
+                + "      </Doc:Cur>\n"
+                + "    </Doc:RsvatnId>\n"
+                + "    <Doc:NewRsvatnValSet>\n"
+                + "      <Doc:Amt>\n"
+                + "        <Doc:AmtWthtCcy>1234.0</Doc:AmtWthtCcy>\n"
+                + "      </Doc:Amt>\n"
+                + "    </Doc:NewRsvatnValSet>\n"
+                + "  </Doc:ModfyRsvatn>\n"
+                + "</Doc:Document>";
 
-		// detect message
-		MxId id = new MxParser(xml).detectMessage();
+        // detect message
+        MxId id = new MxParser(xml).detectMessage();
 
-		// parse into generic structure
-		AbstractMX mx = AbstractMX.parse(xml, id);
-	
-		System.out.println("Namespace: " + mx.getNamespace());
+        // parse into generic structure
+        AbstractMX mx = AbstractMX.parse(xml, id);
+
+        System.out.println("Namespace: " + mx.getNamespace());
     }
 
 }

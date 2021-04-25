@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021 Prowide Inc.
+ * All rights reserved. This program and the accompanying materials are made available under the terms of private
+ * license agreements between Prowide Inc. and its commercial customers and partners.
+ */
+
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mx.MxPain00100103;
@@ -35,8 +41,8 @@ public class Csv2MxExample4 {
 
         // Source message sample
         String input =
-            "ABCDUSXXXXX,FOOBARXXXXX,1,71237456,Joe Doe,USD,9505.02\n" +
-            "ABCDUSXXXXX,EDFGITXXXXX,1,83736212,Bill Smith,EUR,3325.16";
+                "ABCDUSXXXXX,FOOBARXXXXX,1,71237456,Joe Doe,USD,9505.02\n" +
+                        "ABCDUSXXXXX,EDFGITXXXXX,1,83736212,Bill Smith,EUR,3325.16";
 
         // Since we will create many output messages, we need to iterate the source ourselves
         CsvFileReader reader = new CsvFileReader(input);

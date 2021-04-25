@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021 Prowide Inc.
+ * All rights reserved. This program and the accompanying materials are made available under the terms of private
+ * license agreements between Prowide Inc. and its commercial customers and partners.
+ */
+
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mx.MxPain00100103;
@@ -5,8 +11,6 @@ import com.prowidesoftware.swift.model.mx.MxType;
 import com.prowidesoftware.swift.myformat.*;
 import com.prowidesoftware.swift.myformat.csv.CsvFileReader;
 import com.prowidesoftware.swift.myformat.mx.MxWriter;
-
-import java.util.List;
 
 /**
  * This example shows how to convert a CSV into an MX using API from Prowide Integrator MyFormat module.
@@ -26,7 +30,7 @@ public class Csv2MxExample5 {
         // Sample source content
         String input =
                 "10;11;US;FR763000301100000205504727;14\n" +
-                "20;21;KW;;24";
+                        "20;21;KW;;24";
 
         // Sample external content in a variable name
         String name = "company name";

@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021 Prowide Inc.
+ * All rights reserved. This program and the accompanying materials are made available under the terms of private
+ * license agreements between Prowide Inc. and its commercial customers and partners.
+ */
+
 package com.prowidesoftware.swift.samples.integrator.myformat.mt940;
 
 import com.prowidesoftware.swift.myformat.FileFormat;
@@ -22,8 +28,8 @@ public class MT9402Csv {
     //
     // sample input
     //
-    static String mtFileName       = "/myformat/MT940/MT940.txt";
-    static String tableFileName    = "/myformat/MT940/MT940ToCsv.xls";
+    static String mtFileName = "/myformat/MT940/MT940.txt";
+    static String tableFileName = "/myformat/MT940/MT940ToCsv.xls";
 
     public static void main(String[] args) {
 
@@ -77,7 +83,7 @@ public class MT9402Csv {
         // read all input and append to out builder
         int charsRead;
         final StringBuilder out = new StringBuilder();
-        while ( (charsRead = in.read(buffer, 0, buffer.length)) > 0) {
+        while ((charsRead = in.read(buffer, 0, buffer.length)) > 0) {
             out.append(buffer, 0, charsRead);
         }
 

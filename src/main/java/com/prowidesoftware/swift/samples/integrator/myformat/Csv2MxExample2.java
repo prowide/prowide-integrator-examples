@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021 Prowide Inc.
+ * All rights reserved. This program and the accompanying materials are made available under the terms of private
+ * license agreements between Prowide Inc. and its commercial customers and partners.
+ */
+
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mx.MxPacs00800102;
@@ -28,11 +34,11 @@ public class Csv2MxExample2 {
         // Create the field definitions configuration
         // This maps CSV indexes with custom labels, then the mapping rules can use the labels instead of the indexes
         CsvFieldsDef defs = new CsvFieldsDef()
-            .addField("BIC", "0")
-            .addField("IBAN", "1")
-            .addField("ADDR1", "2")
-            .addField("ADDR2", "3")
-            .addField("ADDR3", "4");
+                .addField("BIC", "0")
+                .addField("IBAN", "1")
+                .addField("ADDR1", "2")
+                .addField("ADDR2", "3")
+                .addField("ADDR3", "4");
 
         // Load mapping rules from Excel
         MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls"), "example2", table);

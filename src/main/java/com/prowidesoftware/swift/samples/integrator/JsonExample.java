@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2021 Prowide Inc.
+ * All rights reserved. This program and the accompanying materials are made available under the terms of private
+ * license agreements between Prowide Inc. and its commercial customers and partners.
+ */
 package com.prowidesoftware.swift.samples.integrator;
 
 import com.prowidesoftware.swift.model.MtSwiftMessage;
