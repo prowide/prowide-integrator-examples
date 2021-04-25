@@ -1,3 +1,4 @@
+**/.DS_Store
 *.class
 lib/pw-*.jar
 bin
@@ -5,11 +6,19 @@ out
 build
 *.log
 *.settings
-.idea
 .gradle
 .classpath
 .project
 *.iml
 *.ipr
 *.iws
-**/.DS_Store
+.idea/gradle.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/prowide-core.iml
+.idea/uiDesigner.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/dbnavigator.xml
+.idea/prowide-integrator-examples.iml
