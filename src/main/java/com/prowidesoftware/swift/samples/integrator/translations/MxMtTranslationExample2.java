@@ -5,12 +5,14 @@
  */
 package com.prowidesoftware.swift.samples.integrator.translations;
 
-import com.prowidesoftware.swift.io.parser.MxParser;
 import com.prowidesoftware.swift.model.MxId;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mx.AbstractMX;
+import com.prowidesoftware.swift.model.mx.MxParseUtils;
 import com.prowidesoftware.swift.translations.Translator;
 import com.prowidesoftware.swift.translations.TranslatorFactory;
+
+import java.util.Optional;
 
 /**
  * This example shows how to perform automatic translation from a MX to its correspondent MT
@@ -63,10 +65,10 @@ public class MxMtTranslationExample2 {
     public static void main(String[] args) {
 
         // detect message type
-        MxId id = new MxParser(xml).detectMessage();
+        Optional<MxId> id = MxParseUtils.identifyMessage(xml);
 
         // parse the unknown source message
-        final AbstractMX source = AbstractMX.parse(xml, id);
+        final AbstractMX source = AbstractMX.parse(xml, id.get());
 
         // get a translator for the available equivalent MT
         Translator<AbstractMX, AbstractMT> t = TranslatorFactory.getTranslator(source);

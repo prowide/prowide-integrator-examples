@@ -5,8 +5,6 @@
  */
 package com.prowidesoftware.swift.samples.integrator;
 
-import com.prowidesoftware.swift.io.parser.MxParser;
-import com.prowidesoftware.swift.model.MxId;
 import com.prowidesoftware.swift.model.mx.AbstractMX;
 
 /**
@@ -40,11 +38,8 @@ public class MxParseExample2 {
                 + "  </Doc:ModfyRsvatn>\n"
                 + "</Doc:Document>";
 
-        // detect message
-        MxId id = new MxParser(xml).detectMessage();
-
         // parse into generic structure
-        AbstractMX mx = AbstractMX.parse(xml, id);
+        AbstractMX mx = AbstractMX.parse(xml);
 
         System.out.println("Namespace: " + mx.getNamespace());
     }
