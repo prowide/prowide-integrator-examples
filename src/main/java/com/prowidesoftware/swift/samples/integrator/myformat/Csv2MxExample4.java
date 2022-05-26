@@ -54,7 +54,7 @@ public class Csv2MxExample4 {
 
             // Each iteration produces a single MX output
             MxPain00100103 mx = (MxPain00100103) writer.mx();
-            System.out.println(mx.message("message"));
+            System.out.println(mx.message());
         }
 
         reader.close();

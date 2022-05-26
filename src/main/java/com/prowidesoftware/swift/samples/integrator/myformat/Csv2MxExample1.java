@@ -42,7 +42,7 @@ public class Csv2MxExample1 {
 
         // Parse output as MX message
         MxPacs00800102 mx = MxPacs00800102.parse(out);
-        System.out.println(mx.message("message"));
+        System.out.println(mx.message());
     }
 
 }

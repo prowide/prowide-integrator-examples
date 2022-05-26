@@ -61,7 +61,7 @@ public class Csv2MxExample2 {
 
         // Get the result directly from the writer
         MxPacs00800102 mx = (MxPacs00800102) writer.mx();
-        System.out.println(mx.message("message"));
+        System.out.println(mx.message());
     }
 
 }

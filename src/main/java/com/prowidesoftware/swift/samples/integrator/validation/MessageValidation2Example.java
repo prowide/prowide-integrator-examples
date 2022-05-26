@@ -31,7 +31,7 @@ public class MessageValidation2Example {
         m.setReceiver("FOORECV0XXXX");
         m.addField(new Field20("REFERENCE"));
         m.addField(new Field32A().setDate(Calendar.getInstance()).setCurrency("USD"));
-        m.addField(new Field59A().setBIC("ABCDZZXXXX"));
+        m.addField(new Field59A().setIdentifierCode("ABCDZZXXXX"));
         System.out.println(m.message());
 
         /*

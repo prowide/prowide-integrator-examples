@@ -5,9 +5,9 @@
  */
 package com.prowidesoftware.swift.samples.integrator.translations;
 
+import com.prowidesoftware.swift.model.MxId;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT567;
-import com.prowidesoftware.swift.model.mx.BusinessHeader;
-import com.prowidesoftware.swift.model.mx.MxSeev03400202;
+import com.prowidesoftware.swift.model.mx.*;
 import com.prowidesoftware.swift.model.mx.dic.*;
 import com.prowidesoftware.swift.translations.LogicalMessageCriteriaException;
 import com.prowidesoftware.swift.translations.MxSeev03400202_MT567_Translation;
@@ -33,8 +33,9 @@ public class MxMtTranslationExample1 {
         /*
          * Set source message header content
          */
-        source.setBusinessHeader(new BusinessHeader(new BusinessApplicationHeaderV01()));
-        source.getBusinessHeader().getBusinessApplicationHeader().setBizMsgIdr("MYID");
+        BusinessAppHdrV02 hdr = AppHdrFactory.createBusinessAppHdrV02("AAAAUSXX", "BBBBUSXX", "MYREF1234", new MxId("seev.034.002.02"));
+        hdr.setBizSvc("foo.bar.01");
+        source.setAppHdr(hdr);
         /*
          * Set source message document content
          */

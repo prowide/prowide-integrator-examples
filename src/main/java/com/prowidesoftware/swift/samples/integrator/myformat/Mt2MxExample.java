@@ -79,6 +79,6 @@ public class Mt2MxExample {
          *   </Doc:Document>
          * </message>
          */
-        System.out.println(mx.message("message"));
+        System.out.println(mx.message());
     }
 }

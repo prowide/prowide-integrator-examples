@@ -154,7 +154,7 @@ public class MtMxTranslationExample1 {
             /*
              * Call the translation process
              */
-            final MxSeev03900202 mx = (MxSeev03900202) translator.translate(source);
+            final MxSeev03900202 mx = translator.translate(source);
 
             /*
              * Print content from the translated message
