@@ -15,6 +15,7 @@ dependencies {
     implementation ('org.apache.poi:poi:3.17') {
         transitive = false
     }
+    implementation 'org.apache.santuario:xmlsec:2.3.1'
     //implementation group: 'com.prowidesoftware', name: 'pw-swift-core', version: 'SRU2019-8.0.2'
 
     // replace with your trial version:
