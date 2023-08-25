@@ -8,6 +8,7 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mx.MxPain00100103;
 import com.prowidesoftware.swift.model.mx.MxType;
+import com.prowidesoftware.swift.model.mx.MxTypePain;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
@@ -27,7 +28,7 @@ public class Csv2MxExample3 {
 
     public static void main(String[] args) {
         // Create de mapping table instance with source and target formats
-        MappingTable table = new MappingTable(FileFormat.CSV, FileFormat.MX.setMxType(MxType.pain_001_001_03));
+        MappingTable table = new MappingTable(FileFormat.CSV, FileFormat.MX.setMxType(MxTypePain.pain_001_001_03));
 
         // Load mapping rules from Excel
         MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls"), "example3", table);

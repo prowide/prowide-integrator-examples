@@ -8,6 +8,7 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mx.MxPacs00800102;
 import com.prowidesoftware.swift.model.mx.MxType;
+import com.prowidesoftware.swift.model.mx.MxTypePacs;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
@@ -56,7 +57,7 @@ public class Csv2MxExample2 {
         CsvReader reader = CsvReader.builder(input).separator('|').fieldsDef(defs).build();
 
         // Create a specific writer and call translation providing the reader and writer instances
-        MxWriter writer = new MxWriter(MxType.pacs_008_001_02);
+        MxWriter writer = new MxWriter(MxTypePacs.pacs_008_001_02);
         MyFormatEngine.translate(reader, writer, table.getRules());
 
         // Get the result directly from the writer

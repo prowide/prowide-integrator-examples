@@ -8,6 +8,7 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mx.MxPain00100103;
 import com.prowidesoftware.swift.model.mx.MxType;
+import com.prowidesoftware.swift.model.mx.MxTypePain;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
@@ -49,7 +50,7 @@ public class Csv2MxExample4 {
         while (reader.hasNext()) {
 
             // A new writer instance must be provided on each iteration
-            MxWriter writer = new MxWriter(MxType.pain_001_001_03);
+            MxWriter writer = new MxWriter(MxTypePain.pain_001_001_03);
             MyFormatEngine.translate(reader.next(), writer, table.getRules());
 
             // Each iteration produces a single MX output

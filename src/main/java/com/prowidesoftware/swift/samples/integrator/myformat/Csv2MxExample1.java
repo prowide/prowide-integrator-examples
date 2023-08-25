@@ -8,6 +8,7 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mx.MxPacs00800102;
 import com.prowidesoftware.swift.model.mx.MxType;
+import com.prowidesoftware.swift.model.mx.MxTypePacs;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
@@ -23,7 +24,7 @@ public class Csv2MxExample1 {
 
     public static void main(String[] args) {
         // Create a mapping table instance with source and target formats, indicating the specific MX version to create
-        MappingTable table = new MappingTable(FileFormat.CSV, FileFormat.MX.setMxType(MxType.pacs_008_001_02));
+        MappingTable table = new MappingTable(FileFormat.CSV, FileFormat.MX.setMxType(MxTypePacs.pacs_008_001_02));
 
         // Load mapping rules from Excel
         MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls"), "example1", table);
