@@ -42,7 +42,7 @@ public class CustomAmountValidationRule extends ValidationRule {
 
     @Override
     protected List<ValidationProblem> eval(SwiftMessage msg, String mt) {
-        List<ValidationProblem> result = new ArrayList<ValidationProblem>();
+        List<ValidationProblem> result = new ArrayList<>();
         final Field32A f32A = (Field32A) msg.getBlock4().getFieldByName("32A");
         if (f32A != null && f32A.getAmountBigDecimal().compareTo(limit) >= 0) {
             result.add(new AmountTooBigProblem(f32A, this.limit, f32A.getAmountBigDecimal()));
@@ -52,7 +52,7 @@ public class CustomAmountValidationRule extends ValidationRule {
 
     public static class AmountTooBigProblem extends ValidationProblem {
         private static final long serialVersionUID = 1L;
-        private final Field field;
+        private final transient Field field;
         private final BigDecimal limit;
         private final BigDecimal found;
 
@@ -69,11 +69,33 @@ public class CustomAmountValidationRule extends ValidationRule {
         }
 
         @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            if (!super.equals(o)) return false;
+
+            AmountTooBigProblem that = (AmountTooBigProblem) o;
+
+            if (!field.equals(that.field)) return false;
+            if (!limit.equals(that.limit)) return false;
+            return found.equals(that.found);
+        }
+
+        @Override
         public String getMessage(Locale locale) {
             /*
              * this message could be formatted differently for each supported locale language
              */
             return "Maximum amount is " + this.limit + " and found " + this.found + " in field " + this.field.getName();
+        }
+
+        @Override
+        public int hashCode() {
+            int result = super.hashCode();
+            result = 31 * result + field.hashCode();
+            result = 31 * result + limit.hashCode();
+            result = 31 * result + found.hashCode();
+            return result;
         }
     }
 

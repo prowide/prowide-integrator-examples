@@ -140,6 +140,18 @@ import java.util.GregorianCalendar;
  */
 public class MxCreation2Example {
 
+    public static XMLGregorianCalendar getXMLGregorianCalendarNow() {
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        DatatypeFactory datatypeFactory = null;
+        try {
+            datatypeFactory = DatatypeFactory.newInstance();
+            return datatypeFactory.newXMLGregorianCalendar(gregorianCalendar);
+        } catch (DatatypeConfigurationException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         /*
          * Initialize the MX object
@@ -260,17 +272,5 @@ public class MxCreation2Example {
          * Print the generated message in its XML format
          */
         System.out.println(mx.message());
-    }
-
-    public static XMLGregorianCalendar getXMLGregorianCalendarNow() {
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        DatatypeFactory datatypeFactory = null;
-        try {
-            datatypeFactory = DatatypeFactory.newInstance();
-        } catch (DatatypeConfigurationException e) {
-            e.printStackTrace();
-        }
-        XMLGregorianCalendar now = datatypeFactory.newXMLGregorianCalendar(gregorianCalendar);
-        return now;
     }
 }

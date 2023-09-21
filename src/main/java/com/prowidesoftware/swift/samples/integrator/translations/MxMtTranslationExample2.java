@@ -24,7 +24,7 @@ import java.util.Optional;
  */
 public class MxMtTranslationExample2 {
 
-    public final static String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" +
+    public static final String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" +
             "<RequestPayload>\n" +
             " <h:AppHdr xmlns:h=\"urn:iso:std:iso:20022:tech:xsd:head.001.001.01\">\n" +
             "  <h:BizMsgIdr>MYID</h:BizMsgIdr>\n" +
@@ -67,6 +67,9 @@ public class MxMtTranslationExample2 {
         // detect message type
         Optional<MxId> id = MxParseUtils.identifyMessage(xml);
 
+        if (!id.isPresent()) {
+            throw new IllegalStateException("Id should be present");
+        }
         // parse the unknown source message
         final AbstractMX source = AbstractMX.parse(xml, id.get());
 

@@ -12,7 +12,6 @@ import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -22,7 +21,7 @@ import java.util.List;
  */
 public class MessageValidation2Example {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         /*
          * Create an invalid message (see MessageCreateExample)
          */

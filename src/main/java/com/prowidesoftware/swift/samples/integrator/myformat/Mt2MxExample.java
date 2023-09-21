@@ -35,7 +35,7 @@ public class Mt2MxExample {
         /*
          * programmatic mapping rules
          */
-        List<MappingRule> rules = new ArrayList<MappingRule>();
+        List<MappingRule> rules = new ArrayList<>();
         rules.add(new MappingRule("20", "/AppHdr/Fr/FIId/BrnchId/Id", new Transformation(Key.prepend, "id")));
         rules.add(new MappingRule("\"foo\"", "/AppHdr/To/FIId/BrnchId/Id"));
         rules.add(new MappingRule("\"1602\"", "/AppHdr/Fr/FIId/BrnchId/PstlAdr/PstCd"));

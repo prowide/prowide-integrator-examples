@@ -7,7 +7,9 @@ package com.prowidesoftware.swift.samples.integrator.translations;
 
 import com.prowidesoftware.swift.model.MxId;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT567;
-import com.prowidesoftware.swift.model.mx.*;
+import com.prowidesoftware.swift.model.mx.AppHdrFactory;
+import com.prowidesoftware.swift.model.mx.BusinessAppHdrV02;
+import com.prowidesoftware.swift.model.mx.MxSeev03400202;
 import com.prowidesoftware.swift.model.mx.dic.*;
 import com.prowidesoftware.swift.translations.LogicalMessageCriteriaException;
 import com.prowidesoftware.swift.translations.MxSeev03400202_MT567_Translation;

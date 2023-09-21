@@ -7,7 +7,6 @@
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mx.MxPain00100103;
-import com.prowidesoftware.swift.model.mx.MxType;
 import com.prowidesoftware.swift.model.mx.MxTypePain;
 import com.prowidesoftware.swift.myformat.*;
 import com.prowidesoftware.swift.myformat.csv.CsvFileReader;

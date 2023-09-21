@@ -71,7 +71,7 @@ public class MtPathExample {
 
                     "-}{5:{MAC:E19445CF}{CHK:D625798DFC51}}");
 
-    public static void main(final String[] args) throws Exception {
+    public static void main(final String[] args) {
         List<MtPathResult> found = null;
 
         /*
@@ -102,12 +102,6 @@ public class MtPathExample {
         for (MtPathResult f : found) {
             System.out.println(f.getField().getValue());
         }
-
-        /*
-         * get the forth component of fields 35B, found in the parent sequence
-         * of each second instance of a sequence B1b
-         */
-        found = MtPath.evaluate("parent::B1b[2]/35B/4", mt);
 
         /*
          * get the MIR logical terminal address from header block 2

@@ -8,20 +8,24 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
+import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This example shows how to convert a single CSV file row into an MT103 using API from Prowide Integrator MyFormat module.
  */
 public class Csv2MtExample1 {
     public static void main(String[] args) {
-        // Create a mapping table instance with source and target formats
-        MappingTable table = new MappingTable(FileFormat.CSV, FileFormat.MT);
-
         // Load mapping rules from Excel
-        MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mt.xls"), "example1", table);
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mt.xls")));
+
+        // Create a mapping table instance with source and target formats
+        MappingTable table = loader.load("example1");
+        table.setSourceFormat(FileFormat.CSV);
+        table.setTargetFormat(FileFormat.MT);
 
         // Validate mapping rules syntax
         List<String> problems = table.validate();

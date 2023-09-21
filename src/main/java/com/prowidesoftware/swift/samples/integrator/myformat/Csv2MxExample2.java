@@ -7,16 +7,17 @@
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mx.MxPacs00800102;
-import com.prowidesoftware.swift.model.mx.MxType;
 import com.prowidesoftware.swift.model.mx.MxTypePacs;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
+import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
 import com.prowidesoftware.swift.myformat.csv.CsvFieldsDef;
 import com.prowidesoftware.swift.myformat.csv.CsvReader;
 import com.prowidesoftware.swift.myformat.mx.MxWriter;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This example shows how to convert a CSV into an MX using API from Prowide Integrator MyFormat module.
@@ -28,9 +29,6 @@ import java.util.List;
 public class Csv2MxExample2 {
 
     public static void main(String[] args) {
-        // Create a mapping table instance with source and target formats
-        // There is no need to indicate the MX version because we will provide a specific writer to the translation call
-        MappingTable table = new MappingTable(FileFormat.CSV, FileFormat.MX);
 
         // Create the field definitions configuration
         // This maps CSV indexes with custom labels, then the mapping rules can use the labels instead of the indexes
@@ -42,7 +40,13 @@ public class Csv2MxExample2 {
                 .addField("ADDR3", "4");
 
         // Load mapping rules from Excel
-        MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls"), "example2", table);
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Csv2MxExample2.class.getResourceAsStream("/myformat/csv2mx.xls")));
+
+        // Create a mapping table instance with source and target formats
+        // There is no need to indicate the MX version because we will provide a specific writer to the translation call
+        MappingTable table = loader.load("example2");
+        table.setSourceFormat(FileFormat.CSV);
+        table.setTargetFormat(FileFormat.MX);
 
         // Validate mapping rules syntax
         List<String> problems = table.validate();

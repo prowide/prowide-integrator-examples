@@ -11,7 +11,6 @@ import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -27,9 +26,9 @@ import java.util.List;
  */
 public class MessageValidationWithCustomSchema {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        String customScheme = "<scheme name=\"199\" description=\"Free Format Message\" release=\"2019\">\n" +
+        String customScheme = "<scheme name=\"199\" description=\"Free Format Message\" release=\"2022\">\n" +
                 "   <sequence minRepetitions=\"1\" maxRepetitions=\"1\">\n" +
                 "      <field id=\"20\" minRepetitions=\"1\" maxRepetitions=\"1\"/>\n" +
                 "      <field id=\"21\" minRepetitions=\"0\" maxRepetitions=\"1\"/>\n" +

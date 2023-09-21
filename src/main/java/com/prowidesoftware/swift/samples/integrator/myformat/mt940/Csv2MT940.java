@@ -11,12 +11,14 @@ import com.prowidesoftware.swift.model.SwiftMessageFactory;
 import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
+import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
 import com.prowidesoftware.swift.myformat.csv.CsvReader;
 import com.prowidesoftware.swift.myformat.mt.MtWriter;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This example shows how to convert a single CSV file row into an MT940 using API from Prowide Integrator MyFormat module.
@@ -33,12 +35,14 @@ public class Csv2MT940 {
     public static void main(String[] args) {
 
         // Create a mapping table instance with source and target formats and load rules from excel file
-        MappingTable table = new MappingTable(FileFormat.CSV, FileFormat.MT);
-        MappingTable.loadFromSpreadsheet(Csv2MT940.class.getResourceAsStream(tableFileName), "Mapping", table);
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Csv2MT940.class.getResourceAsStream(tableFileName)));
+        MappingTable table = loader.load("Mapping");
+        table.setSourceFormat(FileFormat.CSV);
+        table.setTargetFormat(FileFormat.MT);
 
         // Validate mapping rules syntax
         List<String> problems = table.validate();
-        if (problems.size() > 0) {
+        if (!problems.isEmpty()) {
 
             System.out.println("ERROR: found " + problems.size() + " problems in the mapping table:");
             for (String s : problems) {

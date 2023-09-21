@@ -8,9 +8,11 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
+import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This example shows how to convert and MT into a CSV using API from Prowide Integrator MyFormat module.
@@ -25,11 +27,14 @@ import java.util.List;
 public class Mt2CsvExample1 {
 
     public static void main(String[] args) {
-        // create de mapping table instance with source and target formats
-        MappingTable table = new MappingTable(FileFormat.MT, FileFormat.CSV);
 
-        // load mapping rules from Excel
-        MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/mt2csv.xls"), "example 1", table);
+        // Load mapping rules from Excel
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Xml2MtExample1.class.getResourceAsStream("/myformat/mt2csv.xls")));
+
+        // Create a mapping table instance with source and target formats
+        MappingTable table = loader.load("example 1");
+        table.setSourceFormat(FileFormat.MT);
+        table.setTargetFormat(FileFormat.CSV);
 
         // validate mapping table
         List<String> problems = table.validate();

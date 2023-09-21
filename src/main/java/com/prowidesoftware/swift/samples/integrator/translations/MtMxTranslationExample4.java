@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class MtMxTranslationExample4 {
 
-    public final static String sample = "{1:F01ABCDBEBBD36A6535371188}{2:O5090202140827FOOOLULLCISI56822627991408270202N}{3:{108:OMS0992390016000}}{4:\n" +
+    public static final String sample = "{1:F01ABCDBEBBD36A6535371188}{2:O5090202140827FOOOLULLCISI56822627991408270202N}{3:{108:OMS0992390016000}}{4:\n" +
             ":16R:GENL\n" +
             ":20C::SEME//LUX0012345\n" +
             ":23G:INST\n" +

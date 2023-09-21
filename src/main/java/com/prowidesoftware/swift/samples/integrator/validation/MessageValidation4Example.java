@@ -34,7 +34,7 @@ import java.util.List;
  */
 public class MessageValidation4Example {
 
-    final static String mt540_ok = "{1:F01FOOLUS33AXXX0000000000}{2:I540FOOSGB2LXGSTN}{3:{108:090106C1234567}}{4:\n" +
+    static final String mt540_ok = "{1:F01FOOLUS33AXXX0000000000}{2:I540FOOSGB2LXGSTN}{3:{108:090106C1234567}}{4:\n" +
 
             //General Information
             ":16R:GENL\n" +                        //0
@@ -77,7 +77,7 @@ public class MessageValidation4Example {
 
             ":16S:SETDET\n" +                    //25
             "-}";
-    final static String mt540_errors = "{1:F01AAAAUS00AXXX0000000000}{2:I540BBBBUS00XGSTN}{3:{108:09010110000000}}{4:\n" +
+    static final String mt540_errors = "{1:F01AAAAUS00AXXX0000000000}{2:I540BBBBUS00XGSTN}{3:{108:09010110000000}}{4:\n" +
 
             //General Information
             ":16R:GENL\n" +

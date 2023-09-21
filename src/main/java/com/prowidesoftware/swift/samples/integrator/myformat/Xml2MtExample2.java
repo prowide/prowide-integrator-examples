@@ -7,7 +7,10 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
+import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
+
+import java.util.Objects;
 
 /**
  * This example shows how to convert and XML into an MT using API from Prowide Integrator MyFormat module.
@@ -17,14 +20,14 @@ import com.prowidesoftware.swift.myformat.MyFormatEngine;
 public class Xml2MtExample2 {
 
     public static void main(String[] args) {
-        /*
-         * Create de mapping table instance
-         */
-        MappingTable table = new MappingTable(FileFormat.XML, FileFormat.MT);
-        /*
-         * Load mapping rules from Excel
-         */
-        MappingTable.loadFromSpreadsheet(Xml2MtExample2.class.getResourceAsStream("/myformat/xml2mt.xls"), "example2", table);
+
+        // Load mapping rules from Excel
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Xml2MtExample2.class.getResourceAsStream("/myformat/xml2mt.xls")));
+
+        // Create a mapping table instance with source and target formats
+        MappingTable table = loader.load("example2");
+        table.setSourceFormat(FileFormat.XML);
+        table.setTargetFormat(FileFormat.MT);
 
         /*
          * Source message content

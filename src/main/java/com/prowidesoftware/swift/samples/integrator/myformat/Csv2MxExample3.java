@@ -7,13 +7,11 @@
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.model.mx.MxPain00100103;
-import com.prowidesoftware.swift.model.mx.MxType;
 import com.prowidesoftware.swift.model.mx.MxTypePain;
-import com.prowidesoftware.swift.myformat.FileFormat;
-import com.prowidesoftware.swift.myformat.MappingTable;
-import com.prowidesoftware.swift.myformat.MyFormatEngine;
+import com.prowidesoftware.swift.myformat.*;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This example shows how to convert a CSV into an MX using API from Prowide Integrator MyFormat module.
@@ -27,11 +25,18 @@ import java.util.List;
 public class Csv2MxExample3 {
 
     public static void main(String[] args) {
-        // Create de mapping table instance with source and target formats
-        MappingTable table = new MappingTable(FileFormat.CSV, FileFormat.MX.setMxType(MxTypePain.pain_001_001_03));
 
         // Load mapping rules from Excel
-        MappingTable.loadFromSpreadsheet(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls"), "example3", table);
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls")));
+
+        // Create a mapping table instance with source and target formats
+        // There is no need to indicate the MX version because we will provide a specific writer to the translation call
+        MappingTable table = loader.load("example3");
+        table.setSourceFormat(FileFormat.CSV);
+        table.setTargetFormat(FileFormat.MX);
+
+        //indicating the specific MX version to create
+        table.add(new MappingRule(MxTypePain.pain_001_001_03.mxId().id(), SetupCommand.mxType.name(), WriteMode.SETUP));
 
         // Validate mapping rules syntax
         List<String> problems = table.validate();

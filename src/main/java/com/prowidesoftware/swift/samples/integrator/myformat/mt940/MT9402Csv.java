@@ -8,6 +8,7 @@ package com.prowidesoftware.swift.samples.integrator.myformat.mt940;
 
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
+import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
 import com.prowidesoftware.swift.myformat.csv.CsvWriter;
 import com.prowidesoftware.swift.myformat.mt.MtReader;
@@ -18,6 +19,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This example shows how to convert and MT940 into a CSV using API from Prowide Integrator MyFormat module.
@@ -33,13 +35,17 @@ public class MT9402Csv {
 
     public static void main(String[] args) {
 
-        // Create a mapping table instance with source and target formats and load rules from excel file
-        MappingTable table = new MappingTable(FileFormat.MT, FileFormat.CSV);
-        MappingTable.loadFromSpreadsheet(MT9402Csv.class.getResourceAsStream(tableFileName), "Mapping", table);
+        // Load mapping rules from Excel
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(MT9402Csv.class.getResourceAsStream(tableFileName)));
+
+        // Create a mapping table instance with source and target formats
+        MappingTable table = loader.load("Mapping");
+        table.setSourceFormat(FileFormat.MT);
+        table.setTargetFormat(FileFormat.CSV);
 
         // Validate mapping rules syntax
         List<String> problems = table.validate();
-        if (problems.size() > 0) {
+        if (!problems.isEmpty()) {
 
             System.out.println("ERROR: found " + problems.size() + " problems in the mapping table:");
             for (String s : problems) {

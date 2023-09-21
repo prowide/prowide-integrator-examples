@@ -8,8 +8,6 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 import com.prowidesoftware.swift.model.mx.MxPain00100103;
 import com.prowidesoftware.swift.myformat.*;
 
-import java.io.IOException;
-
 /**
  * This example shows how to convert and MX with multiple payments records into a CSV with one payment per line using
  * API from Prowide Integrator MyFormat module.
@@ -17,7 +15,7 @@ import java.io.IOException;
  * <p>The mapping rules in this example are defined programmatically.
  */
 public class Mx2CsvExample {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // source MX is pain.001.001.03 including two payment info,
 
         String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +

@@ -7,7 +7,6 @@ package com.prowidesoftware.swift.samples.integrator.validation;
 
 import com.prowidesoftware.swift.validator.*;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -25,7 +24,7 @@ import java.util.List;
  */
 public class MessageValidationIgnoringCustomExample {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         /*
          * Load a message
          */

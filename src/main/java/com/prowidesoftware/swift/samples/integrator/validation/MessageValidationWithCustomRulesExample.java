@@ -13,7 +13,6 @@ import com.prowidesoftware.swift.validator.ValidationProblem;
 import com.prowidesoftware.swift.validator.ValidationRule;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +44,7 @@ import java.util.List;
  */
 public class MessageValidationWithCustomRulesExample {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         MT103 mt = MT103.parse("{1:F01BICFOOY0AXXX8683499999}{2:O1031535051028ESPBESMMAXXX54237522470510281535N}{4:\n"
                 + ":20:0061350113089908\n"
@@ -99,7 +98,7 @@ public class MessageValidationWithCustomRulesExample {
     public static class MyRule extends ValidationRule {
         @Override
         protected List<ValidationProblem> eval(SwiftMessage msg, String mt) {
-            List<ValidationProblem> result = new ArrayList<ValidationProblem>();
+            List<ValidationProblem> result = new ArrayList<>();
             if (msg.getBlock4() != null) {
                 Tag reference = msg.getBlock4().getTagByName("20");
                 if (reference == null || !StringUtils.startsWith(reference.getValue(), "MYREF")) {
