@@ -15,6 +15,13 @@ dependencies {
         transitive = false
     }
     implementation 'org.apache.santuario:xmlsec:3.0.0'
+    compileOnly 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+
+    // jaxb is required because it is no longer included in the JDK
+    implementation 'com.sun.xml.bind:jaxb-impl:4.0.2'
+    // bind-api is included transitively by jaxb-impl
+    // implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+
 
     // replace with your trial version:
     implementation fileTree('lib')

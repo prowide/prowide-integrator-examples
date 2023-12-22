@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "${prowideRepo}/repository/maven-public/"
+        credentials {
+            username "${prowideRepoUser}"
+            password "${prowideRepoPass}"
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.prowidesoftware:pw-swift-integrator-translations:SRU2023-10.1.18'
+    implementation 'com.prowidesoftware:pw-swift-integrator-sdk:SRU2023-10.1.12'
+    implementation 'com.prowidesoftware:pw-swift-integrator-validation:SRU2023-10.1.11'
+    implementation 'com.prowidesoftware:pw-swift-integrator-myformat:SRU2023-10.1.4'
+}

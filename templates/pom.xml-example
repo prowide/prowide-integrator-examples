@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>pom-example-file</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-swift-integrator-translations</artifactId>
+            <version>SRU2023-10.1.18</version>
+        </dependency>
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-swift-integrator-sdk</artifactId>
+            <version>SRU2023-10.1.12</version>
+        </dependency>
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-swift-integrator-validation</artifactId>
+            <version>SRU2023-10.1.11</version>
+        </dependency>
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-swift-integrator-myformat</artifactId>
+            <version>SRU2023-10.1.4</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>prowideRepo</id>
+            <url>https://repo.prowidesoftware.com/repository/maven-public/</url>
+        </repository>
+    </repositories>
+</project>

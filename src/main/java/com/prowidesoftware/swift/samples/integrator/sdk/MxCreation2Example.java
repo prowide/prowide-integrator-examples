@@ -12,6 +12,9 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.util.GregorianCalendar;
 
 /**
@@ -140,18 +143,6 @@ import java.util.GregorianCalendar;
  */
 public class MxCreation2Example {
 
-    public static XMLGregorianCalendar getXMLGregorianCalendarNow() {
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        DatatypeFactory datatypeFactory = null;
-        try {
-            datatypeFactory = DatatypeFactory.newInstance();
-            return datatypeFactory.newXMLGregorianCalendar(gregorianCalendar);
-        } catch (DatatypeConfigurationException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public static void main(String[] args) {
         /*
          * Initialize the MX object
@@ -167,7 +158,7 @@ public class MxCreation2Example {
          * General Information
          */
         mx.getFIToFICstmrCdtTrf().getGrpHdr().setMsgId("TBEXO12345");
-        mx.getFIToFICstmrCdtTrf().getGrpHdr().setCreDtTm(getXMLGregorianCalendarNow());
+        mx.getFIToFICstmrCdtTrf().getGrpHdr().setCreDtTm(OffsetDateTime.now(ZoneId.systemDefault()));
         mx.getFIToFICstmrCdtTrf().getGrpHdr().setNbOfTxs("1");
 
         /*
@@ -218,7 +209,7 @@ public class MxCreation2Example {
         /*
          * Transaction Value Date
          */
-        cti.setIntrBkSttlmDt(getXMLGregorianCalendarNow());
+        cti.setIntrBkSttlmDt(LocalDate.now());
 
         /*
          * Transaction Charges

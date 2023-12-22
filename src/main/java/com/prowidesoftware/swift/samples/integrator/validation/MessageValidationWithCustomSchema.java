@@ -28,7 +28,7 @@ public class MessageValidationWithCustomSchema {
 
     public static void main(String[] args) {
 
-        String customScheme = "<scheme name=\"199\" description=\"Free Format Message\" release=\"2022\">\n" +
+        String customScheme = "<scheme name=\"199\" description=\"Free Format Message\" release=\"2023\">\n" +
                 "   <sequence minRepetitions=\"1\" maxRepetitions=\"1\">\n" +
                 "      <field id=\"20\" minRepetitions=\"1\" maxRepetitions=\"1\"/>\n" +
                 "      <field id=\"21\" minRepetitions=\"0\" maxRepetitions=\"1\"/>\n" +

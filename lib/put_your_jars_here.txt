@@ -1,1 +1,11 @@
-add your jars to this directory
+For example:
+
+pw-swift-integrator-validation-SRU2023-10.1.X.jar
+pw-swift-integrator-translations-SRU2023-10.1.X.jar
+pw-swift-integrator-sic-SRU2023-10.1.X.jar
+pw-swift-integrator-sepa-SRU2023-10.1.X.jar
+pw-swift-integrator-sdk-SRU2023-10.1.X.jar
+pw-swift-integrator-score-SRU2023-10.1.X.jar
+pw-swift-integrator-myformat-SRU2023-10.1.X.jar
+pw-swift-integrator-data.jar
+pw-swift-integrator-cbpr-SRU2023-10.1.X.jar

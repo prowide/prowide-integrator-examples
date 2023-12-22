@@ -9,6 +9,11 @@ This project will not compile without a running version of the Integrator librar
 
 If you are interested on this software package you may request a trial download here: http://www.prowidesoftware.com/contact-us
 
+Requirements
+============
+* Java 11+
+* Prowide Integrator library jars (trial or production version)
+
 Build
 =====
 In build the project:
@@ -30,6 +35,8 @@ Run
 ===
 The primary intention of the examples is to show code. Most of them produce some kind of output though. 
 All example classes have a main method that you can easily run in your IDE.
+
+Please refer to [Compile and Run](https://dev.prowidesoftware.com/latest/getting-started/#compile-and-run) in order to set up your project dependencies
 
 Issues
 ===
