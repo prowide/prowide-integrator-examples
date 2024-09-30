@@ -8,7 +8,7 @@ version = '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
     maven {
-        url "${prowideRepo}/repository/maven-public/"
+        url "${prowideRepo}/repository/maven-releases/"
         credentials {
             username "${prowideRepoUser}"
             password "${prowideRepoPass}"

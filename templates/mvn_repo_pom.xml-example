@@ -40,7 +40,7 @@
     <repositories>
         <repository>
             <id>prowideRepo</id>
-            <url>https://...</url>
+            <url>https://repo.prowidesoftware.com/repository/maven-releases/</url>
         </repository>
     </repositories>
 </project>
