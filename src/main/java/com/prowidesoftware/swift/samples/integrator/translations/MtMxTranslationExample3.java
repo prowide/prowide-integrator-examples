@@ -23,7 +23,7 @@ import java.io.IOException;
 public class MtMxTranslationExample3 {
 
     public static final String sample =
-            "{1:F01SFOOBEBBAXXX0001000001}{2:I564SFOOBEBBXBILN}{3:{108:495}}{4:\n" +
+            "{1:F01SFOOBEBB0XXX0001000001}{2:I564SFOOBEBBXBILN}{3:{108:495}}{4:\n" +
                     ":16R:GENL\n" +
                     ":20C::CORP//FOOBAR\n" +
                     ":20C::SEME//FOOVCAMANDSECU\n" +
