@@ -23,3 +23,4 @@ build
 .idea/dbnavigator.xml
 .idea/prowide-integrator-examples.iml
 src/main/resources/prowide-license.lic
+.java-version
