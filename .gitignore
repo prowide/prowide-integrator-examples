@@ -24,3 +24,4 @@ build
 .idea/prowide-integrator-examples.iml
 src/main/resources/prowide-license.lic
 .java-version
+.idea/jpa-buddy.xml
