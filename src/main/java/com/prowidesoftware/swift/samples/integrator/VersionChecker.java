@@ -10,7 +10,6 @@ import com.prowidesoftware.swift.SRU;
 import com.prowidesoftware.swift.app.TranslatorApp;
 import com.prowidesoftware.swift.model.MtSwiftMessage;
 import com.prowidesoftware.swift.model.MxSwiftMessage;
-import com.prowidesoftware.swift.model.mt.MtTypeScore;
 import com.prowidesoftware.swift.model.mx.cbpr.CbprMessageType;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
 import com.prowidesoftware.swift.validator.ValidationEngine;
@@ -50,9 +49,6 @@ public class VersionChecker {
 
         String myFormatEngine_version = getImplementationVersion(MyFormatEngine.class);
         System.out.println("MyFormat Version: " + myFormatEngine_version);
-
-        String score_version = getImplementationVersion(MtTypeScore.class);
-        System.out.println("Score Version: " + score_version);
 
         String sdk_version = getImplementationVersion(SRU.class);
         System.out.println("Sdk Version: " + sdk_version);
