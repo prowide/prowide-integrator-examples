@@ -1,32 +1,29 @@
 /*
- * Copyright (c) 2021 Prowide Inc.
+ * Copyright (c) 2025 Prowide Inc.
  * All rights reserved. This program and the accompanying materials are made available under the terms of private
  * license agreements between Prowide Inc. and its commercial customers and partners.
  */
 package com.prowidesoftware.swift.samples.integrator.translations;
 
-import java.util.Optional;
 import com.prowidesoftware.swift.model.MxId;
-import com.prowidesoftware.swift.model.mx.MxParseUtils;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mx.AbstractMX;
 import com.prowidesoftware.swift.model.mx.BusinessAppHdrV02;
 import com.prowidesoftware.swift.model.mx.MxPacs00900108;
+import com.prowidesoftware.swift.model.mx.MxParseUtils;
 import com.prowidesoftware.swift.model.mx.cbpr.MxPacs00900108ADV;
-import com.prowidesoftware.swift.translations.cbpr.MxPacs00900108ADV_MT202_Translation;
-import com.prowidesoftware.swift.translations.MxPacs00900108_MT202COV_Translation;
-import com.prowidesoftware.swift.translations.MxPacs00900108_MT205COV_Translation;
-import com.prowidesoftware.swift.translations.MxPacs00900108_MT202_Translation;
-import com.prowidesoftware.swift.translations.MxPacs00900108_MT205_Translation;
 import com.prowidesoftware.swift.translations.MxPacs00900108_MT200_Translation;
-
-
+import com.prowidesoftware.swift.translations.MxPacs00900108_MT202COV_Translation;
+import com.prowidesoftware.swift.translations.MxPacs00900108_MT202_Translation;
+import com.prowidesoftware.swift.translations.MxPacs00900108_MT205COV_Translation;
+import com.prowidesoftware.swift.translations.MxPacs00900108_MT205_Translation;
+import com.prowidesoftware.swift.translations.cbpr.MxPacs00900108ADV_MT202_Translation;
+import java.util.Optional;
 
 /**
  * Translation Samples for MxPacs00900108 to MT200/202/205 including ADV/COV
  *
  * @author msubrama
- * @since 7.9.6
  */
 public class MxMtTranslationExample3 {
     /**
@@ -125,8 +122,7 @@ public class MxMtTranslationExample3 {
     /**
      * Force generation of MT205 over MT202
      */
-
-    protected static boolean translateToMT205=false;
+    protected static boolean translateToMT205 = false;
     /**
      * target message type
      */
@@ -137,19 +133,18 @@ public class MxMtTranslationExample3 {
      */
     protected static AbstractMT targetMT;
 
-
     public static void main(String[] args) {
         /**
          * Generate Target as MT205 over MT202
-         // 202COV/205COV: Not possible to distinguish 202/205 without custom handling.
-         // Custom logic Handling to classify 202/205
-         // MT 202 Scope:This message is sent by or on behalf of the ordering institution directly.
-         // MT 205 Scope: This message is sent by the Receiver of a category 2 message.
+         * // 202COV/205COV: Not possible to distinguish 202/205 without custom handling.
+         * // Custom logic Handling to classify 202/205
+         * // MT 202 Scope:This message is sent by or on behalf of the ordering institution directly.
+         * // MT 205 Scope: This message is sent by the Receiver of a category 2 message.
          */
         String arg = "";
-        if (args.length>1){
-            arg=args[0];
-            if (arg.contains("205")) translateToMT205=true;
+        if (args.length > 1) {
+            arg = args[0];
+            if (arg.contains("205")) translateToMT205 = true;
         }
 
         // detect message type
@@ -161,15 +156,16 @@ public class MxMtTranslationExample3 {
 
         // parse the source message
         final AbstractMX abstractMX = AbstractMX.parse(xml);
-        //Handle pacs009 ADV
-        //BizSvc contains .ADV  -> 202
-        if (((BusinessAppHdrV02) abstractMX.getAppHdr()).getBizSvc()!=null && ((BusinessAppHdrV02) abstractMX.getAppHdr()).getBizSvc().contains("adv")){
+        // Handle pacs009 ADV
+        // BizSvc contains .ADV  -> 202
+        if (((BusinessAppHdrV02) abstractMX.getAppHdr()).getBizSvc() != null
+                && ((BusinessAppHdrV02) abstractMX.getAppHdr()).getBizSvc().contains("adv")) {
             // TO-DO: Customer specific ADV Handling:
             // As there is no MT202 ADV in SWIFT, so pacs.009 ADV is translated to MT202 CORE
             targetMTType = "202ADV";
             MxPacs00900108ADV_MT202_Translation translatorMT202ADV = new MxPacs00900108ADV_MT202_Translation();
             targetMT = translatorMT202ADV.translate((MxPacs00900108ADV) abstractMX);
-        }else {
+        } else {
             /**
              * Main entry point for the Pacs009 translation
              * if UndrlygCstmrCdtTrf present -> 202COV/205COV
@@ -216,7 +212,9 @@ public class MxMtTranslationExample3 {
      * @return true/false
      */
     private static boolean isCOV(MxPacs00900108 mxPacs00900108) {
-        if (mxPacs00900108!=null && mxPacs00900108.getFICdtTrf().getCdtTrfTxInf().get(0) != null && mxPacs00900108.getFICdtTrf().getCdtTrfTxInf().get(0).getUndrlygCstmrCdtTrf()!=null ) {
+        if (mxPacs00900108 != null
+                && mxPacs00900108.getFICdtTrf().getCdtTrfTxInf().get(0) != null
+                && mxPacs00900108.getFICdtTrf().getCdtTrfTxInf().get(0).getUndrlygCstmrCdtTrf() != null) {
             return true;
         }
         return false;
@@ -248,14 +246,34 @@ public class MxMtTranslationExample3 {
          * 1. Financial Institution Transfer for its Own Account with an Account With Institution
          * 2. Financial Institution Transfer for its Own Account with an Intermediary
          */
-        String cdtr=mx.getFICdtTrf().getCdtTrfTxInf().get(0).getCdtr().getFinInstnId().getBICFI();
-        //non-cbpr+
-        String instgAgt=mx.getFICdtTrf().getCdtTrfTxInf().get(0).getInstgAgt().getFinInstnId().getBICFI();
-        String dbtr=mx.getFICdtTrf().getCdtTrfTxInf().get(0).getDbtr().getFinInstnId().getBICFI();
-        String dbtrAgt =mx.getFICdtTrf().getCdtTrfTxInf().get(0).getDbtrAgt().getFinInstnId().getBICFI();
-        if(cdtr.equalsIgnoreCase(dbtr) || cdtr.equalsIgnoreCase(dbtrAgt) || cdtr.equalsIgnoreCase(instgAgt) ) {
+        String cdtr = mx.getFICdtTrf()
+                .getCdtTrfTxInf()
+                .get(0)
+                .getCdtr()
+                .getFinInstnId()
+                .getBICFI();
+        // non-cbpr+
+        String instgAgt = mx.getFICdtTrf()
+                .getCdtTrfTxInf()
+                .get(0)
+                .getInstgAgt()
+                .getFinInstnId()
+                .getBICFI();
+        String dbtr = mx.getFICdtTrf()
+                .getCdtTrfTxInf()
+                .get(0)
+                .getDbtr()
+                .getFinInstnId()
+                .getBICFI();
+        String dbtrAgt = mx.getFICdtTrf()
+                .getCdtTrfTxInf()
+                .get(0)
+                .getDbtrAgt()
+                .getFinInstnId()
+                .getBICFI();
+        if (cdtr.equalsIgnoreCase(dbtr) || cdtr.equalsIgnoreCase(dbtrAgt) || cdtr.equalsIgnoreCase(instgAgt)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
