@@ -17,7 +17,7 @@ import com.prowidesoftware.swift.myformat.*;
  *
  * <p>Requires the Prowide Integrator MyFormat module.</p>
  */
-public class Mt2JsonExample {
+public class Mt2JsonExample1 {
 
     public static void main(String[] args) {
         // Mapping definition
