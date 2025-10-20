@@ -8,7 +8,7 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.myformat.*;
 
-public class Mt2JsonExample {
+public class Mt2JsonExample1 {
 
     public static void main(String[] args) {
         // Mapping definition
