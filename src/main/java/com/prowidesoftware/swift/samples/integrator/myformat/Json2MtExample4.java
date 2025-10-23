@@ -6,7 +6,7 @@
 
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
-import com.prowidesoftware.swift.model.mt.mt5xx.MT540;
+import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
@@ -18,56 +18,64 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * Each "party" element should generate an instance of sequence E.
- * Either attribute "type" or "price" in the "party" element should generate a field 95Q in the corresponding
- * sequence E, the attribute value goes to component 1 in the field.
- * The "id" attribute in the party element must be mapped to component 2 in the corresponding 95Q field instance.
+ * Complex test creating real MT535 nested sequences from several foreach.
  */
 class Json2MtExample4 {
 
     public static void main(String[] args) throws IOException {
-        String jsonInput = "{ 'riskPledgeAllocation': {" + "    'taskId': 1111,"
-                + "    'bussinessDate': '2019-01-03',"
-                + "    'strategyId': 'XXXXXXX',"
-                + "    'fundId': 'XXXXX',"
-                + "    'sscSecId': 999999,"
-                + "    'assetType': 'EQUITY',"
-                + "    'settlementLoc': 'AAA',"
-                + "    'allocatedQty': 0,"
-                + "    'availableQty': 9999,"
-                + "    'memoPledgeQty': 0,"
-                + "    'allocatedMarketVal': 0,"
-                + "    'calculatedDelta': 99,"
-                + "    'eligibilityFlag': false,"
-                + "    'price': 99,"
-                + "    'priceCcy': 'USD',"
-                + "    'lastModifiedBy': 'XXXXX',"
-                + "    'pricingBasis': 1,"
-                + "    'parties': {"
-                + "      'party': ["
-                + "        {"
-                + "          'id': 'AA',"
-                + "          'type': 'SELLER'"
-                + "        },"
-                + "        {"
-                + "          'id': 'BB',"
-                + "          'type': 'BUYER'"
+        String jsonInput = "{" + "  'M': {"
+                + "    'B': ["
+                + "      {"
+                + "        'T95P': 'F1F1//ABCDARXXXXX',"
+                + "        'T97A': 'F2F2//1',"
+                + "        'B1': {"
+                + "          'T35B': 'F3',"
+                + "          'B1b': ["
+                + "            {"
+                + "              'T22F': 'F4F4//1',"
+                + "              'T94B': 'F5F5//1'"
+                + "            },"
+                + "            {"
+                + "              'T22F': 'F4F4//2',"
+                + "              'T94B': 'F5F5//2'"
+                + "            }"
+                + "          ],"
+                + "          'T99A': 'F6F6//103',"
+                + "          'B1c': {"
+                + "            'T13B': 'F7F7//1',"
+                + "            'T90A': 'F8F8//F8F/1,'"
+                + "          }"
                 + "        }"
-                + "      ]"
-                + "    }"
+                + "      },"
+                + "      {"
+                + "        'T97A': 'F2F2//2',"
+                + "        'B1': {"
+                + "          'B1c': ["
+                + "            {"
+                + "              'T13B': 'F7F7//2',"
+                + "              'T90A': 'F8F8//F8F/2,'"
+                + "            },"
+                + "            {"
+                + "              'T13B': 'F7F7//3',"
+                + "              'T90A': 'F8F8//F8F/3,'"
+                + "            }"
+                + "          ]"
+                + "        }"
+                + "      }"
+                + "    ]"
                 + "  }"
                 + "}";
 
+        System.out.println(jsonInput);
 
-        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Json2MtExample3.class.getResourceAsStream("/myformat/json2mt.xls")));
-        MappingTable t = loader.load("SEQUENCE", FileFormat.JSON, FileFormat.MT);
-        assert(t.validate().isEmpty());
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Json2MtExample2.class.getResourceAsStream("/myformat/json2mt.xls")));
+        MappingTable t = loader.load("REP_SEQ", FileFormat.JSON, FileFormat.MT);
+        assert (t.validate().isEmpty());
 
-        MtWriter writer = new MtWriter(new MT540());
+        MtWriter writer = new MtWriter(new MT535());
         MyFormatEngine.translate(new JsonReader(jsonInput), writer, t.getRules());
 
-        MT540 mt = (MT540) writer.mt();
-
+        MT535 mt = (MT535) writer.mt();
         System.out.println(mt.message());
     }
 }

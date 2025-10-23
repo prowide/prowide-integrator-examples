@@ -1,0 +1,467 @@
+FILE: mx2json.xls
+
+Sheet name: SIMPLE
+--------------------
+Input message:
+<?xml version="1.0" encoding="UTF-8"?>
+<Doc:Document xmlns:Doc="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+	<Doc:CstmrCdtTrfInitn>
+		<Doc:PmtInf>
+			<Doc:DbtrAcct>
+				<Doc:Id>
+					<Doc:IBAN>DE12345678901234567890</Doc:IBAN>
+				</Doc:Id>
+			</Doc:DbtrAcct>
+			<Doc:CdtTrfTxInf>
+				<Doc:Amt>
+					<Doc:InstdAmt Ccy="USD">1111.11</Doc:InstdAmt>
+				</Doc:Amt>
+				<Doc:CdtrAcct>
+					<Doc:Id>
+						<Doc:IBAN>US12345678901234567890</Doc:IBAN>
+					</Doc:Id>
+				</Doc:CdtrAcct>
+			</Doc:CdtTrfTxInf>
+		</Doc:PmtInf>
+		<Doc:PmtInf>
+			<Doc:DbtrAcct>
+				<Doc:Id>
+					<Doc:IBAN>ES12345678901234567890</Doc:IBAN>
+				</Doc:Id>
+			</Doc:DbtrAcct>
+			<Doc:CdtTrfTxInf>
+				<Doc:Amt>
+					<Doc:InstdAmt Ccy="USD">2222.11</Doc:InstdAmt>
+				</Doc:Amt>
+				<Doc:CdtrAcct>
+					<Doc:Id>
+						<Doc:IBAN>CA12345678901234567890</Doc:IBAN>
+					</Doc:Id>
+				</Doc:CdtrAcct>
+			</Doc:CdtTrfTxInf>
+			<Doc:CdtTrfTxInf>
+				<Doc:Amt>
+					<Doc:InstdAmt Ccy="EUR">2222.22</Doc:InstdAmt>
+				</Doc:Amt>
+				<Doc:CdtrAcct>
+					<Doc:Id>
+						<Doc:IBAN>JP12345678901234567890</Doc:IBAN>
+					</Doc:Id>
+				</Doc:CdtrAcct>
+			</Doc:CdtTrfTxInf>
+		</Doc:PmtInf>
+	</Doc:CstmrCdtTrfInitn>
+</Doc:Document>
+
+Converted message:
+{
+  "Document": {
+    "CstmrCdtTrfInitn": {
+      "PmtInf": [
+        {
+          "CdtTrfTxInf": [
+            {
+              "Amt": {
+                "InstdAmt": [
+                  {
+                    "Ccy": "USD"
+                  },
+                  "1111.11"
+                ]
+              },
+              "CdtrAcct": {
+                "Id": {
+                  "IBAN": "US12345678901234567890"
+                }
+              }
+            },
+            {
+              "Amt": {
+                "InstdAmt": {
+                  "Ccy": "USDEUR"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "CdtTrfTxInf": {
+            "Amt": {
+              "InstdAmt": [
+                "2222.11",
+                "2222.22"
+              ]
+            },
+            "CdtrAcct": {
+              "Id": {
+                "IBAN": "CA12345678901234567890JP12345678901234567890"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+----------------------------------
+
+Sheet name: RELATIVE
+--------------------
+Input message:
+<?xml version="1.0" encoding="UTF-8"?>
+<Doc:Document xmlns:Doc="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+	<Doc:CstmrCdtTrfInitn>
+		<Doc:GrpHdr>
+			<Doc:MsgId>12345</Doc:MsgId>
+			<Doc:NbOfTxs>3</Doc:NbOfTxs>
+			<Doc:CtrlSum>5555.55</Doc:CtrlSum>
+		</Doc:GrpHdr>
+		<Doc:PmtInf>
+			<Doc:DbtrAcct>
+				<Doc:Id>
+					<Doc:IBAN>DE12345678901234567890</Doc:IBAN>
+				</Doc:Id>
+			</Doc:DbtrAcct>
+			<Doc:CdtTrfTxInf>
+				<Doc:PmtId>
+					<Doc:EndToEndId>11</Doc:EndToEndId>
+				</Doc:PmtId>
+				<Doc:Amt>
+					<Doc:InstdAmt Ccy="USD">1111.11</Doc:InstdAmt>
+				</Doc:Amt>
+				<Doc:CdtrAcct>
+					<Doc:Id>
+						<Doc:IBAN>US12345678901234567890</Doc:IBAN>
+					</Doc:Id>
+				</Doc:CdtrAcct>
+			</Doc:CdtTrfTxInf>
+		</Doc:PmtInf>
+		<Doc:PmtInf>
+			<Doc:DbtrAcct>
+				<Doc:Id>
+					<Doc:Othr>
+						<Doc:Id>9999</Doc:Id>
+					</Doc:Othr>
+				</Doc:Id>
+			</Doc:DbtrAcct>
+			<Doc:CdtTrfTxInf>
+				<Doc:PmtId>
+					<Doc:EndToEndId>21</Doc:EndToEndId>
+				</Doc:PmtId>
+				<Doc:Amt>
+					<Doc:InstdAmt Ccy="USD">2222.11</Doc:InstdAmt>
+				</Doc:Amt>
+				<Doc:CdtrAcct>
+					<Doc:Id>
+						<Doc:IBAN>CA12345678901234567890</Doc:IBAN>
+					</Doc:Id>
+				</Doc:CdtrAcct>
+			</Doc:CdtTrfTxInf>
+			<Doc:CdtTrfTxInf>
+				<Doc:PmtId>
+					<Doc:EndToEndId>22</Doc:EndToEndId>
+				</Doc:PmtId>
+				<Doc:Amt>
+					<Doc:InstdAmt Ccy="EUR">2222.22</Doc:InstdAmt>
+				</Doc:Amt>
+				<Doc:CdtrAcct>
+					<Doc:Id>
+						<Doc:IBAN>JP12345678901234567890</Doc:IBAN>
+					</Doc:Id>
+				</Doc:CdtrAcct>
+			</Doc:CdtTrfTxInf>
+		</Doc:PmtInf>
+	</Doc:CstmrCdtTrfInitn>
+</Doc:Document>
+
+Converted message:
+{
+  "Document": {
+    "CstmrCdtTrfInitn": {
+      "GrpHdr": {
+        "MsgId": "12345",
+        "NbOfTxs": "3",
+        "CtrlSum": "5555.55"
+      },
+      "PmtInf": [
+        {
+          "CdtTrfTxInf": [
+            {
+              "PmtId": {
+                "EndToEndId": "11"
+              },
+              "Amt": {
+                "InstdAmt": [
+                  {
+                    "Ccy": "USD"
+                  },
+                  "1111.11"
+                ]
+              },
+              "CdtrAcct": {
+                "Id": {
+                  "IBAN": "US12345678901234567890"
+                }
+              }
+            },
+            {
+              "Amt": {
+                "InstdAmt": {
+                  "Ccy": "USDEUR"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "CdtTrfTxInf": {
+            "PmtId": {
+              "EndToEndId": "2122"
+            },
+            "Amt": {
+              "InstdAmt": [
+                "2222.11",
+                "2222.22"
+              ]
+            },
+            "CdtrAcct": {
+              "Id": {
+                "IBAN": "CA12345678901234567890JP12345678901234567890"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+-----------------------------
+
+Sheet name: FOREACH
+--------------------
+Input message:
+<?xml version="1.0" encoding="UTF-8"?>
+<Doc:Document xmlns:Doc="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+	<Doc:CstmrCdtTrfInitn>
+		<Doc:PmtInf>
+			<Doc:DbtrAcct>
+				<Doc:Id>
+					<Doc:IBAN>DE12345678901234567890</Doc:IBAN>
+				</Doc:Id>
+			</Doc:DbtrAcct>
+			<Doc:CdtTrfTxInf>
+				<Doc:Amt>
+					<Doc:InstdAmt Ccy="USD">1111.11</Doc:InstdAmt>
+				</Doc:Amt>
+				<Doc:CdtrAcct>
+					<Doc:Id>
+						<Doc:IBAN>US12345678901234567890</Doc:IBAN>
+					</Doc:Id>
+				</Doc:CdtrAcct>
+			</Doc:CdtTrfTxInf>
+		</Doc:PmtInf>
+		<Doc:PmtInf>
+			<Doc:DbtrAcct>
+				<Doc:Id>
+					<Doc:IBAN>ES12345678901234567890</Doc:IBAN>
+				</Doc:Id>
+			</Doc:DbtrAcct>
+			<Doc:CdtTrfTxInf>
+				<Doc:Amt>
+					<Doc:InstdAmt Ccy="USD">2222.11</Doc:InstdAmt>
+				</Doc:Amt>
+				<Doc:CdtrAcct>
+					<Doc:Id>
+						<Doc:IBAN>CA12345678901234567890</Doc:IBAN>
+					</Doc:Id>
+				</Doc:CdtrAcct>
+			</Doc:CdtTrfTxInf>
+			<Doc:CdtTrfTxInf>
+				<Doc:Amt>
+					<Doc:InstdAmt Ccy="EUR">2222.22</Doc:InstdAmt>
+				</Doc:Amt>
+				<Doc:CdtrAcct>
+					<Doc:Id>
+						<Doc:IBAN>JP12345678901234567890</Doc:IBAN>
+					</Doc:Id>
+				</Doc:CdtrAcct>
+			</Doc:CdtTrfTxInf>
+		</Doc:PmtInf>
+	</Doc:CstmrCdtTrfInitn>
+</Doc:Document>
+
+Converted message:
+{
+  "Document": {
+    "CstmrCdtTrfInitn": {
+      "PmtInf": [
+        {
+          "CdtTrfTxInf": {
+            "DbtrAcct": {
+              "Id": {
+                "IBAN": "DE12345678901234567890"
+              }
+            },
+            "CdtrAcct": {
+              "Id": {
+                "IBAN": "US12345678901234567890"
+              }
+            },
+            "Amt": {
+              "InstdAmt": [
+                "1111.11USD"
+              ]
+            }
+          }
+        },
+        {
+          "CdtTrfTxInf": {
+            "DbtrAcct": {
+              "Id": {
+                "IBAN": [
+                  "ES12345678901234567890",
+                  "ES12345678901234567890"
+                ]
+              }
+            },
+            "CdtrAcct": {
+              "Id": {
+                "IBAN": [
+                  "CA12345678901234567890",
+                  "JP12345678901234567890"
+                ]
+              }
+            },
+            "Amt": {
+              "InstdAmt": [
+                "2222.11USD",
+                "2222.22EUR"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+----------------------------
+
+
+Sheet name: FOREACH_REL
+--------------------
+Input message:
+<?xml version="1.0" encoding="UTF-8"?>
+<Doc:Document xmlns:Doc="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+	<Doc:CstmrCdtTrfInitn>
+		<Doc:GrpHdr>
+			<Doc:MsgId>12345</Doc:MsgId>
+			<Doc:NbOfTxs>3</Doc:NbOfTxs>
+			<Doc:CtrlSum>5555.55</Doc:CtrlSum>
+		</Doc:GrpHdr>
+		<Doc:PmtInf>
+			<Doc:DbtrAcct>
+				<Doc:Id>
+					<Doc:IBAN>DE12345678901234567890</Doc:IBAN>
+				</Doc:Id>
+			</Doc:DbtrAcct>
+			<Doc:CdtTrfTxInf>
+				<Doc:PmtId>
+					<Doc:EndToEndId>11</Doc:EndToEndId>
+				</Doc:PmtId>
+				<Doc:Amt>
+					<Doc:InstdAmt Ccy="USD">1111.11</Doc:InstdAmt>
+				</Doc:Amt>
+				<Doc:CdtrAcct>
+					<Doc:Id>
+						<Doc:IBAN>US12345678901234567890</Doc:IBAN>
+					</Doc:Id>
+				</Doc:CdtrAcct>
+			</Doc:CdtTrfTxInf>
+		</Doc:PmtInf>
+		<Doc:PmtInf>
+			<Doc:DbtrAcct>
+				<Doc:Id>
+					<Doc:Othr>
+						<Doc:Id>9999</Doc:Id>
+					</Doc:Othr>
+				</Doc:Id>
+			</Doc:DbtrAcct>
+			<Doc:CdtTrfTxInf>
+				<Doc:PmtId>
+					<Doc:EndToEndId>21</Doc:EndToEndId>
+				</Doc:PmtId>
+				<Doc:Amt>
+					<Doc:InstdAmt Ccy="USD">2222.11</Doc:InstdAmt>
+				</Doc:Amt>
+				<Doc:CdtrAcct>
+					<Doc:Id>
+						<Doc:IBAN>CA12345678901234567890</Doc:IBAN>
+					</Doc:Id>
+				</Doc:CdtrAcct>
+			</Doc:CdtTrfTxInf>
+			<Doc:CdtTrfTxInf>
+				<Doc:PmtId>
+					<Doc:EndToEndId>22</Doc:EndToEndId>
+				</Doc:PmtId>
+				<Doc:Amt>
+					<Doc:InstdAmt Ccy="EUR">2222.22</Doc:InstdAmt>
+				</Doc:Amt>
+				<Doc:CdtrAcct>
+					<Doc:Id>
+						<Doc:IBAN>JP12345678901234567890</Doc:IBAN>
+					</Doc:Id>
+				</Doc:CdtrAcct>
+			</Doc:CdtTrfTxInf>
+		</Doc:PmtInf>
+	</Doc:CstmrCdtTrfInitn>
+</Doc:Document>
+
+Converted message:
+{
+  "Document": {
+    "CstmrCdtTrfInitn": {
+      "PmtInf": [
+        {
+          "CdtTrfTxInf": {
+            "DbtrAcct": {
+              "Id": {
+                "IBAN": "DE12345678901234567890"
+              }
+            },
+            "CdtrAcct": {
+              "Id": {
+                "IBAN": "US12345678901234567890"
+              }
+            },
+            "Amt": {
+              "InstdAmt": [
+                "1111.11USD"
+              ]
+            }
+          }
+        },
+        {
+          "CdtTrfTxInf": {
+            "CdtrAcct": {
+              "Id": {
+                "IBAN": [
+                  "CA12345678901234567890",
+                  "JP12345678901234567890"
+                ]
+              }
+            },
+            "Amt": {
+              "InstdAmt": [
+                "2222.11USD",
+                "2222.22EUR"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
