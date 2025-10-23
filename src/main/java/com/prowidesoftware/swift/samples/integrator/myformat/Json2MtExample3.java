@@ -6,74 +6,68 @@
 
 package com.prowidesoftware.swift.samples.integrator.myformat;
 
+import com.prowidesoftware.swift.model.mt.mt5xx.MT540;
 import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
+import com.prowidesoftware.swift.myformat.json.JsonReader;
+import com.prowidesoftware.swift.myformat.mt.MtWriter;
 
 import java.io.IOException;
 import java.util.Objects;
 
 /**
- * Test creating an MT from a JSON source with an array of elements.
+ * Each "party" element should generate an instance of sequence E.
+ * Either attribute "type" or "price" in the "party" element should generate a field 95Q in the corresponding
+ * sequence E, the attribute value goes to component 1 in the field.
+ * The "id" attribute in the party element must be mapped to component 2 in the corresponding 95Q field instance.
  */
 class Json2MtExample3 {
 
     public static void main(String[] args) throws IOException {
-        String jsonInput = "{" + "    'type': 'MT',"
-                + "    'basicHeaderBlock': {"
-                + "        'applicationId': 'F',"
-                + "        'serviceId': '01',"
-                + "        'logicalTerminal': 'FOOTHKHHAXXX',"
-                + "        'sessionNumber': '0000',"
-                + "        'sequenceNumber': '000000'"
-                + "    },"
-                + "    'applicationHeaderBlock': {"
-                + "        'receiverAddress': 'EXMTHKHHXXXX',"
-                + "        'senderInputTime': null,"
-                + "        'MIRDate': null,"
-                + "        'MIRLogicalTerminal': null,"
-                + "        'MIRSessionNumber': null,"
-                + "        'MIRSequenceNumber': null,"
-                + "        'receiverOutputDate': null,"
-                + "        'receiverOutputTime': null,"
-                + "        'messagePriority': 'N',"
-                + "        'messageType': '202',"
-                + "        'direction': 'I'"
-                + "    },"
-                + "    'textBlock': {"
-                + "        'fields': ["
-                + "            {"
-                + "                'name': '20',"
-                + "                'reference': 'TEST2021234'"
-                + "            },"
-                + "            {"
-                + "                'name': '21',"
-                + "                'reference': 'TEST202123233'"
-                + "            },"
-                + "            {"
-                + "                'name': '32A',"
-                + "                'date': '230131',"
-                + "                'currency': 'USD',"
-                + "                'amount': '7878778,'"
-                + "            },"
-                + "            {"
-                + "                'name': '58A',"
-                + "                'account': '898989',"
-                + "                'bIC': 'EXMTHKHH'"
-                + "            },"
-                + "            {"
-                + "                'name': '72',"
-                + "                'narrative': ' /INS/PURPOSE CODE 1670',"
-                + "                'narrative2': '//SERVICES, SELF COMPANY FUNDING'"
-                + "            }"
-                + "        ]"
+        String jsonInput = "{ 'riskPledgeAllocation': {" + "    'taskId': 1111,"
+                + "    'bussinessDate': '2019-01-03',"
+                + "    'strategyId': 'XXXXXXX',"
+                + "    'fundId': 'XXXXX',"
+                + "    'sscSecId': 999999,"
+                + "    'assetType': 'EQUITY',"
+                + "    'settlementLoc': 'AAA',"
+                + "    'allocatedQty': 0,"
+                + "    'availableQty': 9999,"
+                + "    'memoPledgeQty': 0,"
+                + "    'allocatedMarketVal': 0,"
+                + "    'calculatedDelta': 99,"
+                + "    'eligibilityFlag': false,"
+                + "    'price': 99,"
+                + "    'priceCcy': 'USD',"
+                + "    'lastModifiedBy': 'XXXXX',"
+                + "    'pricingBasis': 1,"
+                + "    'parties': {"
+                + "      'party': ["
+                + "        {"
+                + "          'id': 'AA',"
+                + "          'type': 'SELLER'"
+                + "        },"
+                + "        {"
+                + "          'id': 'BB',"
+                + "          'type': 'BUYER'"
+                + "        }"
+                + "      ]"
                 + "    }"
+                + "  }"
                 + "}";
 
-        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Json2MtExample3.class.getResourceAsStream("/myformat/json2mt.xls")));
-        MappingTable table = loader.load("INDEX", FileFormat.JSON, FileFormat.MT);
-        final String mt = MyFormatEngine.translate(jsonInput, table);
-        System.out.println(mt);
+
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Json2MtExample2.class.getResourceAsStream("/myformat/json2mt.xls")));
+        MappingTable t = loader.load("SEQUENCE", FileFormat.JSON, FileFormat.MT);
+        assert (t.validate().isEmpty());
+
+        MtWriter writer = new MtWriter(new MT540());
+        MyFormatEngine.translate(new JsonReader(jsonInput), writer, t.getRules());
+
+        MT540 mt = (MT540) writer.mt();
+
+        System.out.println(mt.message());
     }
 }

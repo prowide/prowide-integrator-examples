@@ -1,0 +1,297 @@
+FILE: json2mx.xls
+
+Sheet name: SIMPLE
+--------------------
+Input message:
+{
+  "root": {
+    "GRP_HDR": {
+      "CUSTREF": "FILEREF123",
+      "NO_OF_PAYMENTS": 4,
+      "TOTAL_AMOUNT": 100
+    },
+    "PAYMENT": [
+      {
+        "VALUE_DATE": "2019-03-11",
+        "TRANSFER_CCY_CODE": "USD",
+        "TRANSFER_AMOUNT": 30,
+        "CREDIT": [
+          {
+            "DBTR_BANK_ACC_NUM": 5948198,
+            "CDTR_REF_NUM": 71237456,
+            "CDTR_NAME": "Venkat"
+          },
+          {
+            "DBTR_BANK_ACC_NUM": 5948199,
+            "CDTR_REF_NUM": 71237457,
+            "CDTR_NAME": "Gourab"
+          }
+        ]
+      },
+      {
+        "VALUE_DATE": "2019-03-11",
+        "TRANSFER_CCY_CODE": "KWD",
+        "TRANSFER_AMOUNT": 20,
+        "CREDIT": [
+          {
+            "DBTR_BANK_ACC_NUM": 5948198,
+            "CDTR_REF_NUM": 71237456,
+            "CDTR_NAME": "Venkat"
+          },
+          {
+            "DBTR_BANK_ACC_NUM": 5948199,
+            "CDTR_REF_NUM": 71237457,
+            "CDTR_NAME": "Gourab"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+Converted message:
+<?xml version="1.0" encoding="UTF-8" ?>
+<pain:Document xmlns:pain="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+    <pain:CstmrCdtTrfInitn>
+        <pain:GrpHdr>
+            <pain:MsgId>FILEREF123</pain:MsgId>
+            <pain:NbOfTxs>4</pain:NbOfTxs>
+            <pain:CtrlSum>100</pain:CtrlSum>
+        </pain:GrpHdr>
+        <pain:PmtInf>
+            <pain:ReqdExctnDt>2019-03-11</pain:ReqdExctnDt>
+            <pain:DbtrAcct>
+                <pain:Id>
+                    <pain:Othr>
+                        <pain:Id>5948199</pain:Id>
+                    </pain:Othr>
+                </pain:Id>
+            </pain:DbtrAcct>
+            <pain:CdtTrfTxInf>
+                <pain:PmtId>
+                    <pain:EndToEndId>71237456</pain:EndToEndId>
+                </pain:PmtId>
+                <pain:Amt>
+                    <pain:InstdAmt Ccy="USD">30</pain:InstdAmt>
+                </pain:Amt>
+                <pain:Cdtr>
+                    <pain:Nm>Venkat</pain:Nm>
+                </pain:Cdtr>
+            </pain:CdtTrfTxInf>
+            <pain:CdtTrfTxInf>
+                <pain:PmtId>
+                    <pain:EndToEndId>71237457</pain:EndToEndId>
+                </pain:PmtId>
+                <pain:Cdtr>
+                    <pain:Nm>Gourab</pain:Nm>
+                </pain:Cdtr>
+            </pain:CdtTrfTxInf>
+        </pain:PmtInf>
+        <pain:PmtInf>
+            <pain:CdtTrfTxInf>
+                <pain:Amt>
+                    <pain:InstdAmt Ccy="KWD">20</pain:InstdAmt>
+                </pain:Amt>
+            </pain:CdtTrfTxInf>
+        </pain:PmtInf>
+    </pain:CstmrCdtTrfInitn>
+</pain:Document>
+-----------------------
+
+Sheet name: PATH
+------------------
+Input message:
+{
+  "root": {
+    "GRP_HDR": {
+      "CUSTREF": "FILEREF123",
+      "NO_OF_PAYMENTS": 4,
+      "TOTAL_AMOUNT": 100
+    }
+  }
+}
+
+Converted message:
+<?xml version="1.0" encoding="UTF-8" ?>
+<pain:Document xmlns:pain="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+    <pain:CstmrCdtTrfInitn>
+        <pain:GrpHdr>
+            <pain:MsgId>FILEREF123</pain:MsgId>
+            <pain:NbOfTxs>4</pain:NbOfTxs>
+        </pain:GrpHdr>
+    </pain:CstmrCdtTrfInitn>
+</pain:Document>
+-----------------------
+
+Sheet name: REPLICATED
+------------------------
+Input message:
+{
+  "root": {
+    "GRP_HDR": {
+      "CUSTREF": "CUSTREF",
+      "NO_OF_PAYMENTS": 2
+    },
+    "PAYMENT": [
+      {
+        "BANK_ACCOUNT_NUM": 11111111,
+        "VALUE_DATE": "2019-03-05",
+        "CREDIT": {
+          "CDTR_REF_NUM": 22222222,
+          "CURRENCY_CODE": "INR"
+        }
+      },
+      {
+        "BANK_ACCOUNT_NUM": 33333333,
+        "VALUE_DATE": "2019-03-06",
+        "CREDIT": [
+          {
+            "CDTR_REF_NUM": 44444444,
+            "CURRENCY_CODE": "USD"
+          },
+          {
+            "CDTR_REF_NUM": 55555555,
+            "CURRENCY_CODE": "EUR"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+Converted message:
+<?xml version="1.0" encoding="UTF-8" ?>
+<pain:Document xmlns:pain="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+    <pain:CstmrCdtTrfInitn>
+        <pain:PmtInf>
+            <pain:ReqdExctnDt>2019-03-05</pain:ReqdExctnDt>
+            <pain:DbtrAcct>
+                <pain:Id>
+                    <pain:Othr>
+                        <pain:Id>11111111</pain:Id>
+                    </pain:Othr>
+                </pain:Id>
+            </pain:DbtrAcct>
+            <pain:CdtTrfTxInf>
+                <pain:PmtId>
+                    <pain:EndToEndId>22222222</pain:EndToEndId>
+                </pain:PmtId>
+                <pain:Amt>
+                    <pain:InstdAmt Ccy="INR"></pain:InstdAmt>
+                </pain:Amt>
+            </pain:CdtTrfTxInf>
+        </pain:PmtInf>
+        <pain:PmtInf>
+            <pain:ReqdExctnDt>2019-03-06</pain:ReqdExctnDt>
+            <pain:DbtrAcct>
+                <pain:Id>
+                    <pain:Othr>
+                        <pain:Id>33333333</pain:Id>
+                    </pain:Othr>
+                </pain:Id>
+            </pain:DbtrAcct>
+            <pain:CdtTrfTxInf>
+                <pain:PmtId>
+                    <pain:EndToEndId>44444444</pain:EndToEndId>
+                </pain:PmtId>
+                <pain:Amt>
+                    <pain:InstdAmt Ccy="USD"></pain:InstdAmt>
+                </pain:Amt>
+            </pain:CdtTrfTxInf>
+            <pain:CdtTrfTxInf>
+                <pain:PmtId>
+                    <pain:EndToEndId>55555555</pain:EndToEndId>
+                </pain:PmtId>
+                <pain:Amt>
+                    <pain:InstdAmt Ccy="EUR"></pain:InstdAmt>
+                </pain:Amt>
+            </pain:CdtTrfTxInf>
+        </pain:PmtInf>
+    </pain:CstmrCdtTrfInitn>
+</pain:Document>
+-----------------------
+
+Sheet name: REP_VALUESET
+------------------------
+Input message:
+{
+  "root": {
+    "GRP_HDR": {
+      "CUSTREF": "CUSTREF",
+      "NO_OF_PAYMENTS": 2
+    },
+    "PAYMENT": [
+      {
+        "BANK_ACCOUNT_NUM": 11111111,
+        "VALUE_DATE": "2019-03-05",
+        "CURRENCY_CODE": "EUR",
+        "AMOUNT": 2000,
+        "CREDIT": {
+          "CDTR_REF_NUM": 22222222
+        }
+      },
+      {
+        "BANK_ACCOUNT_NUM": 33333333,
+        "VALUE_DATE": "2019-03-06",
+        "CURRENCY_CODE": "USD",
+        "AMOUNT": 3000,
+        "CREDIT": [
+          {
+            "CDTR_REF_NUM": 44444444
+          },
+          {
+            "CDTR_REF_NUM": 55555555
+          }
+        ]
+      }
+    ]
+  }
+}
+
+Converted message:
+<?xml version="1.0" encoding="UTF-8" ?>
+<pain:Document xmlns:pain="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+    <pain:CstmrCdtTrfInitn>
+        <pain:PmtInf>
+            <pain:ReqdExctnDt>2019-03-05</pain:ReqdExctnDt>
+            <pain:DbtrAcct>
+                <pain:Id>
+                    <pain:Othr>
+                        <pain:Id>11111111</pain:Id>
+                    </pain:Othr>
+                </pain:Id>
+            </pain:DbtrAcct>
+            <pain:CdtTrfTxInf>
+                <pain:PmtId>
+                    <pain:EndToEndId>22222222</pain:EndToEndId>
+                </pain:PmtId>
+                <pain:Amt>
+                    <pain:InstdAmt Ccy="EUR">2000</pain:InstdAmt>
+                </pain:Amt>
+            </pain:CdtTrfTxInf>
+        </pain:PmtInf>
+        <pain:PmtInf>
+            <pain:ReqdExctnDt>2019-03-06</pain:ReqdExctnDt>
+            <pain:DbtrAcct>
+                <pain:Id>
+                    <pain:Othr>
+                        <pain:Id>33333333</pain:Id>
+                    </pain:Othr>
+                </pain:Id>
+            </pain:DbtrAcct>
+            <pain:CdtTrfTxInf>
+                <pain:PmtId>
+                    <pain:EndToEndId>44444444</pain:EndToEndId>
+                </pain:PmtId>
+                <pain:Amt>
+                    <pain:InstdAmt Ccy="USD">3000</pain:InstdAmt>
+                </pain:Amt>
+            </pain:CdtTrfTxInf>
+            <pain:CdtTrfTxInf>
+                <pain:PmtId>
+                    <pain:EndToEndId>55555555</pain:EndToEndId>
+                </pain:PmtId>
+            </pain:CdtTrfTxInf>
+        </pain:PmtInf>
+    </pain:CstmrCdtTrfInitn>
+</pain:Document>

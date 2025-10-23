@@ -1,0 +1,55 @@
+FILE: mt2json.xls
+
+Sheet name: SIMPLE
+--------------------
+Input message:
+{1:F01TESTARZZAXXX1204000001}{2:I740FOOYATSWXXXXN}{3:{108:1912041035060802}}{4:
+:20:REFERENCE1234
+:40F:URR LATEST VERSION
+:31D:191219Singapore
+:59:/123412341234123
+Joe Doe
+10 Street 123 of 9383
+1000001 NY
+:32B:USD15000,23
+:39A:12/15
+:39C:Test Text for Narrative
+More Lines in Narrative
+:41A:HGFDUSXXXXX
+BY ACCEPTANCE
+:42M:Mixed Payment details
+Another line of payment details
+Yet another line of test text
+:71A:CLM
+:71D:Narrative for other charges
+:72Z:Sender to receiver Information
+More info for receiver
+-}
+
+Converted message:
+{
+  "reqMT": {
+    "Sender": "TESTARZZAXXX",
+    "MessageType": "740",
+    "Receiver": "FOOYATSWXXXX",
+    "TransactionReferenceNumber": "PROVIDED",
+    "DocumentaryCreditNumber": "REFERENCE1234",
+    "ApplicableRules": "URR LATEST VERSION",
+    "DateandPlaceofExpiry": "191219Singapore",
+    "Beneficiary": "/123412341234123\r\nJoe Doe\r\n10 Street 123 of 9383\r\n1000001 NY",
+    "CreditAmount": "USD15000,23",
+    "Currency": "Dollar",
+    "Amount": "15000",
+    "Cents": "23",
+    "PercentageCreditAmountTolerance": "12/15",
+    "AdditionalAmountsCovered": "Test Text for Narrative\r\nMore Lines in Narrative",
+    "AvailableWithBy": "HGFDUSXXXXX\r\nBY ACCEPTANCE",
+    "MixedPaymentDetails": "Mixed Payment details\r\nAnother line of payment details\r\nYet another line of test text",
+    "ReimbursingBanksCharges": "CLM - Cash and Liquidity Management",
+    "CurrentDateTime": "2025-10-22T23:32:40.457-03:00",
+    "UTCDateTime": "2025-10-23T12:32:40.460+10:00",
+    "UETR": "68f84a16-c0b3-48bf-b0d7-5bfa28aaf429",
+    "ZonedDateTime": "2023-02-03 08:23"
+  }
+}
+
