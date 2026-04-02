@@ -46,7 +46,7 @@ public class MessageValidationWithCustomRulesExample {
 
     public static void main(String[] args) {
 
-        MT103 mt = MT103.parse("{1:F01BICFOOY0AXXX8683499999}{2:O1031535051028ESPBESMMAXXX54237522470510281535N}{4:\n"
+        MT103 mt = MT103.parse("{1:F01BICFOOY0AXXX8683499999}{2:O1031535051028ESPBESM0AXXX54237522470510281535N}{4:\n"
                 + ":20:0061350113089908\n"
                 + ":13C:/RNCTIME/1534+0000\n"
                 + ":23B:CRED\n"

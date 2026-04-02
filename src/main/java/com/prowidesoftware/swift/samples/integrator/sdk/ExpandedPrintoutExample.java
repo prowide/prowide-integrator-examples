@@ -26,8 +26,8 @@ import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
  *
  * ------------------------- Message Header -----------------------------------------
  * Swift    : FIN 515 Client Confirmation of Purchase or Sale
- * Sender   : RBDSJPJTBXXX - RBC CAPITAL MARKETS (JAPAN) LTD., TOKYO (JAPAN)
- * Receiver : BOJPJPJTXMF1 - BANK OF JAPAN - (FOR JAPAN'S RESERVES USE ONLY) (JAPAN)
+ * Sender   : RBDSJPJ0BXXX - RBC CAPITAL MARKETS (JAPAN) LTD., TOKYO (JAPAN)
+ * Receiver : BOJPJPJ0XMF1 - BANK OF JAPAN - (FOR JAPAN'S RESERVES USE ONLY) (JAPAN)
  * MUR      : FOOB3926BE868XXX
  *
  * ------------------------- Message Text -------------------------------------------
@@ -68,7 +68,7 @@ import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
  * C1 - Confirmation Parties
  * 95P: Party
  * Qualifier: Seller
- * BIC: BOJPJPJTMF1 - BANK OF JAPAN - (FOR JAPAN'S RESERVES USE ONLY) (JAPAN)
+ * BIC: BOJPJPJ0MF1 - BANK OF JAPAN - (FOR JAPAN'S RESERVES USE ONLY) (JAPAN)
  * 97A: Account
  * Qualifier: Safekeeping Account
  * Account: MGT10
@@ -76,7 +76,7 @@ import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
  * C1 - Confirmation Parties
  * 95P: Party
  * Qualifier: Buyer
- * BIC: RCMCUS31XXX - RBC CAPITAL MARKETS, LLC (UNITED STATES OF AMERICA)
+ * BIC: RCMCUS30XXX - RBC CAPITAL MARKETS, LLC (UNITED STATES OF AMERICA)
  * 36B: Quantity of Financial Instrument
  * Qualifier: Quantity of Financial Instrument Confirmed
  * Quantity Type Code: FAMT
@@ -100,17 +100,17 @@ import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
  * D1 - Settlement Parties
  * 95P: Party
  * Qualifier: Delivering Agent
- * BIC: CHASUS33XXX - JPMORGAN CHASE BANK, N.A. (UNITED STATES OF AMERICA)
+ * BIC: CHASUS30XXX - JPMORGAN CHASE BANK, N.A. (UNITED STATES OF AMERICA)
  *
  * D1 - Settlement Parties
  * 95P: Party
  * Qualifier: Deliverer's Custodian
- * BIC: CHASJPJTXXX - JPMORGAN CHASE BANK, N.A. - (TOKYO BRANCH) (JAPAN)
+ * BIC: CHASJPJ0XXX - JPMORGAN CHASE BANK, N.A. - (TOKYO BRANCH) (JAPAN)
  *
  * D1 - Settlement Parties
  * 95P: Party
  * Qualifier: Seller
- * BIC: BOJPJPJTMF1 - BANK OF JAPAN - (FOR JAPAN'S RESERVES USE ONLY) (JAPAN)
+ * BIC: BOJPJPJ0MF1 - BANK OF JAPAN - (FOR JAPAN'S RESERVES USE ONLY) (JAPAN)
  *
  * D3 - Amounts
  * 19A: Amount
@@ -141,17 +141,17 @@ public class ExpandedPrintoutExample {
     /*
      * sample data
      */
-    static MT103 mt103 = MT103.parse("{1:F01BACOARB1A0B20000000000}{2:I103ADRBNL21XXXXN}{3:{108:FOOB3926BE868XXX}}{4:\n" +
+    static MT103 mt103 = MT103.parse("{1:F01BACOARB0A0B20000000000}{2:I103ADRBNL20XXXXN}{3:{108:FOOB3926BE868XXX}}{4:\n" +
             ":20:REFERENCE\n" +
             ":23B:CRED\n" +
             ":32A:130204USD1234567,89\n" +
             ":50A:/12345678901234567890\n" +
-            "CFIMHKH1XXX\n" +
+            "CFIMHKH0XXX\n" +
             ":59:/12345678901234567890\n" +
             "JOE DOE\n" +
             ":71A:OUR\n" +
             "-}{5:{CHK:3916EF336FF7}}");
-    static MT515 mt515 = MT515.parse("{1:F01RBDSJPJTBXXX0000000000}{2:I515BOJPJPJTXMF1N}{3:{108:FOOB3926BE868XXX}}{4:\n" +
+    static MT515 mt515 = MT515.parse("{1:F01RBDSJPJ0BXXX0000000000}{2:I515BOJPJPJ0XMF1N}{3:{108:FOOB3926BE868XXX}}{4:\n" +
             ":16R:GENL\n" +
             ":20C::SEME//M1999999.1\n" +
             ":23G:NEWM\n" +
@@ -167,11 +167,11 @@ public class ExpandedPrintoutExample {
             ":22H::BUSE//BUYI\n" +
             ":22H::PAYM//APMT\n" +
             ":16R:CONFPRTY\n" +
-            ":95P::SELL//BOJPJPJTMF1\n" +
+            ":95P::SELL//BOJPJPJ0MF1\n" +
             ":97A::SAFE//MGT10\n" +
             ":16S:CONFPRTY\n" +
             ":16R:CONFPRTY\n" +
-            ":95P::BUYR//RCMCUS31XXX\n" +
+            ":95P::BUYR//RCMCUS30XXX\n" +
             ":16S:CONFPRTY\n" +
             ":36B::CONF//FAMT/15000000,\n" +
             ":36B::ORDR//FAMT/640843,05\n" +
@@ -183,13 +183,13 @@ public class ExpandedPrintoutExample {
             ":16R:SETDET\n" +
             ":22F::SETR//TRAD\n" +
             ":16R:SETPRTY\n" +
-            ":95P::DEAG//CHASUS33XXX\n" +
+            ":95P::DEAG//CHASUS30XXX\n" +
             ":16S:SETPRTY\n" +
             ":16R:SETPRTY\n" +
-            ":95P::DECU//CHASJPJTXXX\n" +
+            ":95P::DECU//CHASJPJ0XXX\n" +
             ":16S:SETPRTY\n" +
             ":16R:SETPRTY\n" +
-            ":95P::SELL//BOJPJPJTMF1\n" +
+            ":95P::SELL//BOJPJPJ0MF1\n" +
             ":16S:SETPRTY\n" +
             ":16R:AMT\n" +
             ":19A::SETT//USD234567,00\n" +
@@ -202,7 +202,7 @@ public class ExpandedPrintoutExample {
             ":16S:AMT\n" +
             ":16S:SETDET\n" +
             "-}{5:{CHK:3916EF336FF7}}");
-    static MT940 mt940 = MT940.parse("{1:F01ANASCH20AXXX0000000000}{2:I940BSCHGB2LXEQUN}{3:{108:FOOB3926BE868XXX}}{4:\n" +
+    static MT940 mt940 = MT940.parse("{1:F01ANASCH20AXXX0000000000}{2:I940BSCHGB20XEQUN}{3:{108:FOOB3926BE868XXX}}{4:\n" +
             ":20:123456\n" +
             ":25:123-304958\n" +
             ":28C:123/1\n" +
@@ -219,23 +219,23 @@ public class ExpandedPrintoutExample {
             ":65:C980626USD451112311,71\n" +
             ":86:PRIME RATE AS OF TODAY 11 PCT\n" +
             "-}{5:{CHK:3916EF336FF7}}");
-    static MT202 mt202 = MT202.parse("{1:F01ANASCH20AXXX0000000000}{2:O2021300050901IRVTLULXALTA06556102830509011300N}{3:{108:FOOB3926BE868XXX}}{4:\n" +
+    static MT202 mt202 = MT202.parse("{1:F01ANASCH20AXXX0000000000}{2:O2021300050901IRVTLUL0ALTA06556102830509011300N}{3:{108:FOOB3926BE868XXX}}{4:\n" +
             ":20:RFSAMPPGN0031091\n" +
             ":21:RFSAMPPGN0031091\n" +
             ":13C:/RNCTIME/1356+0000\n" +
             ":13C:/RNCTIME/1410+0000\n" +
             ":32A:050901EUR19265,53\n" +
-            ":52A:IRVTLULXLTA\n" +
+            ":52A:IRVTLUL0LTA\n" +
             ":53A:/D/1234A0123456ABC012345\n" +
-            "BICFOOYY\n" +
-            ":54A:BAPPIT21AP8\n" +
-            ":56A:BMISLBB1025\n" +
-            ":57A:HLFXGB21L17\n" +
+            "BICFOOY0\n" +
+            ":54A:BAPPIT20AP8\n" +
+            ":56A:BMISLBB0025\n" +
+            ":57A:HLFXGB20L17\n" +
             ":58A:/ES12 1234 6789 1234 1111 1234\n" +
-            "SEICUS33CAI\n" +
+            "SEICUS30CAI\n" +
             ":72:/BNF/00002695 0001 2005083130110\n" +
             "-}{5:{CHK:3916EF336FF7}}");
-    static MT518 mt518 = MT518.parse("{1:F01ANASCH20AXXX0000000000}{2:O5180750040609LRLRXXXX4A0400004386330406090954U}{4:\n" +
+    static MT518 mt518 = MT518.parse("{1:F01ANASCH20AXXX0000000000}{2:O5180750040609LRLRXXX04A0400004386330406090954U}{4:\n" +
             ":16R:GENL\n" +
             ":20C::SEME//900031\n" +
             ":23G:NEWM\n" +
@@ -262,7 +262,7 @@ public class ExpandedPrintoutExample {
             ":35B:/US/9128275S7\n" +
             ":16S:CONFDET\n" +
             "-}{5:{MAC:307F606D}{CHK:521A0E3826D3}{TNG:}}");
-    static MT535 mt535 = MT535.parse("{1:F01BBHCUS3IADNC0000000000}{2:O5350837080313CHASGB2LIXXX06988488300803130437N}{3:{108:0001234Q1651234}}{4:\n" +
+    static MT535 mt535 = MT535.parse("{1:F01BBHCUS30ADNC0000000000}{2:O5350837080313CHASGB20IXXX06988488300803130437N}{3:{108:0001234Q1651234}}{4:\n" +
             ":16R:GENL\n" +
             ":28E:6/MORE\n" +
             ":20C::SEME//H200803121138571\n" +
@@ -288,7 +288,7 @@ public class ExpandedPrintoutExample {
             ":93B::AVAI//FAMT/200,\n" +
             ":16R:SUBBAL\n" +
             ":93B::AGGR//FAMT/50,\n" +
-            ":94F::SAFE//CUST/CHASUS33\n" +
+            ":94F::SAFE//CUST/CHASUS30\n" +
             ":70C::SUBB//REGISTRATION CODE FOOBAR\n" +
             ":16S:SUBBAL\n" +
             ":16S:FIN\n" +
@@ -308,7 +308,7 @@ public class ExpandedPrintoutExample {
             ":98A::EFFD//20150827\n" +
             ":22F::MARK//CASH\n" +
             ":16R:CSHPRTY\n" +
-            ":95P::BENM//IRVTLUL1LTA\n" +
+            ":95P::BENM//IRVTLUL0LTA\n" +
             ":16S:CSHPRTY\n" +
             ":16S:SSIDET\n" +
             "-}{5:{MAC:307F606D}{CHK:521A0E3826D3}}");

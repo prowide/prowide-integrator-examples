@@ -43,7 +43,7 @@ public class Mt2CsvExample1 {
         }
 
         // source message
-        final String fin = "{1:F01FOOBVEC0AXXX5480000053}{2:I102FOOBARAAXXXXN}{3:{103:YVE}}{4:\n" +
+        final String fin = "{1:F01FOOBVEC0AXXX5480000053}{2:I102FOOBARA0XXXXN}{3:{103:YVE}}{4:\n" +
                 // sequence A
                 ":20:5362/MPB\n" +
                 ":23:CREDIT\n" +

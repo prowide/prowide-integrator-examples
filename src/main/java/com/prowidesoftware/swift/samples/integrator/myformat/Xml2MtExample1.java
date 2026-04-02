@@ -77,7 +77,7 @@ public class Xml2MtExample1 {
         /*
          * Print result:
          *
-         * {1:F01TESTBEBBAXXX0000000000}{2:I202TESTBEBBXBILN}{4:
+         * {1:F01TESTBEB0AXXX0000000000}{2:I202TESTBEB0XBILN}{4:
          *  :20:RE20150827000000
          *  :21:NOREF
          *  :32A:150827USD1234,56

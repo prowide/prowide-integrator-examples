@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class Mt_LAU_DOSPPC_Example {
 
-    private static String fin1 = "{1:F01AAAABRS0AXXX8683497519}{2:O1031535051028BBBBESMMAXXX54237522470510281535N}{3:{113:ROMF}{108:11111}{119:STP}{121:4086d27c-e724-4e12-8a73-b450ec6b2f94}}{4:\r\n" +
+    private static String fin1 = "{1:F01AAAABRS0AXXX8683497519}{2:O1031535051028BBBBESM0AXXX54237522470510281535N}{3:{113:ROMF}{108:11111}{119:STP}{121:4086d27c-e724-4e12-8a73-b450ec6b2f94}}{4:\r\n" +
             ":20:1111111\r\n" +
             ":23B:CRED\r\n" +
             ":23E:SDVA\r\n" +
@@ -43,7 +43,7 @@ public class Mt_LAU_DOSPPC_Example {
             ":71A:OUR\r\n" +
             ":72:/BNF/TRANSF. BCO. FOO\r\n" +
             "-}";
-    private static String fin2 = "{1:F01AAAABRS0AXXX8683497523}{2:O1031535051028BBBBESMMAXXX54237522470510281535N}{3:{113:ROMF}{108:2222}{119:STP}{121:4086d27c-e724-4e12-8a73-b450ec6b2f94}}{4:\r\n" +
+    private static String fin2 = "{1:F01AAAABRS0AXXX8683497523}{2:O1031535051028BBBBESM0AXXX54237522470510281535N}{3:{113:ROMF}{108:2222}{119:STP}{121:4086d27c-e724-4e12-8a73-b450ec6b2f94}}{4:\r\n" +
             ":20:222222222\r\n" +
             ":23B:CRED\r\n" +
             ":23E:SDVA\r\n" +

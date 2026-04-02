@@ -34,7 +34,7 @@ import java.util.List;
  */
 public class MessageValidation4Example {
 
-    static final String mt540_ok = "{1:F01FOOLUS33AXXX0000000000}{2:I540FOOSGB2LXGSTN}{3:{108:090106C1234567}}{4:\n" +
+    static final String mt540_ok = "{1:F01FOOLUS30AXXX0000000000}{2:I540FOOSGB20XGSTN}{3:{108:090106C1234567}}{4:\n" +
 
             //General Information
             ":16R:GENL\n" +                        //0
@@ -63,11 +63,11 @@ public class MessageValidation4Example {
 
             //Settlement Parties
             ":16R:SETPRTY\n" +                //15
-            ":95Q::DEAG//BCITITMM\n" +        //16
+            ":95Q::DEAG//BCITITM0\n" +        //16
             ":16S:SETPRTY\n" +                //17
             //Settlement Parties
             ":16R:SETPRTY\n" +                //18
-            ":95P::SELL//CRESCHZZ80A\n" +    //19
+            ":95P::SELL//CRESCHZ080A\n" +    //19
             ":97A::SAFE//999999999\n" +        //20
             ":16S:SETPRTY\n" +                //21
             //Settlement Parties

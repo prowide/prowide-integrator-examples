@@ -35,7 +35,7 @@ public class MxMtTranslationExample1 {
         /*
          * Set source message header content
          */
-        BusinessAppHdrV02 hdr = AppHdrFactory.createBusinessAppHdrV02("AAAAUSXX", "BBBBUSXX", "MYREF1234", new MxId("seev.034.002.02"));
+        BusinessAppHdrV02 hdr = AppHdrFactory.createBusinessAppHdrV02("AAAAUSX0", "BBBBUSX0", "MYREF1234", new MxId("seev.034.002.02"));
         hdr.setBizSvc("foo.bar.01");
         source.setAppHdr(hdr);
         /*

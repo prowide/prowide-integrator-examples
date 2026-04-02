@@ -28,7 +28,7 @@ public class MessageValidationWithCustomSchema {
 
     public static void main(String[] args) {
 
-        String customScheme = "<scheme name=\"199\" description=\"Free Format Message\" release=\"2023\">\n" +
+        String customScheme = "<scheme name=\"199\" description=\"Free Format Message\" release=\"2025\">\n" +
                 "   <sequence minRepetitions=\"1\" maxRepetitions=\"1\">\n" +
                 "      <field id=\"20\" minRepetitions=\"1\" maxRepetitions=\"1\"/>\n" +
                 "      <field id=\"21\" minRepetitions=\"0\" maxRepetitions=\"1\"/>\n" +
@@ -38,7 +38,7 @@ public class MessageValidationWithCustomSchema {
                 "</scheme>";
         Scheme scheme = new SchemeXmlReader().read(new ByteArrayInputStream(customScheme.getBytes()));
 
-        String message = "{1:F01BICFARY0AXXX8683499999}{2:O1991535051028ESPBESMMAXXX54237522470510281535N}{4:\n"
+        String message = "{1:F01BICFARY0AXXX8683499999}{2:O1991535051028ESPBESM0AXXX54237522470510281535N}{4:\n"
                 + ":20:0061350113089908\n"
                 + ":21:1534+0000\n"
                 + ":79:FOO\n"

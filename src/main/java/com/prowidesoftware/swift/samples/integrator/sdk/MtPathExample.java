@@ -25,7 +25,7 @@ public class MtPathExample {
      * sample message
      */
     static MT535 mt = MT535.parse(
-            "{1:F01ZZZZZZZZZZZG0387240778}{2:O5350029060914XXXXXXXXXXXX03549878070609140029N}{4:\n" +
+            "{1:F01ZZZZZZZ0ZZZG0387240778}{2:O5350029060914XXXXXXX0XXXX03549878070609140029N}{4:\n" +
 
                     // sequence A - General Information
                     ":16R:GENL\n" +
@@ -63,7 +63,7 @@ public class MtPathExample {
                     ":93B::AGGR//FAMT/1234,5\n" +
                     ":93B::AVAI//FAMT/2345,6\n" +
                     ":93B::AVAI//AMOR/3456,7\n" +
-                    ":94F::SAFE//NCSD/FRNYUS33\n" +
+                    ":94F::SAFE//NCSD/FRNYUS30\n" +
                     ":16S:SUBBAL\n" +
                     ":16S:FIN\n" +
 

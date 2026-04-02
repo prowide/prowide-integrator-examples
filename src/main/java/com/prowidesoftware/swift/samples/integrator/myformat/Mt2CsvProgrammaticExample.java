@@ -26,14 +26,14 @@ public class Mt2CsvProgrammaticExample {
     /*
      * source message
      */
-    static String msg = "{1:F01ABCBUS33AXXX3768156193}{2:O3001139050822XYZBUS33AFXO29569650200508221139N}{3:{108:FC003105ded7970a}}{4:\n" +
+    static String msg = "{1:F01ABCBUS30AXXX3768156193}{2:O3001139050822XYZBUS30AFXO29569650200508221139N}{3:{108:FC003105ded7970a}}{4:\n" +
             ":15A:\n" +
             ":20:QCOUCN111\n" +
             ":21:NEW111\n" +
             ":22A:CANC\n" +
-            ":22C:ABCB334209XYZB33\n" +
-            ":82A:XYZBUS33FXO\n" +
-            ":87A:ABCBUS33XXX\n" +
+            ":22C:ABCB304209XYZB30\n" +
+            ":82A:XYZBUS30FXO\n" +
+            ":87A:ABCBUS30XXX\n" +
             ":77D:/VALD/20040509\n" +
             "/SETC/USD\n" +
             ":15B:\n" +
@@ -41,13 +41,13 @@ public class Mt2CsvProgrammaticExample {
             ":30V:20070513\n" +
             ":36:542,09\n" +
             ":32B:CLP3794630000,\n" +
-            ":53A:XYZBUS33FXO\n" +
+            ":53A:XYZBUS30FXO\n" +
             ":57D:NET SETTLEMENT\n" +
             ":33B:USD7000000,00\n" +
-            ":53A:ABCBUS33XXX\n" +
+            ":53A:ABCBUS30XXX\n" +
             ":57D:NET SETTLEMENT\n" +
             ":58A:/9301011483\n" +
-            "ABCBUS33XXX\n" +
+            "ABCBUS30XXX\n" +
             ":15C:\n" +
             ":24D:BROK\n" +
             ":88D:GFI-NY\n" +
@@ -57,14 +57,14 @@ public class Mt2CsvProgrammaticExample {
     /*
      * source message
      */
-    static String msg2 = "{1:F01ABCBUS33AXXX3768156193}{2:O3001139050822XYZBUS33AFXO29569650200508221139N}{3:{108:FC003105ded7970a}}{4:\n" +
+    static String msg2 = "{1:F01ABCBUS30AXXX3768156193}{2:O3001139050822XYZBUS30AFXO29569650200508221139N}{3:{108:FC003105ded7970a}}{4:\n" +
             ":15A:\n" +
             ":20:QCOUCN222\n" +
             ":21:NEW222\n" +
             ":22A:CANC\n" +
-            ":22C:ABCB334209XYZB33\n" +
-            ":82A:XYZBUS33FXO\n" +
-            ":87A:ABCBUS33XXX\n" +
+            ":22C:ABCB304209XYZB30\n" +
+            ":82A:XYZBUS30FXO\n" +
+            ":87A:ABCBUS30XXX\n" +
             ":77D:/VALD/20040509\n" +
             "/SETC/USD\n" +
             ":15B:\n" +
@@ -72,13 +72,13 @@ public class Mt2CsvProgrammaticExample {
             ":30V:20070513\n" +
             ":36:542,09\n" +
             ":32B:CLP1234530000,\n" +
-            ":53A:XYZBUS33FXO\n" +
+            ":53A:XYZBUS30FXO\n" +
             ":57D:NET SETTLEMENT\n" +
             ":33B:USD7000000,00\n" +
-            ":53A:ABCBUS33XXX\n" +
+            ":53A:ABCBUS30XXX\n" +
             ":57D:NET SETTLEMENT\n" +
             ":58A:/848473332\n" +
-            "ABCBUS33XXX\n" +
+            "ABCBUS30XXX\n" +
             ":15C:\n" +
             ":24D:BROK\n" +
             ":88D:GFI-NY\n" +
