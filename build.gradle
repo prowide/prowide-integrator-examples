@@ -14,12 +14,12 @@ java {
 
 dependencies {
     // required for the ISO 20022 model
-    implementation 'com.sun.xml.bind:jaxb-impl:4.0.5'
+    implementation 'com.sun.xml.bind:jaxb-impl:4.0.6'
 
     // common dependency for all packages
-    implementation 'org.apache.commons:commons-lang3:3.14.0'
-    implementation 'org.apache.commons:commons-text:1.11.0'
-    implementation 'com.google.code.gson:gson:2.11.0'
+    implementation 'org.apache.commons:commons-lang3:3.20.0'
+    implementation 'org.apache.commons:commons-text:1.15.0'
+    implementation 'com.google.code.gson:gson:2.13.2'
 
     // Optional for creating or verifying the LAU signatures in DataPDU messages
     implementation 'org.apache.santuario:xmlsec:3.0.4'
@@ -31,12 +31,17 @@ dependencies {
     implementation 'org.apache.derby:derbyclient:10.15.2.0'
 
     // Required by the MyFormat module only
-    implementation ('org.apache.poi:poi:3.17') {
-        transitive = false
-    }
+    implementation 'org.apache.poi:poi:3.17'
+    implementation 'org.apache.poi:poi-ooxml:3.17'
 
     // replace with your trial version:
     implementation fileTree(dir: 'lib', include: '*.jar')
 
-    testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
+    testImplementation('org.junit.jupiter:junit-jupiter:5.10.2')
+}
+
+// task to run examples: ./gradlew runExample -PmainClass=com.prowidesoftware.swift.samples.integrator.VersionChecker
+tasks.register('runExample', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = project.findProperty('mainClass') ?: ''
 }
