@@ -102,14 +102,7 @@
         </dependency>
         <dependency>
             <groupId>local</groupId>
-            <artifactId>sepa</artifactId>
-            <version>10.1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/pw-swift-integrator-sepa-SRU2023-10.1.0.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>local</groupId>
-            <artifactId>sdk</artifactId>
+also             <artifactId>sdk</artifactId>
             <version>10.1.12</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/pw-swift-integrator-sdk-SRU2023-10.1.12.jar</systemPath>
@@ -127,13 +120,6 @@
             <version>10.1.4</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/pw-swift-integrator-myformat-SRU2023-10.1.4.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>local</groupId>
-            <artifactId>data</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/pw-swift-integrator-data.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>local</groupId>

@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -38,7 +38,20 @@
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
-            <version>10.12.1.1</version>
+            <version>10.15.2.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbytools</artifactId>
+            <version>10.15.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>10.15.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -55,45 +68,59 @@
         <dependency>
             <groupId>org.apache.santuario</groupId>
             <artifactId>xmlsec</artifactId>
-            <version>2.2.3</version>
+            <version>4.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+        <!--jaxb is required because it is no longer included in the JDK-->
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>4.0.5</version>
+        </dependency>
+
+        <!--bind-api is included transitively by jaxb-impl-->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.2</version>
         </dependency>
 
         <!--Prowide libs-->
         <dependency>
             <groupId>com.prowidesoftware</groupId>
             <artifactId>pw-swift-core</artifactId>
-            <version>SRU2024-9.5.1</version>
+            <version>SRU2024-10.2.1</version>
         </dependency>
         <dependency>
             <groupId>com.prowidesoftware</groupId>
             <artifactId>pw-iso20022</artifactId>
-            <version>SRU2024-9.5.4</version>
+            <version>SRU2024-10.2.3</version>
         </dependency>
         <dependency>
             <groupId>com.prowidesoftware</groupId>
             <artifactId>pw-swift-integrator-sdk</artifactId>
-            <version>SRU2024-9.5.9</version>
+            <version>SRU2024-10.2.9</version>
         </dependency>
         <dependency>
             <groupId>com.prowidesoftware</groupId>
             <artifactId>pw-swift-integrator-validation</artifactId>
-            <version>SRU2024-9.5.5</version>
+            <version>SRU2024-10.2.5</version>
         </dependency>
-
         <dependency>
             <groupId>com.prowidesoftware</groupId>
             <artifactId>pw-swift-integrator-translations</artifactId>
-            <version>SRU2024-9.5.8</version>
+            <version>SRU2024-10.2.8</version>
         </dependency>
         <dependency>
             <groupId>com.prowidesoftware</groupId>
             <artifactId>pw-swift-integrator-myformat</artifactId>
-            <version>SRU2024-9.5.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.prowidesoftware</groupId>
-            <artifactId>pw-swift-integrator-data</artifactId>
-            <version>1.0.0</version>
+            <version>SRU2024-10.2.4</version>
         </dependency>
     </dependencies>
 
