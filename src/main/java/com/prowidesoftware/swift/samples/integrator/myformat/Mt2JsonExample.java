@@ -8,6 +8,15 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 
 import com.prowidesoftware.swift.myformat.*;
 
+/**
+ * Converts an MT message to a JSON document by declaring an explicit MT-to-JSON mapping table.
+ *
+ * <p>Each {@link MappingRule} pairs an MT tag (or sub-component, e.g. {@code 32A/3}) with a
+ * destination JSON path. Transformations such as {@link Transformation.Key#formatDecimal}
+ * normalize the values during the conversion.</p>
+ *
+ * <p>Requires the Prowide Integrator MyFormat module.</p>
+ */
 public class Mt2JsonExample {
 
     public static void main(String[] args) {

@@ -1,9 +1,18 @@
-For example:
+Drop the Prowide Integrator trial or production jars into this directory.
+The build picks up every *.jar via fileTree, so version suffixes can differ.
 
-pw-swift-integrator-validation-SRU2023-10.1.X.jar
-pw-swift-integrator-translations-SRU2023-10.1.X.jar
-pw-swift-integrator-sic-SRU2023-10.1.X.jar
-pw-swift-integrator-sdk-SRU2023-10.1.X.jar
-pw-swift-integrator-score-SRU2023-10.1.X.jar
-pw-swift-integrator-myformat-SRU2023-10.1.X.jar
-pw-swift-integrator-cbpr-SRU2023-10.1.X.jar
+Core (required by all examples):
+  pw-swift-core-SRU2025-10.3.X.jar
+  pw-iso20022-SRU2025-10.3.X.jar
+  pw-swift-integrator-sdk-SRU2025-10.3.X.jar
+
+Optional modules (include only those your trial covers):
+  pw-swift-integrator-validation-SRU2025-10.3.X.jar
+  pw-swift-integrator-translations-SRU2025-10.3.X.jar
+  pw-swift-integrator-myformat-SRU2025-10.3.X.jar
+  pw-swift-integrator-cbpr-SRU2025-10.3.X.jar
+  pw-swift-integrator-score-SRU2025-10.3.X.jar
+  pw-swift-integrator-sic-SRU2025-10.3.X.jar
+
+After copying the jars, run:
+  ./gradlew doctor

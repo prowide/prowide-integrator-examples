@@ -19,6 +19,15 @@ import java.io.StringReader;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Builds a SAA DataPDU envelope programmatically and serializes it to XML.
+ *
+ * <p>The example populates the header (sender reference, format, SWIFTNet security info) and
+ * attaches a pre-built {@code RequestPayload} fragment as the signature value via DOM.
+ * It complements {@link DataPDUParserExample}, which performs the reverse operation.</p>
+ *
+ * <p>Requires the Prowide Integrator SDK module.</p>
+ */
 public class DataPDUWriterExample {
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, InvalidKeyException, ParserConfigurationException, SAXException {

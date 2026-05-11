@@ -16,8 +16,12 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * This example uses the SDK API create a DataPDU envelope for an MX message, including the LAU signature to a couple of MT messages.
- * The signed messages are then written into a DOS-PPC batch file for SAA.
+ * Wraps an MX message in a DataPDU envelope, signs it with LAU, and writes the result into
+ * a DOS-PPC batch file for SAA consumption.
+ *
+ * <p>Counterpart of {@link Mt_LAU_DOSPPC_Example}, which performs the same flow for MT messages.</p>
+ *
+ * <p>Requires the Prowide Integrator SDK module; the LAU signature relies on xmlsec.</p>
  */
 public class Mx_DataPDU_LAU_Example {
 

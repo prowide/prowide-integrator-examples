@@ -5,6 +5,8 @@ bin
 out
 build
 *.log
+*.lck
+derby.log
 *.settings
 .gradle
 .classpath

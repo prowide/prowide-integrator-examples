@@ -12,14 +12,15 @@ java {
     }
 }
 
+// Third party versions are kept in sync with pw-swift-integrator (root build.gradle).
 dependencies {
     // required for the ISO 20022 model
     implementation 'com.sun.xml.bind:jaxb-impl:4.0.6'
 
-    // common dependency for all packages
+    // common dependencies used across modules
     implementation 'org.apache.commons:commons-lang3:3.20.0'
     implementation 'org.apache.commons:commons-text:1.15.0'
-    implementation 'com.google.code.gson:gson:2.13.2'
+    implementation 'com.google.code.gson:gson:2.14.0'
 
     // Optional for creating or verifying the LAU signatures in DataPDU messages
     implementation 'org.apache.santuario:xmlsec:3.0.4'
@@ -31,8 +32,8 @@ dependencies {
     implementation 'org.apache.derby:derbyclient:10.15.2.0'
 
     // Required by the MyFormat module only
-    implementation 'org.apache.poi:poi:3.17'
-    implementation 'org.apache.poi:poi-ooxml:3.17'
+    implementation 'org.apache.poi:poi:4.1.2'
+    implementation 'org.apache.poi:poi-ooxml:4.1.2'
 
     // replace with your trial version:
     implementation fileTree(dir: 'lib', include: '*.jar')
@@ -44,4 +45,41 @@ dependencies {
 tasks.register('runExample', JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     mainClass = project.findProperty('mainClass') ?: ''
+}
+
+// health check: confirms each licensed Integrator module is on the classpath
+tasks.register('doctor', JavaExec) {
+    description = 'Verify which Integrator modules are present in lib/ and print their versions.'
+    group = 'examples'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.prowidesoftware.swift.samples.integrator.VersionChecker'
+}
+
+// task to list all available example classes grouped by module
+tasks.register('listExamples') {
+    description = 'List all runnable examples grouped by Integrator module.'
+    group = 'examples'
+    doLast {
+        def root = file('src/main/java/com/prowidesoftware/swift/samples/integrator')
+        def byModule = new TreeMap<String, List<String>>()
+        root.eachFileRecurse(groovy.io.FileType.FILES) { f ->
+            if (!f.name.endsWith('.java')) return
+            def text = f.text
+            if (!(text =~ /\bpublic\s+(?:static\s+)?(?:final\s+)?(?:static\s+)?void\s+main\s*\(/)) return
+            def rel = root.toPath().relativize(f.toPath()).toString()
+            def fqcn = 'com.prowidesoftware.swift.samples.integrator.' +
+                    rel.replace('/', '.').replace('.java', '')
+            def module = rel.contains('/') ? rel.substring(0, rel.indexOf('/')) : '(root)'
+            byModule.computeIfAbsent(module) { [] } << fqcn
+        }
+        println()
+        println 'Available examples (use: ./gradlew runExample -PmainClass=<fqcn>)'
+        println '-' * 80
+        byModule.each { module, classes ->
+            println()
+            println "[${module}]  (${classes.size()} examples)"
+            classes.sort().each { println "  ${it}" }
+        }
+        println()
+    }
 }

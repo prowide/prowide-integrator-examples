@@ -16,7 +16,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- * This example prints the different Json representation supported by the MT and MX model.
+ * Demonstrates the JSON representations available for MT and MX messages.
+ *
+ * <p>The example produces four distinct JSON shapes: the parsed MT fields, the persistence
+ * model for MT (FIN text plus metadata), the parsed MX content, and the persistence model
+ * for MX. Useful when integrating with REST APIs or document stores.</p>
+ *
+ * <p>Requires the Prowide Integrator SDK module.</p>
  */
 public class JsonExample {
 

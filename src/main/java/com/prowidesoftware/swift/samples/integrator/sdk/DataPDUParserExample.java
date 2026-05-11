@@ -19,6 +19,17 @@ import java.math.BigDecimal;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Parses a SWIFT Alliance Access (SAA) DataPDU envelope and extracts the wrapped business
+ * message (an MX {@code pacs.008.001.08} in this sample).
+ *
+ * <p>The example reads a pre-canned DataPDU XML from the classpath, asserts a handful of
+ * header fields (message identifier, priority, expiry, sender), then surfaces the
+ * underlying MX so that domain-level fields (for example the inter-bank settlement amount)
+ * can be inspected.</p>
+ *
+ * <p>Requires the Prowide Integrator SDK module.</p>
+ */
 public class DataPDUParserExample {
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, InvalidKeyException {
