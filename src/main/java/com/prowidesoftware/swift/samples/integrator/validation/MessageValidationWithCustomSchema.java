@@ -10,7 +10,6 @@ import com.prowidesoftware.swift.scheme.Scheme;
 import com.prowidesoftware.swift.scheme.SchemeXmlReader;
 import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
-
 import java.io.ByteArrayInputStream;
 import java.util.List;
 
@@ -30,28 +29,27 @@ public class MessageValidationWithCustomSchema {
     public static void main(String[] args) {
 
         // the release must match the SRU of the library in use, otherwise the scheme is rejected
-        String customScheme = "<scheme name=\"199\" description=\"Free Format Message\" release=\"" + SRU.currentString() + "\">\n" +
-                "   <sequence minRepetitions=\"1\" maxRepetitions=\"1\">\n" +
-                "      <field id=\"20\" minRepetitions=\"1\" maxRepetitions=\"1\"/>\n" +
-                "      <field id=\"21\" minRepetitions=\"0\" maxRepetitions=\"1\"/>\n" +
-                "      <field id=\"79\" minRepetitions=\"1\" maxRepetitions=\"1\" rules=\"3\"/>\n" +
-                "      <field id=\"50\" minRepetitions=\"1\" maxRepetitions=\"1\" letterOptions=\"A\"/>\n" +
-                "   </sequence>\n" +
-                "</scheme>";
+        String customScheme = "<scheme name=\"199\" description=\"Free Format Message\" release=\""
+                + SRU.currentString() + "\">\n" + "   <sequence minRepetitions=\"1\" maxRepetitions=\"1\">\n"
+                + "      <field id=\"20\" minRepetitions=\"1\" maxRepetitions=\"1\"/>\n"
+                + "      <field id=\"21\" minRepetitions=\"0\" maxRepetitions=\"1\"/>\n"
+                + "      <field id=\"79\" minRepetitions=\"1\" maxRepetitions=\"1\" rules=\"3\"/>\n"
+                + "      <field id=\"50\" minRepetitions=\"1\" maxRepetitions=\"1\" letterOptions=\"A\"/>\n"
+                + "   </sequence>\n"
+                + "</scheme>";
         Scheme scheme = new SchemeXmlReader().read(new ByteArrayInputStream(customScheme.getBytes()));
 
-        String message = "{1:F01BICFARY0AXXX8683499999}{2:O1991535051028ESPBESM0AXXX54237522470510281535N}{4:\n"
-                + ":20:0061350113089908\n"
+        String message = "{1:F01FOOXGBR0AXXX0000000001}{2:O1991535051028FOOOESM0AXXX00000000000510281535N}{4:\n"
+                + ":20:0000000000000011\n"
                 + ":21:1534+0000\n"
                 + ":79:FOO\n"
                 + ":50A:FOOAESMMXXX\n"
                 + "-}";
 
         /*
-         * Create and initialize the validation engine
+         * Create the validation engine
          */
         ValidationEngine engine = new ValidationEngine();
-        engine.initialize();
 
         /*
          * Call the validation using a custom schema
@@ -64,5 +62,4 @@ public class MessageValidationWithCustomSchema {
          */
         engine.dispose();
     }
-
 }

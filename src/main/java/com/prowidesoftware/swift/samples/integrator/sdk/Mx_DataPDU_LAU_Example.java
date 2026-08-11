@@ -10,7 +10,6 @@ import com.prowidesoftware.swift.lau.LAU;
 import com.prowidesoftware.swift.model.MxSwiftMessage;
 import com.prowidesoftware.swift.utils.Lib;
 import com.prowidesoftware.swift.wrappers.saa.v2_0_13.DataPDUWriter;
-
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -52,5 +51,4 @@ public class Mx_DataPDU_LAU_Example {
 
         System.out.println(signedPayload);
     }
-
 }

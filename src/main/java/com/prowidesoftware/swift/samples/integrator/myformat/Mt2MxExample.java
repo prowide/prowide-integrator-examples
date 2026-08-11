@@ -14,7 +14,6 @@ import com.prowidesoftware.swift.myformat.MappingRule;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
 import com.prowidesoftware.swift.myformat.Transformation;
 import com.prowidesoftware.swift.myformat.Transformation.Key;
-
 import java.util.ArrayList;
 import java.util.List;
 

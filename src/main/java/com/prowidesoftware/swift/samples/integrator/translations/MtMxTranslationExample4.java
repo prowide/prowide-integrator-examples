@@ -11,7 +11,6 @@ import com.prowidesoftware.swift.translations.PreconditionError;
 import com.prowidesoftware.swift.translations.Translator;
 import com.prowidesoftware.swift.translations.TranslatorFactory;
 import com.prowidesoftware.swift.translations.TranslatorFactoryConfiguration;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -26,35 +25,36 @@ import java.util.List;
  */
 public class MtMxTranslationExample4 {
 
-    public static final String sample = "{1:F01ABCDBEB0D36A6535371188}{2:O5090202140827FOOOLUL0CISI56822627991408270202N}{3:{108:OMS0992390016000}}{4:\n" +
-            ":16R:GENL\n" +
-            ":20C::SEME//LUX0012345\n" +
-            ":23G:INST\n" +
-            ":98C::PREP//20190827020231\n" +
-            ":16R:LINK\n" +
-            ":20C::RELA//0045912379625314\n" +
-            ":16S:LINK\n" +
-            ":16R:STAT\n" +
-            ":25D::IPRC//COSE\n" +
-            ":16S:STAT\n" +
-            ":16S:GENL\n" +
-            ":16R:TRADE\n" +
-            ":98A::SETT//20190829\n" +
-            ":98A::TRAD//20190826\n" +
-            ":11A::FXIS//USD\n" +
-            ":22H::BUSE//SUBS\n" +
-            ":22H::PAYM//APMT\n" +
-            ":16R:TRADPRTY\n" +
-            ":95Q::BUYR//FBB/FDS/BE/MAIN\n" +
-            ":97A::SAFE//1050000642H\n" +
-            ":70C::PACO//Settled\n" +
-            "Fully paid 1234.00 USD\n" +
-            ":16S:TRADPRTY\n" +
-            ":36B::ORDR//UNIT/2400,\n" +
-            ":35B:ISIN LU123456789\n" +
-            "FOO CORP GL.STR.AAAA.MKT.EQ.AC\n" +
-            ":16S:TRADE\n" +
-            "-}";
+    public static final String sample =
+            "{1:F01ABCDBEB0D36A0000000000}{2:O5090202140827FOOOLUL0CISI00000000001408270202N}{3:{108:0000000000000006}}{4:\n"
+                    + ":16R:GENL\n"
+                    + ":20C::SEME//LUX0012345\n"
+                    + ":23G:INST\n"
+                    + ":98C::PREP//20190827020231\n"
+                    + ":16R:LINK\n"
+                    + ":20C::RELA//0000000000000015\n"
+                    + ":16S:LINK\n"
+                    + ":16R:STAT\n"
+                    + ":25D::IPRC//COSE\n"
+                    + ":16S:STAT\n"
+                    + ":16S:GENL\n"
+                    + ":16R:TRADE\n"
+                    + ":98A::SETT//20190829\n"
+                    + ":98A::TRAD//20190826\n"
+                    + ":11A::FXIS//USD\n"
+                    + ":22H::BUSE//SUBS\n"
+                    + ":22H::PAYM//APMT\n"
+                    + ":16R:TRADPRTY\n"
+                    + ":95Q::BUYR//FOO/BAR/BE/MAIN\n"
+                    + ":97A::SAFE//00000000001\n"
+                    + ":70C::PACO//Settled\n"
+                    + "Fully paid 1234.00 USD\n"
+                    + ":16S:TRADPRTY\n"
+                    + ":36B::ORDR//UNIT/2400,\n"
+                    + ":35B:ISIN LU123456789\n"
+                    + "FOO CORP GL.STR.AAAA.MKT.EQ.AC\n"
+                    + ":16S:TRADE\n"
+                    + "-}";
 
     public static void main(String[] args) throws IOException {
 
@@ -62,7 +62,8 @@ public class MtMxTranslationExample4 {
         final AbstractMT source = AbstractMT.parse(sample);
 
         // get a translator for the available equivalent MX, with the precondition check in the factory switched off
-        Translator<AbstractMT, AbstractMX> t = TranslatorFactory.getTranslator(source, new TranslatorFactoryConfiguration().setEvaluatePreconditions(false));
+        Translator<AbstractMT, AbstractMX> t = TranslatorFactory.getTranslator(
+                source, new TranslatorFactoryConfiguration().withEvaluatePreconditions(false));
 
         // check the translator exist
         if (t != null) {
@@ -79,7 +80,5 @@ public class MtMxTranslationExample4 {
                 System.out.println(mx.message());
             }
         }
-
     }
-
 }

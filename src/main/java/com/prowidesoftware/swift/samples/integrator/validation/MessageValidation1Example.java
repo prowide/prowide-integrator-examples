@@ -8,7 +8,6 @@ package com.prowidesoftware.swift.samples.integrator.validation;
 import com.prowidesoftware.swift.utils.Lib;
 import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -27,10 +26,9 @@ public class MessageValidation1Example {
         String msg = Lib.readResource("mt103.txt");
 
         /*
-         * Create and initialize the validation engine
+         * Create the validation engine
          */
         ValidationEngine engine = new ValidationEngine();
-        engine.initialize();
 
         /*
          * Run the validation and print results

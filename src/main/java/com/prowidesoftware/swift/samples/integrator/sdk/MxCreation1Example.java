@@ -10,7 +10,6 @@ import com.prowidesoftware.swift.model.mx.dic.CustomerCreditTransferInitiationV0
 import com.prowidesoftware.swift.model.mx.dic.GroupHeader48;
 import com.prowidesoftware.swift.model.mx.dic.PartyIdentification43;
 import com.prowidesoftware.swift.model.mx.dic.PaymentInstruction22;
-
 import java.math.BigDecimal;
 
 /**
@@ -47,15 +46,10 @@ public class MxCreation1Example {
         /*
          * Construct element content using the business dictionary
          */
-        PaymentInstruction22 pi = new PaymentInstruction22()
-                .setDbtr(new PartyIdentification43()
-                        .setNm("foo")
-                );
+        PaymentInstruction22 pi = new PaymentInstruction22().setDbtr(new PartyIdentification43().setNm("foo"));
 
         CustomerCreditTransferInitiationV08 ccti = new CustomerCreditTransferInitiationV08()
-                .setGrpHdr(new GroupHeader48()
-                        .setCtrlSum(new BigDecimal(100))
-                )
+                .setGrpHdr(new GroupHeader48().setCtrlSum(new BigDecimal(100)))
                 .addPmtInf(pi);
 
         pain001001.setCstmrCdtTrfInitn(ccti);

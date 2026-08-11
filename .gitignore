@@ -4,6 +4,7 @@ lib/pw-*.jar
 bin
 out
 build
+target
 *.log
 *.lck
 derby.log
@@ -16,6 +17,7 @@ derby.log
 *.iws
 .idea/gradle.xml
 .idea/jarRepositories.xml
+.idea/libraries/
 .idea/misc.xml
 .idea/modules.xml
 .idea/prowide-core.iml

@@ -11,11 +11,10 @@ import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 import com.prowidesoftware.swift.validator.ValidationRule;
-import org.apache.commons.lang3.StringUtils;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.Strings;
 
 /**
  * Example of SWIFT message validation with custom rules.
@@ -46,8 +45,8 @@ public class MessageValidationWithCustomRulesExample {
 
     public static void main(String[] args) {
 
-        MT103 mt = MT103.parse("{1:F01BICFOOY0AXXX8683499999}{2:O1031535051028ESPBESM0AXXX54237522470510281535N}{4:\n"
-                + ":20:0061350113089908\n"
+        MT103 mt = MT103.parse("{1:F01FOOXGBY0AXXX0000000001}{2:O1031535051028FOOOESM0AXXX00000000000510281535N}{4:\n"
+                + ":20:0000000000000011\n"
                 + ":13C:/RNCTIME/1534+0000\n"
                 + ":23B:CRED\n"
                 + ":23E:SDVA\n"
@@ -60,7 +59,7 @@ public class MessageValidationWithCustomRulesExample {
                 + ":52A:/2337\n"
                 + "FOOAESMMXXX\n"
                 + ":53A:FOOAESMMXXX\n"
-                + ":57A:BICFOOYYXXX\n"
+                + ":57A:FOOXGBYYXXX\n"
                 + ":59:/ES0123456789012345671234\n"
                 + "FOO AGENTES DE BOLSA ASOC\n"
                 + ":71A:OUR\n"
@@ -68,10 +67,9 @@ public class MessageValidationWithCustomRulesExample {
                 + "-}");
 
         /*
-         * Create and initialize the validation engine
+         * Create the validation engine
          */
         ValidationEngine engine = new ValidationEngine();
-        engine.initialize();
 
         /*
          * Add my custom validation rule to the engine configuration,
@@ -101,7 +99,7 @@ public class MessageValidationWithCustomRulesExample {
             List<ValidationProblem> result = new ArrayList<>();
             if (msg.getBlock4() != null) {
                 Tag reference = msg.getBlock4().getTagByName("20");
-                if (reference == null || !StringUtils.startsWith(reference.getValue(), "MYREF")) {
+                if (reference == null || !Strings.CS.startsWith(reference.getValue(), "MYREF")) {
                     result.add(new ValidationProblem("BAD_REFERENCE", "the reference must start with MYREF"));
                 }
             }

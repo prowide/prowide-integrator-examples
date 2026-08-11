@@ -9,7 +9,6 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 import com.prowidesoftware.swift.model.mx.MxPain00100103;
 import com.prowidesoftware.swift.model.mx.MxTypePain;
 import com.prowidesoftware.swift.myformat.*;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -27,7 +26,8 @@ public class Csv2MxExample3 {
     public static void main(String[] args) {
 
         // Load mapping rules from Excel
-        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls")));
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(
+                Objects.requireNonNull(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls")));
 
         // Create a mapping table instance with source and target formats
         // There is no need to indicate the MX version because we will provide a specific writer to the translation call
@@ -35,7 +35,7 @@ public class Csv2MxExample3 {
         table.setSourceFormat(FileFormat.CSV);
         table.setTargetFormat(FileFormat.MX);
 
-        //indicating the specific MX version to create
+        // indicating the specific MX version to create
         table.add(new MappingRule(MxTypePain.pain_001_001_03.mxId().id(), SetupCommand.mxType.name(), WriteMode.SETUP));
 
         // Validate mapping rules syntax
@@ -46,8 +46,8 @@ public class Csv2MxExample3 {
 
         // Source message sample
         String input =
-                "71237456,EUR,18505.40,ABCDUSXXXXX,AA763000301100000232232333,Joe Doe,PAYMENT OF INVOICE,OUR,123457,1,SBI,Chennai,Navallur,Ags,123,BICFOOYYYYY,55555,Remittance Info,2019-03-25,2000\n" +
-                        "71237457,USD,23000.99,FOOBARXXXXX,BB763000301100000203453444,Bill Smith,GOODS DELIVERY,BTH,123456,2,PNB,Batanagar,Kolkata,Sreekanan,FT1,BICFOOXXXXX,333333,Remittance Info1,2019-07-18,7000";
+                "71237456,EUR,18505.40,ABCDUSXXXXX,AA769999999999999999999991,Joe Doe,PAYMENT OF INVOICE,OUR,123457,1,FOO BANK,Foo City,Foo District,Foo Street,123,FOOXGBYYYYY,55555,Remittance Info,2019-03-25,2000\n"
+                        + "71237457,USD,23000.99,FOOBARXXXXX,BB769999999999999999999992,Bill Smith,GOODS DELIVERY,BTH,123456,2,BAR BANK,Bar Town,Bar City,Joe Doe,FT1,FOOXGBXXXXX,333333,Remittance Info1,2019-07-18,7000";
 
         String out = MyFormatEngine.translate(input, table);
         MxPain00100103 mx = MxPain00100103.parse(out);
@@ -55,5 +55,4 @@ public class Csv2MxExample3 {
         // The output message contains one PmtInf element per row in the source CSV
         System.out.println(mx.message());
     }
-
 }

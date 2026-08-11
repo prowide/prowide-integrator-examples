@@ -14,7 +14,6 @@ import com.prowidesoftware.swift.model.mx.dic.*;
 import com.prowidesoftware.swift.translations.LogicalMessageCriteriaException;
 import com.prowidesoftware.swift.translations.MxSeev03400202_MT567_Translation;
 import com.prowidesoftware.swift.translations.TranslationPreconditionException;
-
 import java.math.BigDecimal;
 
 /**
@@ -35,7 +34,8 @@ public class MxMtTranslationExample1 {
         /*
          * Set source message header content
          */
-        BusinessAppHdrV02 hdr = AppHdrFactory.createBusinessAppHdrV02("AAAAUSX0", "BBBBUSX0", "MYREF1234", new MxId("seev.034.002.02"));
+        BusinessAppHdrV02 hdr =
+                AppHdrFactory.createBusinessAppHdrV02("AAAAUSX0", "BBBBUSX0", "MYREF1234", new MxId("seev.034.002.02"));
         hdr.setBizSvc("foo.bar.01");
         source.setAppHdr(hdr);
         /*
@@ -54,8 +54,17 @@ public class MxMtTranslationExample1 {
         source.getCorpActnInstrStsAdvc().getCorpActnInstr().setInstdBal(new SignedQuantityFormat3());
         source.getCorpActnInstrStsAdvc().getCorpActnInstr().getInstdBal().setShrtLngPos(ShortLong1Code.SHOR);
         source.getCorpActnInstrStsAdvc().getCorpActnInstr().getInstdBal().setQtyChc(new Quantity7Choice());
-        source.getCorpActnInstrStsAdvc().getCorpActnInstr().getInstdBal().getQtyChc().setQty(new FinancialInstrumentQuantity15Choice());
-        source.getCorpActnInstrStsAdvc().getCorpActnInstr().getInstdBal().getQtyChc().getQty().setAmtsdVal(new BigDecimal("123"));
+        source.getCorpActnInstrStsAdvc()
+                .getCorpActnInstr()
+                .getInstdBal()
+                .getQtyChc()
+                .setQty(new FinancialInstrumentQuantity15Choice());
+        source.getCorpActnInstrStsAdvc()
+                .getCorpActnInstr()
+                .getInstdBal()
+                .getQtyChc()
+                .getQty()
+                .setAmtsdVal(new BigDecimal("123"));
         source.getCorpActnInstrStsAdvc().getInstrPrcgSts().add(new InstructionProcessingStatus8Choice());
         source.getCorpActnInstrStsAdvc().getInstrPrcgSts().get(0).setAccptd(new AcceptedStatus2Choice());
         source.getCorpActnInstrStsAdvc().getInstrPrcgSts().get(0).getAccptd().setNoSpcfdRsn(NoReasonCode.NORE);

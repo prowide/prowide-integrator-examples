@@ -64,15 +64,16 @@ public class Csv2MtExample2 {
                 /*
                  * parse and print content from the created MT:
                  *
-                 * Sender's Reference: QCOUCN
+                 * Sender's Reference: FOOUCN
                  * Related Reference: NEW
-                 * Transaction Amount: CLP3794630000,
-                 * Account: /9301011483
+                 * Transaction Amount: CLP1000000000,
+                 * Account: /1111111111
                  */
                 MT300 mt = (MT300) writer.mt();
                 System.out.println("Sender's Reference: " + mt.getField20().getValue());
                 System.out.println("Related Reference: " + mt.getField21().getValue());
-                System.out.println("Transaction Amount: " + mt.getField32B().get(0).getValue());
+                System.out.println(
+                        "Transaction Amount: " + mt.getField32B().get(0).getValue());
                 System.out.println("Account: " + mt.getField58A().get(0).getValue());
             }
 

@@ -24,45 +24,44 @@ import com.prowidesoftware.swift.model.mt.mt5xx.MT564;
  * </ol>
  *
  * <p>If instead of this canonical JSON you need to read or produce your own proprietary JSON
- * structure, use a mapping table from the MyFormat module. See {@code Json2MtExample} and
+ * structure, use a mapping table from the MyFormat module. See {@code Json2MtExample4} and
  * {@code Mt2JsonExample2} in the myformat samples package.
  *
  * <p>Requires the Prowide Integrator SDK module.
  */
 public class Mt564JsonPojoExample {
 
-    private static final String FIN = "{1:F01BANKBEBBAXXX0000000000}{2:I564BANKDEFFXXXXN}{4:\n" +
-            ":16R:GENL\n" +
-            ":20C::CORP//ABC123456789\n" +
-            ":20C::SEME//DEF987654321\n" +
-            ":23G:NEWM\n" +
-            ":22F::CAEV//DVCA\n" +
-            ":22F::CAMV//MAND\n" +
-            ":98A::PREP//20260810\n" +
-            ":16S:GENL\n" +
-            ":16R:USECU\n" +
-            ":35B:ISIN US1234567890\n" +
-            "FOO CORP ORD SHS\n" +
-            ":16R:ACCTINFO\n" +
-            ":97A::SAFE//123456789\n" +
-            ":93B::ELIG//UNIT/1000,\n" +
-            ":16S:ACCTINFO\n" +
-            ":16S:USECU\n" +
-            ":16R:CADETL\n" +
-            ":98A::XDTE//20260901\n" +
-            ":98A::RDTE//20260902\n" +
-            ":16S:CADETL\n" +
-            ":16R:CAOPTN\n" +
-            ":13A::CAON//001\n" +
-            ":22F::CAOP//CASH\n" +
-            ":11A::OPTN//USD\n" +
-            ":16R:CASHMOVE\n" +
-            ":22H::CRDB//CRED\n" +
-            ":19B::ENTL//USD1500,\n" +
-            ":98A::PAYD//20260915\n" +
-            ":16S:CASHMOVE\n" +
-            ":16S:CAOPTN\n" +
-            "-}";
+    private static final String FIN = "{1:F01BANKBEBBAXXX0000000000}{2:I564BANKDEFFXXXXN}{4:\n" + ":16R:GENL\n"
+            + ":20C::CORP//ABC123456789\n"
+            + ":20C::SEME//DEF987654321\n"
+            + ":23G:NEWM\n"
+            + ":22F::CAEV//DVCA\n"
+            + ":22F::CAMV//MAND\n"
+            + ":98A::PREP//20260810\n"
+            + ":16S:GENL\n"
+            + ":16R:USECU\n"
+            + ":35B:ISIN US1234567890\n"
+            + "FOO CORP ORD SHS\n"
+            + ":16R:ACCTINFO\n"
+            + ":97A::SAFE//123456789\n"
+            + ":93B::ELIG//UNIT/1000,\n"
+            + ":16S:ACCTINFO\n"
+            + ":16S:USECU\n"
+            + ":16R:CADETL\n"
+            + ":98A::XDTE//20260901\n"
+            + ":98A::RDTE//20260902\n"
+            + ":16S:CADETL\n"
+            + ":16R:CAOPTN\n"
+            + ":13A::CAON//001\n"
+            + ":22F::CAOP//CASH\n"
+            + ":11A::OPTN//USD\n"
+            + ":16R:CASHMOVE\n"
+            + ":22H::CRDB//CRED\n"
+            + ":19B::ENTL//USD1500,\n"
+            + ":98A::PAYD//20260915\n"
+            + ":16S:CASHMOVE\n"
+            + ":16S:CAOPTN\n"
+            + "-}";
 
     public static void main(String[] args) {
 
@@ -124,7 +123,8 @@ public class Mt564JsonPojoExample {
          */
         MT564 fromJson = MT564.fromJson(json);
         // the generated FIN uses CRLF as line separator, thus the normalization before comparing
-        System.out.println("round trip preserved: " + FIN.equals(fromJson.message().replace("\r\n", "\n")));
+        System.out.println(
+                "round trip preserved: " + FIN.equals(fromJson.message().replace("\r\n", "\n")));
 
         /*
          * 5) Creating a new MT564 from your own model objects
@@ -152,8 +152,11 @@ public class Mt564JsonPojoExample {
                 new Field20C().setQualifier("SEME").setReference("DEF987654321").asTag(),
                 new Field23G().setFunction("NEWM").asTag(),
                 new Field22F().setQualifier("CAEV").setIndicator("DVCA").asTag()));
-        created.append(MT564.SequenceB.newInstance(
-                new Field35B().setQualifier("ISIN").setISIN("US1234567890").setDescription("FOO CORP ORD SHS").asTag()));
+        created.append(MT564.SequenceB.newInstance(new Field35B()
+                .setQualifier("ISIN")
+                .setISIN("US1234567890")
+                .setDescription("FOO CORP ORD SHS")
+                .asTag()));
         System.out.println(created.message());
     }
 }

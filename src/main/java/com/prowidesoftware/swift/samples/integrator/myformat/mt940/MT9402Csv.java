@@ -12,7 +12,6 @@ import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
 import com.prowidesoftware.swift.myformat.csv.CsvWriter;
 import com.prowidesoftware.swift.myformat.mt.MtReader;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -36,7 +35,8 @@ public class MT9402Csv {
     public static void main(String[] args) {
 
         // Load mapping rules from Excel
-        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(MT9402Csv.class.getResourceAsStream(tableFileName)));
+        MappingTableExcelLoader loader =
+                new MappingTableExcelLoader(Objects.requireNonNull(MT9402Csv.class.getResourceAsStream(tableFileName)));
 
         // Create a mapping table instance with source and target formats
         MappingTable table = loader.load("Mapping");
@@ -68,9 +68,9 @@ public class MT9402Csv {
         // create the writer
         CsvWriter.CsvWriterBuilder builder = CsvWriter.builder();
         builder.addFieldNames(true).smartEscapes(false).smartQuotes(false);
-        builder.fieldsDef("Block1,Block2,TransactionReferenceNumber,RelatedReference,StatementOrSequenceNumber,OpeningBalance,StatementLine,TransactionDetail,ClosingBalance,AvailableBalance");
+        builder.fieldsDef(
+                "Block1,Block2,TransactionReferenceNumber,RelatedReference,StatementOrSequenceNumber,OpeningBalance,StatementLine,TransactionDetail,ClosingBalance,AvailableBalance");
         CsvWriter writer = builder.build();
-
 
         // process the csv and generate the mt output
         MyFormatEngine.translate(reader, writer, table.getRules());
@@ -96,5 +96,4 @@ public class MT9402Csv {
         // return the string
         return out.toString();
     }
-
 }

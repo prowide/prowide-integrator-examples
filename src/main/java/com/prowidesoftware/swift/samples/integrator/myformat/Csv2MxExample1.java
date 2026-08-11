@@ -9,7 +9,6 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 import com.prowidesoftware.swift.model.mx.MxPacs00800102;
 import com.prowidesoftware.swift.model.mx.MxTypePacs;
 import com.prowidesoftware.swift.myformat.*;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -23,14 +22,15 @@ public class Csv2MxExample1 {
     public static void main(String[] args) {
 
         // Load mapping rules from Excel
-        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Csv2MxExample1.class.getResourceAsStream("/myformat/csv2mx.xls")));
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(
+                Objects.requireNonNull(Csv2MxExample1.class.getResourceAsStream("/myformat/csv2mx.xls")));
 
         // Create a mapping table instance with source and target formats
         MappingTable table = loader.load("example1");
         table.setSourceFormat(FileFormat.CSV);
         table.setTargetFormat(FileFormat.MX);
 
-        //indicating the specific MX version to create
+        // indicating the specific MX version to create
         table.add(new MappingRule(MxTypePacs.pacs_008_001_02.mxId().id(), SetupCommand.mxType.name(), WriteMode.SETUP));
 
         // Validate mapping rules syntax
@@ -40,7 +40,7 @@ public class Csv2MxExample1 {
         }
 
         // Source message sample
-        String input = "ABCDUSXXXXX,FAB2019051402400300005,0037 0039 RUE BOISSIERE,75116,PARIS";
+        String input = "ABCDUSXXXXX,FOO2019051402400300005,0001 0002 FOO STREET,99999,FOO CITY";
 
         // Call translation
         String out = MyFormatEngine.translate(input, table);
@@ -49,5 +49,4 @@ public class Csv2MxExample1 {
         MxPacs00800102 mx = MxPacs00800102.parse(out);
         System.out.println(mx.message());
     }
-
 }

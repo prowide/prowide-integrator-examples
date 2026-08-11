@@ -18,30 +18,30 @@ import com.prowidesoftware.swift.model.mx.AbstractMX;
 public class MxParseExample2 {
 
     public static void main(String[] args) {
-        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Doc:Document xmlns:Doc=\"urn:swift:xsd:camt.048.001.03\" xmlns:xsi=\"httDoc://www.w3.org/2001/XMLSchema-instance\">\n"
-                + "  <Doc:ModfyRsvatn>\n"
-                + "    <Doc:MsgHdr>\n"
-                + "      <Doc:MsgId>001</Doc:MsgId>\n"
-                + "    </Doc:MsgHdr>\n"
-                + "    <Doc:RsvatnId>\n"
-                + "      <Doc:Cur>\n"
-                + "        <Doc:Tp>\n"
-                + "          <Doc:Cd>CARE</Doc:Cd>\n"
-                + "        </Doc:Tp>\n"
-                + "      </Doc:Cur>\n"
-                + "    </Doc:RsvatnId>\n"
-                + "    <Doc:NewRsvatnValSet>\n"
-                + "      <Doc:Amt>\n"
-                + "        <Doc:AmtWthtCcy>1234.0</Doc:AmtWthtCcy>\n"
-                + "      </Doc:Amt>\n"
-                + "    </Doc:NewRsvatnValSet>\n"
-                + "  </Doc:ModfyRsvatn>\n"
-                + "</Doc:Document>";
+        String xml =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Doc:Document xmlns:Doc=\"urn:swift:xsd:camt.048.001.03\" xmlns:xsi=\"httDoc://www.w3.org/2001/XMLSchema-instance\">\n"
+                        + "  <Doc:ModfyRsvatn>\n"
+                        + "    <Doc:MsgHdr>\n"
+                        + "      <Doc:MsgId>001</Doc:MsgId>\n"
+                        + "    </Doc:MsgHdr>\n"
+                        + "    <Doc:RsvatnId>\n"
+                        + "      <Doc:Cur>\n"
+                        + "        <Doc:Tp>\n"
+                        + "          <Doc:Cd>CARE</Doc:Cd>\n"
+                        + "        </Doc:Tp>\n"
+                        + "      </Doc:Cur>\n"
+                        + "    </Doc:RsvatnId>\n"
+                        + "    <Doc:NewRsvatnValSet>\n"
+                        + "      <Doc:Amt>\n"
+                        + "        <Doc:AmtWthtCcy>1234.0</Doc:AmtWthtCcy>\n"
+                        + "      </Doc:Amt>\n"
+                        + "    </Doc:NewRsvatnValSet>\n"
+                        + "  </Doc:ModfyRsvatn>\n"
+                        + "</Doc:Document>";
 
         // parse into generic structure
         AbstractMX mx = AbstractMX.parse(xml);
 
         System.out.println("Namespace: " + mx.getNamespace());
     }
-
 }

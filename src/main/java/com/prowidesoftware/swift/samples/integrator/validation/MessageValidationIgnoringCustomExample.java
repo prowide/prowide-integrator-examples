@@ -6,7 +6,6 @@
 package com.prowidesoftware.swift.samples.integrator.validation;
 
 import com.prowidesoftware.swift.validator.*;
-
 import java.util.List;
 
 /**
@@ -28,32 +27,32 @@ public class MessageValidationIgnoringCustomExample {
         /*
          * Load a message
          */
-        String msg = "{1:X01BICFOOY0AXXX8683497519}{2:O1031535051028ESPBESMMAXXX54237522470510281535N}{3:{113:ROMF}{108:0510280182794665}{119:STP}{121:4086d27c-e724-4e12-8a73-b450ec6b2f94}}{4:\n"
-                + ":20:0061350113089908\n"
-                + ":13C:/RNCTIME/1534+0000\n"
-                + ":23B:FOO\n"
-                + ":23E:SDVA\n"
-                + ":32A:061028FOO100000,\n"
-                + ":33B:EUR100000,\n"
-                + ":50K:/12345678\n"
-                + "AGENTES DE BOLSA FOO AGENCIA\n"
-                + "AV XXXXX 123 BIS 9 PL\n"
-                + "12345 BARCELONA\n"
-                + ":52A:/2337\n"
-                + "FOOAESMMXXX\n"
-                + ":53A:FOOAESMMXXXAAAAA\n"
-                + ":57A:BICFOOYYXXX\n"
-                + ":59:/ES0123456789012345671234\n"
-                + "FOO AGENTES DE BOLSA ASOC\n"
-                + ":71A:OUR\n"
-                + ":72:/BNF/TRANSF. BCO. FOO\n"
-                + "-}{5:{MAC:88B4F929}{CHK:22EF370A4073}}foo";
+        String msg =
+                "{1:X01FOOXGBY0AXXX0000000000}{2:O1031535051028FOOOESMMAXXX00000000000510281535N}{3:{113:ROMF}{108:0000000000000001}{119:STP}{121:00000000-0000-4000-8000-000000000001}}{4:\n"
+                        + ":20:0000000000000011\n"
+                        + ":13C:/RNCTIME/1534+0000\n"
+                        + ":23B:FOO\n"
+                        + ":23E:SDVA\n"
+                        + ":32A:061028FOO100000,\n"
+                        + ":33B:EUR100000,\n"
+                        + ":50K:/12345678\n"
+                        + "AGENTES DE BOLSA FOO AGENCIA\n"
+                        + "AV XXXXX 123 BIS 9 PL\n"
+                        + "12345 BARCELONA\n"
+                        + ":52A:/2337\n"
+                        + "FOOAESMMXXX\n"
+                        + ":53A:FOOAESMMXXXAAAAA\n"
+                        + ":57A:FOOXGBYYXXX\n"
+                        + ":59:/ES0123456789012345671234\n"
+                        + "FOO AGENTES DE BOLSA ASOC\n"
+                        + ":71A:OUR\n"
+                        + ":72:/BNF/TRANSF. BCO. FOO\n"
+                        + "-}{5:{MAC:22222222}{CHK:333333333333}}foo";
 
         /*
-         * Create and initialize the validation engine
+         * Create the validation engine
          */
         ValidationEngine engine = new ValidationEngine();
-        engine.initialize();
 
         /*
          *  Several validation problems are reported by default when

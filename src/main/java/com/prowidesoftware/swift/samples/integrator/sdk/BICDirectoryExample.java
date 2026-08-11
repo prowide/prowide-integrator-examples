@@ -6,7 +6,6 @@
 package com.prowidesoftware.swift.samples.integrator.sdk;
 
 import com.prowidesoftware.swift.model.BICRecord;
-
 import java.util.List;
 
 /**
@@ -35,5 +34,4 @@ public class BICDirectoryExample {
         }
         System.out.println("Took " + (t3 - t2) + "ms");
     }
-
 }

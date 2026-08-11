@@ -8,7 +8,6 @@ package com.prowidesoftware.swift.samples.integrator.myformat;
 import com.prowidesoftware.swift.myformat.*;
 import com.prowidesoftware.swift.myformat.Transformation.Key;
 import com.prowidesoftware.swift.myformat.csv.CsvFileWriter;
-
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -26,65 +25,67 @@ public class Mt2CsvProgrammaticExample {
     /*
      * source message
      */
-    static String msg = "{1:F01ABCBUS30AXXX3768156193}{2:O3001139050822XYZBUS30AFXO29569650200508221139N}{3:{108:FC003105ded7970a}}{4:\n" +
-            ":15A:\n" +
-            ":20:QCOUCN111\n" +
-            ":21:NEW111\n" +
-            ":22A:CANC\n" +
-            ":22C:ABCB304209XYZB30\n" +
-            ":82A:XYZBUS30FXO\n" +
-            ":87A:ABCBUS30XXX\n" +
-            ":77D:/VALD/20040509\n" +
-            "/SETC/USD\n" +
-            ":15B:\n" +
-            ":30T:20070422\n" +
-            ":30V:20070513\n" +
-            ":36:542,09\n" +
-            ":32B:CLP3794630000,\n" +
-            ":53A:XYZBUS30FXO\n" +
-            ":57D:NET SETTLEMENT\n" +
-            ":33B:USD7000000,00\n" +
-            ":53A:ABCBUS30XXX\n" +
-            ":57D:NET SETTLEMENT\n" +
-            ":58A:/9301011483\n" +
-            "ABCBUS30XXX\n" +
-            ":15C:\n" +
-            ":24D:BROK\n" +
-            ":88D:GFI-NY\n" +
-            ":72:/ACC/GTMS:\n" +
-            "//L1710833-1-1\n" +
-            "-}";
+    static String msg =
+            "{1:F01ABCBUS30AXXX0000000000}{2:O3001139050822XYZBUS30AFXO00000000000508221139N}{3:{108:0000000000000003}}{4:\n"
+                    + ":15A:\n"
+                    + ":20:FOOUCN111\n"
+                    + ":21:NEW111\n"
+                    + ":22A:CANC\n"
+                    + ":22C:ABCB304209XYZB30\n"
+                    + ":82A:XYZBUS30FXO\n"
+                    + ":87A:ABCBUS30XXX\n"
+                    + ":77D:/VALD/20040509\n"
+                    + "/SETC/USD\n"
+                    + ":15B:\n"
+                    + ":30T:20070422\n"
+                    + ":30V:20070513\n"
+                    + ":36:542,09\n"
+                    + ":32B:CLP1000000000,\n"
+                    + ":53A:XYZBUS30FXO\n"
+                    + ":57D:NET SETTLEMENT\n"
+                    + ":33B:USD7000000,00\n"
+                    + ":53A:ABCBUS30XXX\n"
+                    + ":57D:NET SETTLEMENT\n"
+                    + ":58A:/1111111111\n"
+                    + "ABCBUS30XXX\n"
+                    + ":15C:\n"
+                    + ":24D:BROK\n"
+                    + ":88D:FOO BROKER\n"
+                    + ":72:/ACC/GTMS:\n"
+                    + "//L1000000-1-1\n"
+                    + "-}";
     /*
      * source message
      */
-    static String msg2 = "{1:F01ABCBUS30AXXX3768156193}{2:O3001139050822XYZBUS30AFXO29569650200508221139N}{3:{108:FC003105ded7970a}}{4:\n" +
-            ":15A:\n" +
-            ":20:QCOUCN222\n" +
-            ":21:NEW222\n" +
-            ":22A:CANC\n" +
-            ":22C:ABCB304209XYZB30\n" +
-            ":82A:XYZBUS30FXO\n" +
-            ":87A:ABCBUS30XXX\n" +
-            ":77D:/VALD/20040509\n" +
-            "/SETC/USD\n" +
-            ":15B:\n" +
-            ":30T:20070422\n" +
-            ":30V:20070513\n" +
-            ":36:542,09\n" +
-            ":32B:CLP1234530000,\n" +
-            ":53A:XYZBUS30FXO\n" +
-            ":57D:NET SETTLEMENT\n" +
-            ":33B:USD7000000,00\n" +
-            ":53A:ABCBUS30XXX\n" +
-            ":57D:NET SETTLEMENT\n" +
-            ":58A:/848473332\n" +
-            "ABCBUS30XXX\n" +
-            ":15C:\n" +
-            ":24D:BROK\n" +
-            ":88D:GFI-NY\n" +
-            ":72:/ACC/GTMS:\n" +
-            "//L1710999-2-2\n" +
-            "-}";
+    static String msg2 =
+            "{1:F01ABCBUS30AXXX0000000000}{2:O3001139050822XYZBUS30AFXO00000000000508221139N}{3:{108:0000000000000003}}{4:\n"
+                    + ":15A:\n"
+                    + ":20:FOOUCN222\n"
+                    + ":21:NEW222\n"
+                    + ":22A:CANC\n"
+                    + ":22C:ABCB304209XYZB30\n"
+                    + ":82A:XYZBUS30FXO\n"
+                    + ":87A:ABCBUS30XXX\n"
+                    + ":77D:/VALD/20040509\n"
+                    + "/SETC/USD\n"
+                    + ":15B:\n"
+                    + ":30T:20070422\n"
+                    + ":30V:20070513\n"
+                    + ":36:542,09\n"
+                    + ":32B:CLP3000000000,\n"
+                    + ":53A:XYZBUS30FXO\n"
+                    + ":57D:NET SETTLEMENT\n"
+                    + ":33B:USD7000000,00\n"
+                    + ":53A:ABCBUS30XXX\n"
+                    + ":57D:NET SETTLEMENT\n"
+                    + ":58A:/333333333\n"
+                    + "ABCBUS30XXX\n"
+                    + ":15C:\n"
+                    + ":24D:BROK\n"
+                    + ":88D:FOO BROKER\n"
+                    + ":72:/ACC/GTMS:\n"
+                    + "//L3000000-2-2\n"
+                    + "-}";
 
     public static void main(String[] args) throws IOException {
 
@@ -121,8 +122,8 @@ public class Mt2CsvProgrammaticExample {
 
         /*
          * print output
-         * QCOUCN111,NEW111,CLP,3794630000.,#9301011483,L1710833-1-1
-         * QCOUCN222,NEW222,CLP,1234530000.,#848473332,L1710999-2-2
+         * FOOUCN111,NEW111,CLP,1000000000.,#1111111111,L1000000-1-1
+         * FOOUCN222,NEW222,CLP,3000000000.,#333333333,L3000000-2-2
          */
         System.out.println(out);
     }

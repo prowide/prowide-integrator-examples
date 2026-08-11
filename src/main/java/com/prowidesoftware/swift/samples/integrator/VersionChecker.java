@@ -35,28 +35,32 @@ public class VersionChecker {
      * messages moved into version specific packages in SRU2026.
      */
     private static final List<String[]> MODULES = Arrays.asList(
-            new String[]{"pw-swift-core",                "com.prowidesoftware.swift.model.MtSwiftMessage"},
-            new String[]{"pw-iso20022",                  "com.prowidesoftware.swift.model.MxSwiftMessage"},
-            new String[]{"pw-swift-integrator-sdk",      "com.prowidesoftware.swift.SRU"},
-            new String[]{"pw-swift-integrator-validation","com.prowidesoftware.swift.validator.ValidationEngine"},
-            new String[]{"pw-swift-integrator-translations","com.prowidesoftware.swift.app.TranslatorApp"},
-            new String[]{"pw-swift-integrator-myformat", "com.prowidesoftware.swift.myformat.MyFormatEngine"},
-            new String[]{"pw-swift-integrator-cbpr",     "com.prowidesoftware.swift.model.mx.cbpr.CbprMessageType"},
-            new String[]{"pw-swift-integrator-score",    "com.prowidesoftware.swift.model.mt.mt7xx.MT798_727_LC_B2C"},
-            new String[]{"pw-swift-integrator-sic",      "com.prowidesoftware.swift.model.mx.sic.v4_10.MxCamt00500108Ch01",
-                                                         "com.prowidesoftware.swift.model.mx.sic.MxCamt00500108Ch01"}
-    );
+            new String[] {"pw-swift-core", "com.prowidesoftware.swift.model.MtSwiftMessage"},
+            new String[] {"pw-iso20022", "com.prowidesoftware.swift.model.MxSwiftMessage"},
+            new String[] {"pw-swift-integrator-sdk", "com.prowidesoftware.swift.SRU"},
+            new String[] {"pw-swift-integrator-validation", "com.prowidesoftware.swift.validator.ValidationEngine"},
+            new String[] {"pw-swift-integrator-translations", "com.prowidesoftware.swift.app.TranslatorApp"},
+            new String[] {"pw-swift-integrator-myformat", "com.prowidesoftware.swift.myformat.MyFormatEngine"},
+            new String[] {"pw-swift-integrator-cbpr", "com.prowidesoftware.swift.model.mx.cbpr.CbprMessageType"},
+            new String[] {"pw-swift-integrator-score", "com.prowidesoftware.swift.model.mt.mt7xx.MT798_727_LC_B2C"},
+            new String[] {
+                "pw-swift-integrator-sic",
+                "com.prowidesoftware.swift.model.mx.sic.v4_10.MxCamt00500108Ch01",
+                "com.prowidesoftware.swift.model.mx.sic.MxCamt00500108Ch01"
+            });
 
     /**
      * The data jar carries no classes, it is the Derby database read from the classpath, so it is
      * probed by resource instead. It is required by BICDirectoryExample and ExpandedPrintoutExample.
      */
     private static final String DATA_JAR = "pw-swift-integrator-data";
+
     private static final String DATA_JAR_PROBE = "pw-swift-integrator-data/service.properties";
 
     public static String getImplementationVersion(Class<?> clazz) {
         try {
-            String classPath = Objects.requireNonNull(clazz.getResource(clazz.getSimpleName() + ".class")).toString();
+            String classPath = Objects.requireNonNull(clazz.getResource(clazz.getSimpleName() + ".class"))
+                    .toString();
             int bang = classPath.lastIndexOf('!');
             if (bang < 0) {
                 return null; // class is not loaded from a jar (e.g., a build folder)
@@ -89,9 +93,8 @@ public class VersionChecker {
             }
             if (clazz != null) {
                 String version = getImplementationVersion(clazz);
-                System.out.printf("  [OK]      %-38s %s%n",
-                        module,
-                        version != null ? version : "(version not in manifest)");
+                System.out.printf(
+                        "  [OK]      %-38s %s%n", module, version != null ? version : "(version not in manifest)");
                 present++;
             } else {
                 System.out.printf("  [MISSING] %-38s (drop the jar into lib/)%n", module);

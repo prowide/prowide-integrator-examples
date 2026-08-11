@@ -15,7 +15,6 @@ import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
 import com.prowidesoftware.swift.myformat.csv.CsvReader;
 import com.prowidesoftware.swift.myformat.mt.MtWriter;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +34,8 @@ public class Csv2MT940 {
     public static void main(String[] args) {
 
         // Create a mapping table instance with source and target formats and load rules from excel file
-        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Csv2MT940.class.getResourceAsStream(tableFileName)));
+        MappingTableExcelLoader loader =
+                new MappingTableExcelLoader(Objects.requireNonNull(Csv2MT940.class.getResourceAsStream(tableFileName)));
         MappingTable table = loader.load("Mapping");
         table.setSourceFormat(FileFormat.CSV);
         table.setTargetFormat(FileFormat.MT);
@@ -54,7 +54,9 @@ public class Csv2MT940 {
         // create the csv reader
         CsvReader reader;
         try {
-            reader = CsvReader.builder(Csv2MT940.class.getResourceAsStream(csvFileName)).skipHeaderRows(1).build();
+            reader = CsvReader.builder(Csv2MT940.class.getResourceAsStream(csvFileName))
+                    .skipHeaderRows(1)
+                    .build();
         } catch (IOException ex) {
             ex.printStackTrace();
             return;

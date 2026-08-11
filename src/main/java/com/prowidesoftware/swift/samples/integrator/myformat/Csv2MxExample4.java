@@ -14,7 +14,6 @@ import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
 import com.prowidesoftware.swift.myformat.csv.CsvFileReader;
 import com.prowidesoftware.swift.myformat.mx.MxWriter;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -31,7 +30,8 @@ public class Csv2MxExample4 {
     public static void main(String[] args) {
 
         // Load mapping rules from Excel
-        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls")));
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(
+                Objects.requireNonNull(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mx.xls")));
 
         // Create a mapping table instance with source and target formats
         MappingTable table = loader.load("example4");
@@ -45,9 +45,8 @@ public class Csv2MxExample4 {
         }
 
         // Source message sample
-        String input =
-                "ABCDUSXXXXX,FOOBARXXXXX,1,71237456,Joe Doe,USD,9505.02\n" +
-                        "ABCDUSXXXXX,EDFGITXXXXX,1,83736212,Bill Smith,EUR,3325.16";
+        String input = "ABCDUSXXXXX,FOOBARXXXXX,1,71237456,Joe Doe,USD,9505.02\n"
+                + "ABCDUSXXXXX,FOOFITXXXXX,1,83736212,Bill Smith,EUR,3325.16";
 
         // Since we will create many output messages, we need to iterate the source ourselves
         CsvFileReader reader = new CsvFileReader(input);
@@ -64,5 +63,4 @@ public class Csv2MxExample4 {
 
         reader.close();
     }
-
 }

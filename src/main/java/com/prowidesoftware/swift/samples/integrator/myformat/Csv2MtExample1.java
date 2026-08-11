@@ -10,7 +10,6 @@ import com.prowidesoftware.swift.myformat.FileFormat;
 import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -20,7 +19,8 @@ import java.util.Objects;
 public class Csv2MtExample1 {
     public static void main(String[] args) {
         // Load mapping rules from Excel
-        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mt.xls")));
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(
+                Objects.requireNonNull(Xml2MtExample1.class.getResourceAsStream("/myformat/csv2mt.xls")));
 
         // Create a mapping table instance with source and target formats
         MappingTable table = loader.load("example1");
@@ -34,7 +34,8 @@ public class Csv2MtExample1 {
         }
 
         // Source message sample
-        String source = "04/20/19,CITICATT,EFX-EPPAY,USD,1234.56,Joe Doe,14th Street Dep 87 Long Island PO 10002,Washington,USA,1234567890,Foo Corp LTD,International division NY 202099,,1234555,INV-12323";
+        String source =
+                "04/20/19,FOOLCATT,FOO-EPPAY,USD,1234.56,Joe Doe,14th Street Dep 87 Long Island PO 10002,Washington,USA,1234567890,Foo Corp LTD,International division NY 202099,,1234555,INV-12323";
         String out = MyFormatEngine.translate(source, table);
 
         // parse as MT

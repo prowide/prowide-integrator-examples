@@ -9,7 +9,6 @@ import com.prowidesoftware.swift.model.MtPath;
 import com.prowidesoftware.swift.model.MtPathResult;
 import com.prowidesoftware.swift.model.SwiftBlock2OutputField;
 import com.prowidesoftware.swift.model.mt.mt5xx.MT535;
-
 import java.util.List;
 
 /**
@@ -24,52 +23,54 @@ public class MtPathExample {
     /*
      * sample message
      */
-    static MT535 mt = MT535.parse(
-            "{1:F01ZZZZZZZ0ZZZG0387240778}{2:O5350029060914XXXXXXX0XXXX03549878070609140029N}{4:\n" +
+    static MT535 mt =
+            MT535.parse("{1:F01ZZZZZZZ0ZZZG0000000000}{2:O5350029060914XXXXXXX0XXXX00000000000609140029N}{4:\n" +
 
                     // sequence A - General Information
-                    ":16R:GENL\n" +
-                    ":28E:00005/MORE\n" +
-                    ":20C::SEME//ICF2750999999005\n" +
-                    ":23G:NEWM\n" +
-                    ":98A::STAT//20060913\n" +
-                    ":22F::SFRE//DAIL\n" +
-                    ":22F::CODE//COMP\n" +
-                    ":22F::STTY//CUST\n" +
-                    ":22F::STBA//TRAD\n" +
-                    ":97A::SAFE//F275\n" +
-                    ":17B::ACTI//Y\n" +
-                    ":17B::AUDT//N\n" +
-                    ":17B::CONS//N\n" +
-                    ":16S:GENL\n" +
+                    ":16R:GENL\n"
+                    + ":28E:00005/MORE\n"
+                    + ":20C::SEME//ICF0000000000002\n"
+                    + ":23G:NEWM\n"
+                    + ":98A::STAT//20060913\n"
+                    + ":22F::SFRE//DAIL\n"
+                    + ":22F::CODE//COMP\n"
+                    + ":22F::STTY//CUST\n"
+                    + ":22F::STBA//TRAD\n"
+                    + ":97A::SAFE//F275\n"
+                    + ":17B::ACTI//Y\n"
+                    + ":17B::AUDT//N\n"
+                    + ":17B::CONS//N\n"
+                    + ":16S:GENL\n"
+                    +
 
-                    //sequence B - Sub-safekeeping account
-                    ":16R:SUBSAFE\n" +
+                    // sequence B - Sub-safekeeping account
+                    ":16R:SUBSAFE\n"
+                    +
 
-                    //B1
-                    ":16R:FIN\n" +
-                    ":35B:/US/31392EXH8\n" +
-                    "FEDERAL FOOO MTG ASSN\n" +
+                    // B1
+                    ":16R:FIN\n"
+                    + ":35B:/US/000000000\n"
+                    + "FOO MORTGAGE ASSN\n"
+                    +
 
-                    //B1a
-                    ":16R:FIA\n" +
-                    ":92A::CUFC//0,14528727\n" +
-                    ":16S:FIA\n" +
-                    ":93B::AGGR//FAMT/35732656,\n" +
-                    ":93B::AVAI//FAMT/35732656,\n" +
+                    // B1a
+                    ":16R:FIA\n"
+                    + ":92A::CUFC//0,14528727\n"
+                    + ":16S:FIA\n"
+                    + ":93B::AGGR//FAMT/35732656,\n"
+                    + ":93B::AVAI//FAMT/35732656,\n"
+                    +
 
-                    //B1b
-                    ":16R:SUBBAL\n" +
-                    ":93B::AGGR//FAMT/1234,5\n" +
-                    ":93B::AVAI//FAMT/2345,6\n" +
-                    ":93B::AVAI//AMOR/3456,7\n" +
-                    ":94F::SAFE//NCSD/FRNYUS30\n" +
-                    ":16S:SUBBAL\n" +
-                    ":16S:FIN\n" +
-
-                    ":16S:SUBSAFE\n" +
-
-                    "-}{5:{MAC:E19445CF}{CHK:D625798DFC51}}");
+                    // B1b
+                    ":16R:SUBBAL\n"
+                    + ":93B::AGGR//FAMT/1234,5\n"
+                    + ":93B::AVAI//FAMT/2345,6\n"
+                    + ":93B::AVAI//AMOR/3456,7\n"
+                    + ":94F::SAFE//NCSD/FOOPUS30\n"
+                    + ":16S:SUBBAL\n"
+                    + ":16S:FIN\n"
+                    + ":16S:SUBSAFE\n"
+                    + "-}{5:{MAC:33333333}{CHK:444444444444}}");
 
     public static void main(final String[] args) {
         List<MtPathResult> found = null;
@@ -108,7 +109,5 @@ public class MtPathExample {
          */
         found = MtPath.evaluate("b2/" + SwiftBlock2OutputField.MIRLogicalTerminal, mt);
         System.out.println(found.get(0).getComponent());
-
     }
-
 }

@@ -28,9 +28,7 @@ public class Csv2MxExample5 {
         MappingTable t = new MappingTable(FileFormat.CSV, FileFormat.MX);
 
         // Sample source content
-        String input =
-                "10;11;US;FR763000301100000205504727;14\n" +
-                        "20;21;KW;;24";
+        String input = "10;11;US;FR769999999999999999999999;14\n" + "20;21;KW;;24";
 
         // Sample external content in a variable name
         String name = "company name";
@@ -42,7 +40,10 @@ public class Csv2MxExample5 {
 
         // We define the mapping rules programmatically instead of loading it from an Excel file
         t.add(new MappingRule("0", "/Document/CstmrCdtTrfInitn/PmtInf/CdtTrfTxInf[{myRow}]/PmtId/InstrId"));
-        t.add(new MappingRule("1", "/Document/CstmrCdtTrfInitn/PmtInf/CdtTrfTxInf[{myRow}]/PmtId/EndToEndId", new Transformation(Transformation.Key.leftPad, 6, "0")));
+        t.add(new MappingRule(
+                "1",
+                "/Document/CstmrCdtTrfInitn/PmtInf/CdtTrfTxInf[{myRow}]/PmtId/EndToEndId",
+                new Transformation(Transformation.Key.leftPad, 6, "0")));
         t.add(new MappingRule("2", "/Document/CstmrCdtTrfInitn/PmtInf/CdtTrfTxInf[{myRow}]/Cdtr/PstlAdr/Ctry"));
         t.add(new MappingRule("3", "/Document/CstmrCdtTrfInitn/PmtInf/CdtTrfTxInf[{myRow}]/CdtrAcct/Id/IBAN"));
         t.add(new MappingRule("4", "/Document/CstmrCdtTrfInitn/PmtInf/CdtTrfTxInf[{myRow}]/CdtrAcct/Id/Othr/Id"));
@@ -62,5 +63,4 @@ public class Csv2MxExample5 {
 
         reader.close();
     }
-
 }

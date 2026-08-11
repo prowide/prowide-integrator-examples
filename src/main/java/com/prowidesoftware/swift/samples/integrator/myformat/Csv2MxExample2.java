@@ -15,7 +15,6 @@ import com.prowidesoftware.swift.myformat.MyFormatEngine;
 import com.prowidesoftware.swift.myformat.csv.CsvFieldsDef;
 import com.prowidesoftware.swift.myformat.csv.CsvReader;
 import com.prowidesoftware.swift.myformat.mx.MxWriter;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -40,7 +39,8 @@ public class Csv2MxExample2 {
                 .addField("ADDR3", "4");
 
         // Load mapping rules from Excel
-        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Csv2MxExample2.class.getResourceAsStream("/myformat/csv2mx.xls")));
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(
+                Objects.requireNonNull(Csv2MxExample2.class.getResourceAsStream("/myformat/csv2mx.xls")));
 
         // Create a mapping table instance with source and target formats
         // There is no need to indicate the MX version because we will provide a specific writer to the translation call
@@ -55,10 +55,11 @@ public class Csv2MxExample2 {
         }
 
         // Source message sample
-        String input = "ABCDUSXXXXX|FAB2019051402400300005|0037 0039 RUE BOISSIERE|75116|PARIS";
+        String input = "ABCDUSXXXXX|FOO2019051402400300005|0001 0002 FOO STREET|99999|FOO CITY";
 
         // We create a reader for the input, providing the fields definition, and also customizing the separator
-        CsvReader reader = CsvReader.builder(input).separator('|').fieldsDef(defs).build();
+        CsvReader reader =
+                CsvReader.builder(input).separator('|').fieldsDef(defs).build();
 
         // Create a specific writer and call translation providing the reader and writer instances
         MxWriter writer = new MxWriter(MxTypePacs.pacs_008_001_02);
@@ -68,5 +69,4 @@ public class Csv2MxExample2 {
         MxPacs00800102 mx = (MxPacs00800102) writer.mx();
         System.out.println(mx.message());
     }
-
 }

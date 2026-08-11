@@ -13,7 +13,6 @@ import com.prowidesoftware.swift.model.mx.dic.PartyIdentification43;
 import com.prowidesoftware.swift.model.mx.dic.PaymentInstruction22;
 import com.prowidesoftware.swift.validator.ValidationEngine;
 import com.prowidesoftware.swift.validator.ValidationProblem;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -31,23 +30,15 @@ public class MxValidationExample {
         /*
          * Construct element content using the business dictionary
          */
-        PaymentInstruction22 pi = new PaymentInstruction22()
-                .setDbtr(new PartyIdentification43()
-                        .setNm("foo")
-                );
+        PaymentInstruction22 pi = new PaymentInstruction22().setDbtr(new PartyIdentification43().setNm("foo"));
 
         CustomerCreditTransferInitiationV08 ccti = new CustomerCreditTransferInitiationV08()
-                .setGrpHdr(new GroupHeader48()
-                        .setCtrlSum(new BigDecimal(100))
-                        .setMsgId("MYREF")
-                )
+                .setGrpHdr(new GroupHeader48().setCtrlSum(new BigDecimal(100)).setMsgId("MYREF"))
                 .addPmtInf(pi);
-
 
         pain001001.setCstmrCdtTrfInitn(ccti);
 
         ValidationEngine engine = new ValidationEngine();
-        engine.initialize();
 
         /*
          * Run the validation and print results
@@ -60,5 +51,4 @@ public class MxValidationExample {
          */
         engine.dispose();
     }
-
 }

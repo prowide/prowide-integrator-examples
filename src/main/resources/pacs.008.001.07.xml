@@ -36,8 +36,8 @@
                 </SttlmInf>
                 <InstgAgt>
                     <FinInstnId>
-                        <BICFI>CITTGB2LPBG</BICFI>
-                        <Nm>Lionel Messi</Nm>
+                        <BICFI>FOOMGB2LPBG</BICFI>
+                        <Nm>Foo Instructing Bank</Nm>
                         <Othr>
                             <Id>2342342342</Id>
                             <Issr>FOOISSUER</Issr>
@@ -46,8 +46,8 @@
                 </InstgAgt>
                 <InstdAgt>
                     <FinInstnId>
-                        <BICFI>ICBCUS4CXXX</BICFI>
-                        <Nm>Manu Ginobili</Nm>
+                        <BICFI>FOORUS4CXXX</BICFI>
+                        <Nm>Foo Instructed Bank</Nm>
                         <PstlAdr>
                             <AdrTp>PBOX</AdrTp>
                             <Dept>1</Dept>
@@ -92,13 +92,13 @@
                 </Dbtr>
                 <DbtrAgt>
                     <FinInstnId>
-                        <BICFI>ITUSUSP1XXX</BICFI>
+                        <BICFI>FOOUUSP1XXX</BICFI>
                         <Nm>Foo Corp</Nm>
                     </FinInstnId>
                 </DbtrAgt>
                 <CdtrAgt>
                     <FinInstnId>
-                        <BICFI>USTBUS31XXX</BICFI>
+                        <BICFI>FOOZUS31XXX</BICFI>
                     </FinInstnId>
                 </CdtrAgt>
                 <Cdtr>

@@ -15,7 +15,6 @@ import com.prowidesoftware.swift.myformat.*;
 import com.prowidesoftware.swift.myformat.Transformation.Key;
 import com.prowidesoftware.swift.myformat.json.JsonReader;
 import com.prowidesoftware.swift.myformat.mt.MtWriter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,40 +43,39 @@ import java.util.List;
  *
  * <p>Requires the Prowide Integrator MyFormat module.
  */
-public class Json2MtExample {
+public class Json2MtExample4 {
 
-    private static final String SOURCE = "{\n" +
-            "  \"corporateAction\": {\n" +
-            "    \"sender\": \"BANKBEBBAXXX\",\n" +
-            "    \"receiver\": \"BANKDEFFXXXX\",\n" +
-            "    \"corpReference\": \"ABC123456789\",\n" +
-            "    \"messageReference\": \"DEF987654321\",\n" +
-            "    \"function\": \"NEWM\",\n" +
-            "    \"eventType\": \"DVCA\",\n" +
-            "    \"eventMandatory\": \"MAND\",\n" +
-            "    \"preparationDate\": \"2026-08-10\",\n" +
-            "    \"security\": {\n" +
-            "      \"isin\": \"US1234567890\",\n" +
-            "      \"description\": \"FOO CORP ORD SHS\",\n" +
-            "      \"safekeepingAccount\": \"123456789\",\n" +
-            "      \"eligibleBalance\": \"1000.00\"\n" +
-            "    },\n" +
-            "    \"dates\": {\n" +
-            "      \"exDate\": \"2026-09-01\",\n" +
-            "      \"recordDate\": \"2026-09-02\",\n" +
-            "      \"paymentDate\": \"2026-09-15\"\n" +
-            "    },\n" +
-            "    \"options\": [\n" +
-            "      {\n" +
-            "        \"number\": \"001\",\n" +
-            "        \"type\": \"CASH\",\n" +
-            "        \"currency\": \"USD\",\n" +
-            "        \"creditDebit\": \"CRED\",\n" +
-            "        \"grossAmount\": \"1500.00\"\n" +
-            "      }\n" +
-            "    ]\n" +
-            "  }\n" +
-            "}";
+    private static final String SOURCE = "{\n" + "  \"corporateAction\": {\n"
+            + "    \"sender\": \"BANKBEBBAXXX\",\n"
+            + "    \"receiver\": \"BANKDEFFXXXX\",\n"
+            + "    \"corpReference\": \"ABC123456789\",\n"
+            + "    \"messageReference\": \"DEF987654321\",\n"
+            + "    \"function\": \"NEWM\",\n"
+            + "    \"eventType\": \"DVCA\",\n"
+            + "    \"eventMandatory\": \"MAND\",\n"
+            + "    \"preparationDate\": \"2026-08-10\",\n"
+            + "    \"security\": {\n"
+            + "      \"isin\": \"US1234567890\",\n"
+            + "      \"description\": \"FOO CORP ORD SHS\",\n"
+            + "      \"safekeepingAccount\": \"123456789\",\n"
+            + "      \"eligibleBalance\": \"1000.00\"\n"
+            + "    },\n"
+            + "    \"dates\": {\n"
+            + "      \"exDate\": \"2026-09-01\",\n"
+            + "      \"recordDate\": \"2026-09-02\",\n"
+            + "      \"paymentDate\": \"2026-09-15\"\n"
+            + "    },\n"
+            + "    \"options\": [\n"
+            + "      {\n"
+            + "        \"number\": \"001\",\n"
+            + "        \"type\": \"CASH\",\n"
+            + "        \"currency\": \"USD\",\n"
+            + "        \"creditDebit\": \"CRED\",\n"
+            + "        \"grossAmount\": \"1500.00\"\n"
+            + "      }\n"
+            + "    ]\n"
+            + "  }\n"
+            + "}";
 
     public static void main(String[] args) {
 
@@ -96,7 +94,9 @@ public class Json2MtExample {
         t.add(new MappingRule("corporateAction.function", "A/23G/1"));
         t.add(new MappingRule("corporateAction.eventType", "A/22F/CAEV/3"));
         t.add(new MappingRule("corporateAction.eventMandatory", "A/22F/CAMV/3"));
-        t.add(new MappingRule("corporateAction.preparationDate", "A/98A/PREP/2",
+        t.add(new MappingRule(
+                "corporateAction.preparationDate",
+                "A/98A/PREP/2",
                 new Transformation(Key.formatDateTime, "yyyy-MM-dd", "yyyyMMdd")));
 
         // sequence B - underlying securities, with a literal for the 35B qualifier
@@ -107,13 +107,20 @@ public class Json2MtExample {
         // sequence B2 - account information
         t.add(new MappingRule("corporateAction.security.safekeepingAccount", "B2/97A/SAFE/2"));
         t.add(new MappingRule("\"UNIT\"", "B2/93B/ELIG/3"));
-        t.add(new MappingRule("corporateAction.security.eligibleBalance", "B2/93B/ELIG/5", WriteMode.UPDATE,
+        t.add(new MappingRule(
+                "corporateAction.security.eligibleBalance",
+                "B2/93B/ELIG/5",
+                WriteMode.UPDATE,
                 new Transformation(Key.formatMTDecimal)));
 
         // sequence D - corporate action details
-        t.add(new MappingRule("corporateAction.dates.exDate", "D/98A/XDTE/2",
+        t.add(new MappingRule(
+                "corporateAction.dates.exDate",
+                "D/98A/XDTE/2",
                 new Transformation(Key.formatDateTime, "yyyy-MM-dd", "yyyyMMdd")));
-        t.add(new MappingRule("corporateAction.dates.recordDate", "D/98A/RDTE/2",
+        t.add(new MappingRule(
+                "corporateAction.dates.recordDate",
+                "D/98A/RDTE/2",
                 new Transformation(Key.formatDateTime, "yyyy-MM-dd", "yyyyMMdd")));
 
         // sequence E - corporate action option
@@ -124,9 +131,14 @@ public class Json2MtExample {
         // sequence E2 - cash movement
         t.add(new MappingRule("corporateAction.options[1].creditDebit", "E2/22H/CRDB/2"));
         t.add(new MappingRule("corporateAction.options[1].currency", "E2/19B/ENTL/2"));
-        t.add(new MappingRule("corporateAction.options[1].grossAmount", "E2/19B/ENTL/3", WriteMode.UPDATE,
+        t.add(new MappingRule(
+                "corporateAction.options[1].grossAmount",
+                "E2/19B/ENTL/3",
+                WriteMode.UPDATE,
                 new Transformation(Key.formatMTDecimal)));
-        t.add(new MappingRule("corporateAction.dates.paymentDate", "E2/98A/PAYD/2",
+        t.add(new MappingRule(
+                "corporateAction.dates.paymentDate",
+                "E2/98A/PAYD/2",
                 new Transformation(Key.formatDateTime, "yyyy-MM-dd", "yyyyMMdd")));
 
         /*

@@ -7,15 +7,10 @@ package com.prowidesoftware.swift.samples.integrator.sdk;
 
 import com.prowidesoftware.swift.model.mx.MxPacs00800102;
 import com.prowidesoftware.swift.model.mx.dic.*;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
-import java.util.GregorianCalendar;
 
 /**
  * This example shows how to create a new MX payment pacs.008.001.02 using the Java model to set its content.<br><br>
@@ -122,7 +117,7 @@ import java.util.GregorianCalendar;
  * <p>
  * This MX messages is the equivalent to the MT103 simple credit transfer:
  * <pre>
- * {1:F01FOOBARC0AXXX0344000050}{2:I103BANKANC0XXXXN}{4:"
+ * {1:F01FOOBARC0AXXX0000000000}{2:I103BANKANC0XXXXN}{4:"
  * 	:20:TBEXO12345
  * 	:23B:CRED
  * 	:32A:150519USD23453,
@@ -166,24 +161,28 @@ public class MxCreation2Example {
          */
         mx.getFIToFICstmrCdtTrf().getGrpHdr().setSttlmInf(new SettlementInformation13());
         mx.getFIToFICstmrCdtTrf().getGrpHdr().getSttlmInf().setSttlmMtd(SettlementMethod1Code.INDA);
-        mx.getFIToFICstmrCdtTrf().getGrpHdr().getSttlmInf().setSttlmAcct(
-                (new CashAccount16()).setId(
-                        (new AccountIdentification4Choice()).setOthr(
-                                (new GenericAccountIdentification1()).setId("00010013800002001234"))));
+        mx.getFIToFICstmrCdtTrf()
+                .getGrpHdr()
+                .getSttlmInf()
+                .setSttlmAcct((new CashAccount16())
+                        .setId((new AccountIdentification4Choice())
+                                .setOthr((new GenericAccountIdentification1()).setId("00010013800002001234"))));
 
         /*
          * Instructing Agent
          */
-        mx.getFIToFICstmrCdtTrf().getGrpHdr().setInstgAgt(
-                (new BranchAndFinancialInstitutionIdentification4()).setFinInstnId(
-                        (new FinancialInstitutionIdentification7()).setBIC("FOOBARC0XXX")));
+        mx.getFIToFICstmrCdtTrf()
+                .getGrpHdr()
+                .setInstgAgt((new BranchAndFinancialInstitutionIdentification4())
+                        .setFinInstnId((new FinancialInstitutionIdentification7()).setBIC("FOOBARC0XXX")));
 
         /*
          * Instructed Agent
          */
-        mx.getFIToFICstmrCdtTrf().getGrpHdr().setInstdAgt(
-                (new BranchAndFinancialInstitutionIdentification4()).setFinInstnId(
-                        (new FinancialInstitutionIdentification7()).setBIC("BANKANC0XXX")));
+        mx.getFIToFICstmrCdtTrf()
+                .getGrpHdr()
+                .setInstdAgt((new BranchAndFinancialInstitutionIdentification4())
+                        .setFinInstnId((new FinancialInstitutionIdentification7()).setBIC("BANKANC0XXX")));
 
         /*
          * Payment Transaction Information
@@ -226,21 +225,20 @@ public class MxCreation2Example {
         /*
          * Orderer Account
          */
-        cti.setDbtrAcct(
-                (new CashAccount16()).setId(
-                        (new AccountIdentification4Choice()).setOthr(
-                                (new GenericAccountIdentification1()).setId("01111001759234567890"))));
+        cti.setDbtrAcct((new CashAccount16())
+                .setId((new AccountIdentification4Choice())
+                        .setOthr((new GenericAccountIdentification1()).setId("01111001759234567890"))));
         /*
          * Order Financial Institution
          */
-        cti.setDbtrAgt(
-                (new BranchAndFinancialInstitutionIdentification4()).setFinInstnId(
-                        (new FinancialInstitutionIdentification7()).setBIC("FOOBARC0XXX")));
+        cti.setDbtrAgt((new BranchAndFinancialInstitutionIdentification4())
+                .setFinInstnId((new FinancialInstitutionIdentification7()).setBIC("FOOBARC0XXX")));
 
         /*
          * Beneficiary Institution
          */
-        cti.setCdtrAgt((new BranchAndFinancialInstitutionIdentification4()).setFinInstnId((new FinancialInstitutionIdentification7()).setBIC("BANKANC0XXX")));
+        cti.setCdtrAgt((new BranchAndFinancialInstitutionIdentification4())
+                .setFinInstnId((new FinancialInstitutionIdentification7()).setBIC("BANKANC0XXX")));
 
         /*
          * Beneficiary Name & Address
@@ -252,10 +250,9 @@ public class MxCreation2Example {
         /*
          * Beneficiary Account
          */
-        cti.setCdtrAcct(
-                (new CashAccount16()).setId(
-                        (new AccountIdentification4Choice()).setOthr(
-                                (new GenericAccountIdentification1()).setId("00013500510020179998"))));
+        cti.setCdtrAcct((new CashAccount16())
+                .setId((new AccountIdentification4Choice())
+                        .setOthr((new GenericAccountIdentification1()).setId("00013500510020179998"))));
 
         mx.getFIToFICstmrCdtTrf().addCdtTrfTxInf(cti);
 

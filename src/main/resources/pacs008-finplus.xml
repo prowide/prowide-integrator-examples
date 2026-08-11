@@ -9,27 +9,27 @@
             <Saa:Format>MX</Saa:Format>
             <Saa:SubFormat>Input</Saa:SubFormat>
             <Saa:Sender>
-                <Saa:DN>ou=xxx,o=ptsajocc,o=swift</Saa:DN>
+                <Saa:DN>ou=xxx,o=foozjocc,o=swift</Saa:DN>
                 <Saa:FullName>
                     <Saa:X1>FOOZJOCCXXX</Saa:X1>
                     <Saa:X2>xxx</Saa:X2>
                 </Saa:FullName>
             </Saa:Sender>
             <Saa:Receiver>
-                <Saa:DN>ou=xxx,o=ptsajocc,o=swift</Saa:DN>
+                <Saa:DN>ou=xxx,o=foozjocc,o=swift</Saa:DN>
                 <Saa:FullName>
                     <Saa:X1>FOOZJOCCXXX</Saa:X1>
                     <Saa:X2>xxx</Saa:X2>
                 </Saa:FullName>
             </Saa:Receiver>
             <Saa:InterfaceInfo>
-                <Saa:UserReference>du-fr-urmkofh-000</Saa:UserReference>
+                <Saa:UserReference>du-fr-0000000-000</Saa:UserReference>
                 <Saa:MessageCreator>Messenger</Saa:MessageCreator>
                 <Saa:MessageContext>Original</Saa:MessageContext>
                 <Saa:MessageNature>Financial</Saa:MessageNature>
-                <Saa:Sumid>2067CEF9FFFFFF8C</Saa:Sumid>
-                <Saa:ServiceURI>mp/mx/_AkbisJUlEeq6SaguysRAMQ</Saa:ServiceURI>
-                <Saa:MessageTypeURI>mp/mx/_AkbisJUlEeq6SaguysRAMQ/_Akd-8ZUlEeq6SaguysRAMQ</Saa:MessageTypeURI>
+                <Saa:Sumid>0000000000000001</Saa:Sumid>
+                <Saa:ServiceURI>mp/mx/_0000000000000000000001</Saa:ServiceURI>
+                <Saa:MessageTypeURI>mp/mx/_0000000000000000000001/_0000000000000000000002</Saa:MessageTypeURI>
             </Saa:InterfaceInfo>
             <Saa:NetworkInfo>
                 <Saa:Priority>Normal</Saa:Priority>
@@ -38,7 +38,7 @@
                 <Saa:SWIFTNetNetworkInfo>
                     <Saa:RequestType>pacs.008.001.08</Saa:RequestType>
                     <Saa:RequestSubtype>swift.cbprplus.01</Saa:RequestSubtype>
-                    <Saa:Reference>906d9fa2-1861-41eb-8f6e-94159f781438</Saa:Reference>
+                    <Saa:Reference>00000000-0000-4000-8000-000000000005</Saa:Reference>
                 </Saa:SWIFTNetNetworkInfo>
             </Saa:NetworkInfo>
             <Saa:ExpiryDateTime>20201215141940</Saa:ExpiryDateTime>
@@ -68,7 +68,7 @@
         <Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08">
             <FIToFICstmrCdtTrf>
                 <GrpHdr>
-                    <MsgId>du-fr-urmkofh-000</MsgId>
+                    <MsgId>du-fr-0000000-000</MsgId>
                     <CreDtTm>2020-08-17T11:00:11+02:00</CreDtTm>
                     <NbOfTxs>1</NbOfTxs>
                     <SttlmInf>
@@ -77,10 +77,10 @@
                 </GrpHdr>
                 <CdtTrfTxInf>
                     <PmtId>
-                        <InstrId>du-fr-urmkofh-0</InstrId>
-                        <EndToEndId>du-fr-urmkofh-0</EndToEndId>
-                        <TxId>du-fr-urmkofh-0</TxId>
-                        <UETR>1fb97372-41be-413d-b737-a32fbb174d1a</UETR>
+                        <InstrId>du-fr-0000000-0</InstrId>
+                        <EndToEndId>du-fr-0000000-0</EndToEndId>
+                        <TxId>du-fr-0000000-0</TxId>
+                        <UETR>00000000-0000-4000-8000-000000000006</UETR>
                     </PmtId>
                     <IntrBkSttlmAmt Ccy="USD">11401.50</IntrBkSttlmAmt>
                     <IntrBkSttlmDt>2020-07-28</IntrBkSttlmDt>
@@ -105,7 +105,7 @@
                         </FinInstnId>
                     </InstdAgt>
                     <Dbtr>
-                        <Nm>CARS4U Inc.</Nm>
+                        <Nm>Foo Cars Inc.</Nm>
                         <Id>
                             <OrgId>
                                 <AnyBIC>FOOZJOAM</AnyBIC>
@@ -115,7 +115,7 @@
                     <DbtrAcct>
                         <Id>
                             <Othr>
-                                <Id>942267890</Id>
+                                <Id>000000001</Id>
                             </Othr>
                         </Id>
                     </DbtrAcct>
@@ -130,7 +130,7 @@
                         </FinInstnId>
                     </CdtrAgt>
                     <Cdtr>
-                        <Nm>Vencer</Nm>
+                        <Nm>Bar Motors</Nm>
                         <Id>
                             <OrgId>
                                 <AnyBIC>FOOZJOAM</AnyBIC>
@@ -140,7 +140,7 @@
                     <CdtrAcct>
                         <Id>
                             <Othr>
-                                <Id>723491524</Id>
+                                <Id>000000002</Id>
                             </Othr>
                         </Id>
                     </CdtrAcct>

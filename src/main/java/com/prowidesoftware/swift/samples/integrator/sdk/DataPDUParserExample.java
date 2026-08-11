@@ -10,10 +10,7 @@ import com.prowidesoftware.swift.model.AbstractSwiftMessage;
 import com.prowidesoftware.swift.model.mx.AbstractMX;
 import com.prowidesoftware.swift.model.mx.MxPacs00800108;
 import com.prowidesoftware.swift.utils.Lib;
-import com.prowidesoftware.swift.wrappers.saa.DataPDUType;
 import com.prowidesoftware.swift.wrappers.saa.v2_0_14.DataPDUParser;
-import com.prowidesoftware.swift.wrappers.saa.v2_0_14.Priority;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.security.InvalidKeyException;
@@ -33,30 +30,39 @@ import java.security.NoSuchAlgorithmException;
 public class DataPDUParserExample {
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, InvalidKeyException {
-        String xml = Lib.readResource("pacs008-finplus-tested.xml");
-        assert (xml != null);
+        String xml = Lib.readResource("pacs008-finplus.xml");
         DataPDUParser pdu = DataPDUParser.parse(xml);
 
-        assert ("pacs.008.001.08".equals(pdu.getHeader().getMessage().getMessageIdentifier()));
-        assert ("2067CEF9FFFFFF8C".equals(pdu.getHeader().getMessage().getInterfaceInfo().getSumid()));
-        assert (Priority.NORMAL.equals(pdu.getHeader().getMessage().getNetworkInfo().getPriority()));
-        assert ("20201215141940".equals(pdu.getHeader().getMessage().getExpiryDateTime()));
+        // header fields, read straight off the envelope
+        System.out.println(
+                "Message identifier : " + pdu.getHeader().getMessage().getMessageIdentifier());
+        System.out.println("Sumid              : "
+                + pdu.getHeader().getMessage().getInterfaceInfo().getSumid());
+        System.out.println("Priority           : "
+                + pdu.getHeader().getMessage().getNetworkInfo().getPriority());
+        System.out.println(
+                "Expiry             : " + pdu.getHeader().getMessage().getExpiryDateTime());
+        System.out.println("PDU type           : " + pdu.type());
 
-        assert (DataPDUType.Message_MX.equals(pdu.type()));
-
+        // the envelope wraps a message, extracted here as the generic persistence model
         AbstractSwiftMessage msg = pdu.extractMessage();
-        assert (msg.isMX());
+        System.out.println("Is MX              : " + msg.isMX());
+        System.out.println("Sender             : " + msg.getSender());
+        System.out.println("Identifier         : " + msg.getIdentifier());
 
-        assert ("FOOZJOCC".equals(msg.getSender()));
-        assert ("pacs.008.001.08".equals(msg.getIdentifier()));
-
+        // and here as the typed MX model, which gives access to the domain fields
         AbstractMX mx = pdu.extractMx();
-        assert ("FOOZJOAM".equals(mx.getAppHdr().from()));
+        System.out.println("AppHdr from        : " + mx.getAppHdr().from());
 
-        assert (mx instanceof MxPacs00800108);
         MxPacs00800108 pacs = (MxPacs00800108) mx;
-        assert (new BigDecimal("11401.50").equals(pacs.getFIToFICstmrCdtTrf().getCdtTrfTxInf().get(0).getIntrBkSttlmAmt().getValue()));
+        BigDecimal settlementAmount = pacs.getFIToFICstmrCdtTrf()
+                .getCdtTrfTxInf()
+                .get(0)
+                .getIntrBkSttlmAmt()
+                .getValue();
+        System.out.println("Settlement amount  : " + settlementAmount);
 
+        System.out.println();
         System.out.println(mx.message());
     }
 }

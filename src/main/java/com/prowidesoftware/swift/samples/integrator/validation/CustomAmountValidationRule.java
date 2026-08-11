@@ -12,7 +12,6 @@ import com.prowidesoftware.swift.validator.ProblemType;
 import com.prowidesoftware.swift.validator.ValidationProblem;
 import com.prowidesoftware.swift.validator.ValidationRule;
 import com.prowidesoftware.swift.validator.internal.AffectedMTs;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +30,6 @@ import java.util.Locale;
 public class CustomAmountValidationRule extends ValidationRule {
 
     private final BigDecimal limit;
-
-    public CustomAmountValidationRule() {
-        this(new BigDecimal("1000000"));
-    }
 
     public CustomAmountValidationRule(final BigDecimal limit) {
         this.limit = limit;
@@ -98,5 +93,4 @@ public class CustomAmountValidationRule extends ValidationRule {
             return result;
         }
     }
-
 }

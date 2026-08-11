@@ -11,7 +11,6 @@ import com.prowidesoftware.swift.myformat.MappingTable;
 import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
 import com.prowidesoftware.swift.myformat.MyFormatEngine;
 import com.prowidesoftware.swift.utils.Lib;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -31,7 +30,8 @@ public class Mt2CsvExample2 {
     public static void main(String[] args) throws IOException {
 
         // Load mapping rules from Excel
-        MappingTableExcelLoader loader = new MappingTableExcelLoader(Objects.requireNonNull(Xml2MtExample1.class.getResourceAsStream("/myformat/mt2csv.xls")));
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(
+                Objects.requireNonNull(Xml2MtExample1.class.getResourceAsStream("/myformat/mt2csv.xls")));
 
         // Create a mapping table instance with source and target formats
         MappingTable table = loader.load("example 2");
@@ -52,14 +52,14 @@ public class Mt2CsvExample2 {
         // print the created output
         System.out.println(csv);
         /*
-            HR,1234567890,0987654321,21/1,EUR,12283841.0
-            TX,Apr-26,423,EUR,125000.0,Inf-229183
-            TX,Apr-27,423,EUR,125000.0,Inf-229183
-            TX,Apr-28,423,EUR,125000.0,Inf-229183
-            TX,Apr-29,423,EUR,125000.0,Inf-229183
-            TX,Apr-30,423,EUR,125000.0,Inf-229183
-            TX,May-01,423,EUR,125000.0,Inf-229183
-            TX,May-02,423,EUR,125000.0,Inf-229183
-         */
+           HR,1234567890,0987654321,21/1,EUR,12283841.0
+           TX,Apr-26,423,EUR,125000.0,Inf-229183
+           TX,Apr-27,423,EUR,125000.0,Inf-229183
+           TX,Apr-28,423,EUR,125000.0,Inf-229183
+           TX,Apr-29,423,EUR,125000.0,Inf-229183
+           TX,Apr-30,423,EUR,125000.0,Inf-229183
+           TX,May-01,423,EUR,125000.0,Inf-229183
+           TX,May-02,423,EUR,125000.0,Inf-229183
+        */
     }
 }
