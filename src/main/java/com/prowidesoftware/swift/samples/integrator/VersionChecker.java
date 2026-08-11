@@ -47,6 +47,13 @@ public class VersionChecker {
                                                          "com.prowidesoftware.swift.model.mx.sic.MxCamt00500108Ch01"}
     );
 
+    /**
+     * The data jar carries no classes, it is the Derby database read from the classpath, so it is
+     * probed by resource instead. It is required by BICDirectoryExample and ExpandedPrintoutExample.
+     */
+    private static final String DATA_JAR = "pw-swift-integrator-data";
+    private static final String DATA_JAR_PROBE = "pw-swift-integrator-data/service.properties";
+
     public static String getImplementationVersion(Class<?> clazz) {
         try {
             String classPath = Objects.requireNonNull(clazz.getResource(clazz.getSimpleName() + ".class")).toString();
@@ -90,6 +97,14 @@ public class VersionChecker {
                 System.out.printf("  [MISSING] %-38s (drop the jar into lib/)%n", module);
                 missing++;
             }
+        }
+
+        if (VersionChecker.class.getClassLoader().getResource(DATA_JAR_PROBE) != null) {
+            System.out.printf("  [OK]      %-38s %s%n", DATA_JAR, "(BIC directory database)");
+            present++;
+        } else {
+            System.out.printf("  [MISSING] %-38s (drop the jar into lib/)%n", DATA_JAR);
+            missing++;
         }
 
         System.out.println();
