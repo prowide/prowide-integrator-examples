@@ -46,10 +46,10 @@ your environment.
 
 | Module        | Package                                                     | Highlights                                            |
 |---------------|-------------------------------------------------------------|-------------------------------------------------------|
-| SDK           | `com.prowidesoftware.swift.samples.integrator.sdk`          | MX creation/parsing, BIC directory, DataPDU, LAU      |
+| SDK           | `com.prowidesoftware.swift.samples.integrator.sdk`          | MX creation/parsing, MT JSON/POJO, BIC directory, LAU |
 | Validation    | `com.prowidesoftware.swift.samples.integrator.validation`   | MT/MX validation, custom rules, NAK creation          |
 | Translations  | `com.prowidesoftware.swift.samples.integrator.translations` | MT ↔ MX translations                                  |
-| MyFormat      | `com.prowidesoftware.swift.samples.integrator.myformat`     | CSV/XML ↔ MT/MX conversions, JSON, MT940 round-trip   |
+| MyFormat      | `com.prowidesoftware.swift.samples.integrator.myformat`     | CSV/XML/JSON ↔ MT/MX conversions, MT940 round-trip    |
 
 The placeholder root example, `VersionChecker`, is the same code as the
 `doctor` task — run either to confirm your setup.

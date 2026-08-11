@@ -5,6 +5,7 @@
  */
 package com.prowidesoftware.swift.samples.integrator.validation;
 
+import com.prowidesoftware.swift.SRU;
 import com.prowidesoftware.swift.scheme.Scheme;
 import com.prowidesoftware.swift.scheme.SchemeXmlReader;
 import com.prowidesoftware.swift.validator.ValidationEngine;
@@ -28,7 +29,8 @@ public class MessageValidationWithCustomSchema {
 
     public static void main(String[] args) {
 
-        String customScheme = "<scheme name=\"199\" description=\"Free Format Message\" release=\"2025\">\n" +
+        // the release must match the SRU of the library in use, otherwise the scheme is rejected
+        String customScheme = "<scheme name=\"199\" description=\"Free Format Message\" release=\"" + SRU.currentString() + "\">\n" +
                 "   <sequence minRepetitions=\"1\" maxRepetitions=\"1\">\n" +
                 "      <field id=\"20\" minRepetitions=\"1\" maxRepetitions=\"1\"/>\n" +
                 "      <field id=\"21\" minRepetitions=\"0\" maxRepetitions=\"1\"/>\n" +
