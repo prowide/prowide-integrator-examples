@@ -14,5 +14,9 @@ Optional modules (include only those your trial covers):
   pw-swift-integrator-score-SRU2025-10.3.X.jar
   pw-swift-integrator-sic-SRU2025-10.3.X.jar
 
+Data (BIC directory, message type descriptions), required by BICDirectoryExample
+and ExpandedPrintoutExample:
+  pw-swift-integrator-data-1.0.0.jar
+
 After copying the jars, run:
   ./gradlew doctor
