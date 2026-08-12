@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.prowidesoftware</groupId>
+    <artifactId>prowide-integrator-examples-maven</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
+    <!-- Third party and Integrator versions kept in sync with pw-swift-integrator. -->
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.20.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.15.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.14.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.15.2.0</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbytools</artifactId>
+            <version>10.15.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>10.15.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.santuario</groupId>
+            <artifactId>xmlsec</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- jaxb is required because it is no longer included in the JDK; bind-api ships transitively -->
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>4.0.6</version>
+        </dependency>
+
+        <!-- Prowide Integrator libraries -->
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-swift-core</artifactId>
+            <version>SRU2025-10.3.14</version>
+        </dependency>
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-iso20022</artifactId>
+            <version>SRU2025-10.3.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-swift-integrator-sdk</artifactId>
+            <version>SRU2025-10.3.29</version>
+        </dependency>
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-swift-integrator-validation</artifactId>
+            <version>SRU2025-10.3.23</version>
+        </dependency>
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-swift-integrator-translations</artifactId>
+            <version>SRU2025-10.3.36</version>
+        </dependency>
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-swift-integrator-myformat</artifactId>
+            <version>SRU2025-10.3.9</version>
+        </dependency>
+        <!-- Optional additional modules:
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-swift-integrator-cbpr</artifactId>
+            <version>SRU2025-10.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-swift-integrator-score</artifactId>
+            <version>SRU2025-10.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.prowidesoftware</groupId>
+            <artifactId>pw-swift-integrator-sic</artifactId>
+            <version>SRU2025-10.3.3</version>
+        </dependency>
+        -->
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>prowideRepo</id>
+            <url>https://repo.prowidesoftware.com/repository/maven-releases/</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+</project>

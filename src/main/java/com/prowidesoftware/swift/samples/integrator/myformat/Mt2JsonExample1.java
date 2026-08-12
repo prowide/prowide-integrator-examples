@@ -1,0 +1,47 @@
+/*
+ * Copyright (c) 2023 Prowide Inc.
+ * All rights reserved. This program and the accompanying materials are made available under the terms of private
+ * license agreements between Prowide Inc. and its commercial customers and partners.
+ */
+
+package com.prowidesoftware.swift.samples.integrator.myformat;
+
+import com.prowidesoftware.swift.myformat.*;
+
+/**
+ * Converts an MT message to a JSON document by declaring an explicit MT-to-JSON mapping table.
+ *
+ * <p>Each {@link MappingRule} pairs an MT tag (or sub-component, e.g. {@code 32A/3}) with a
+ * destination JSON path. Transformations such as {@link Transformation.Key#formatDecimal}
+ * normalize the values during the conversion.</p>
+ *
+ * <p>Requires the Prowide Integrator MyFormat module.</p>
+ */
+public class Mt2JsonExample1 {
+
+    public static void main(String[] args) {
+        // Mapping definition
+        MappingTable t = new MappingTable(FileFormat.MT, FileFormat.JSON);
+
+        t.add(new MappingRule("20", "document.header.foo", WriteMode.CREATE));
+        t.add(new MappingRule(
+                "32A/3", "document.transaction.amount", new Transformation(Transformation.Key.formatDecimal)));
+
+        // sample source message
+        final String source =
+                "{1:F01FOOXXXG0AXXX0000000000}{2:I202FOOXXXG0XXXXN}{3:{108:0000000000000005}{121:00000000-0000-4000-8000-000000000003}}{4:\n"
+                        + ":20:0000000000000012\n"
+                        + ":21:0000000000000013\n"
+                        + ":32A:234705BWP68608,55\n"
+                        + ":53D:/12345678890\n"
+                        + "FOO BANK XXX\n"
+                        + ":57A:AAAAXXXG0XXX\n"
+                        + ":58A:/0987654321\n"
+                        + "BBBBXX20TSY\n"
+                        + "-}";
+
+        // translation call passing a pre-filled JSON writer instance
+        String json = MyFormatEngine.translate(source, t);
+        System.out.println(json);
+    }
+}

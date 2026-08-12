@@ -1,0 +1,75 @@
+/*
+ * Copyright (c) 2025 Prowide Inc.
+ * All rights reserved. This program and the accompanying materials are made available under the terms of private
+ * license agreements between Prowide Inc. and its commercial customers and partners.
+ */
+
+package com.prowidesoftware.swift.samples.integrator.sdk;
+
+import com.prowidesoftware.swift.wrappers.saa.v2_0_14.*;
+import java.io.IOException;
+import java.io.StringReader;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
+/**
+ * Builds a SAA DataPDU envelope programmatically and serializes it to XML.
+ *
+ * <p>The example populates the header (sender reference, format, SWIFTNet security info) and
+ * attaches a pre-built {@code RequestPayload} fragment as the signature value via DOM.
+ * It complements {@link DataPDUParserExample}, which performs the reverse operation.</p>
+ *
+ * <p>Requires the Prowide Integrator SDK module.</p>
+ */
+public class DataPDUWriterExample {
+
+    public static void main(String[] args)
+            throws IOException, NoSuchAlgorithmException, InvalidKeyException, ParserConfigurationException,
+                    SAXException {
+        DataPDUWriter pdu = new DataPDUWriter();
+        pdu.setHeader(new Header());
+        pdu.getHeader().setMessage(new Message());
+        pdu.getHeader().getMessage().setSenderReference("senderRef123");
+        pdu.getHeader().getMessage().setFormat("File");
+        pdu.getHeader().getMessage().setSecurityInfo(new SecurityInfo());
+        pdu.getHeader().getMessage().getSecurityInfo().setSWIFTNetSecurityInfo(new SWIFTNetSecurityInfo());
+        pdu.getHeader().getMessage().getSecurityInfo().getSWIFTNetSecurityInfo().setSignatureValue(new SwAny());
+
+        String signatureFragment =
+                "<SwInt:RequestPayload type=\"swift.fileact.secsecureddata\" xmlns:SwInt=\"urn:swift:snl:ns.SwInt\" xmlns:Sw=\"urn:swift:snl:ns.Sw\">\n"
+                        + "                            <Sw:FileRequestHeader>\n"
+                        + "                                <SwInt:Requestor>o=foosgbr0,o=swift</SwInt:Requestor>\n"
+                        + "                                <SwInt:Responder>o=foorecv0,o=swift</SwInt:Responder>\n"
+                        + "                                <SwInt:Service>swift.corp.fa!p</SwInt:Service>\n"
+                        + "                                <SwInt:RequestType>pain.xxx.cashpmt</SwInt:RequestType>\n"
+                        + "                                <SwInt:Priority>Normal</SwInt:Priority>\n"
+                        + "                                <SwInt:RequestRef>FOOREQ000001</SwInt:RequestRef>\n"
+                        + "                            </Sw:FileRequestHeader>\n"
+                        + "                            <Sw:TransferRef>SNL00000000000000000000001</Sw:TransferRef>\n"
+                        + "                            <Sw:Digest>\n"
+                        + "                                <Sw:DigestAlgorithm>SHA-256</Sw:DigestAlgorithm>\n"
+                        + "                                <Sw:DigestValue>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</Sw:DigestValue>\n"
+                        + "                            </Sw:Digest>\n"
+                        + "                        </SwInt:RequestPayload>";
+
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document requestPayload = builder.parse(new InputSource(new StringReader(signatureFragment)));
+
+        pdu.getHeader()
+                .getMessage()
+                .getSecurityInfo()
+                .getSWIFTNetSecurityInfo()
+                .getSignatureValue()
+                .addContent(requestPayload.getFirstChild());
+
+        String xml = pdu.xml();
+        System.out.print(xml);
+    }
+}

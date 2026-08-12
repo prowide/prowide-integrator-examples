@@ -1,0 +1,100 @@
+/*
+ * Copyright (c) 2021 Prowide Inc.
+ * All rights reserved. This program and the accompanying materials are made available under the terms of private
+ * license agreements between Prowide Inc. and its commercial customers and partners.
+ */
+
+package com.prowidesoftware.swift.samples.integrator.myformat;
+
+import com.prowidesoftware.swift.myformat.FileFormat;
+import com.prowidesoftware.swift.myformat.MappingTable;
+import com.prowidesoftware.swift.myformat.MappingTableExcelLoader;
+import com.prowidesoftware.swift.myformat.MyFormatEngine;
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * This example shows how to convert and MT into a CSV using API from Prowide Integrator MyFormat module.
+ * <p>
+ * The mapping rules in this example are loaded from a spreadsheet.
+ * <p>
+ * The example takes an MT102 with repetitive content, and produces as result a CSV with different rows
+ * for the repetitive information, creating also a row identifier. Data from sequence A will go to a header
+ * line in the CSV, the repetitive sequences B will go to multiple transaction rows and finally data from
+ * sequence C will go to a final footer row.
+ */
+public class Mt2CsvExample1 {
+
+    public static void main(String[] args) {
+
+        // Load mapping rules from Excel
+        MappingTableExcelLoader loader = new MappingTableExcelLoader(
+                Objects.requireNonNull(Xml2MtExample1.class.getResourceAsStream("/myformat/mt2csv.xls")));
+
+        // Create a mapping table instance with source and target formats
+        MappingTable table = loader.load("example 1");
+        table.setSourceFormat(FileFormat.MT);
+        table.setTargetFormat(FileFormat.CSV);
+
+        // validate mapping table
+        List<String> problems = table.validate();
+        for (String s : problems) {
+            System.out.println(s);
+        }
+
+        // source message
+        final String fin = "{1:F01FOOBVEC0AXXX0000000000}{2:I102FOOBARA0XXXXN}{3:{103:YVE}}{4:\n" +
+                // sequence A
+                ":20:5362/MPB\n"
+                + ":23:CREDIT\n"
+                + ":50K:/1234567890\n"
+                + "FOOBAR CORP\n"
+                + "FOO STREET, 234\n"
+                + "0000-FOO CITY\n"
+                + ":71A:OUR\n"
+                + ":36:1,6\n"
+                +
+
+                // sequence B
+                ":21:ABC/123\n"
+                + ":32B:EUR1250,\n"
+                + ":59:/000000000001\n"
+                + "JOE DOE\n"
+                + "FOO STREET, 123\n"
+                + "1000 FOO CITY\n"
+                + ":70:PENSION PAYMENT MAR 2019\n"
+                + ":33B:CHF2000,\n"
+                + ":71G:EUR5,\n"
+                +
+
+                // sequence B
+                ":21:ABC/124\n"
+                + ":32B:EUR1875,\n"
+                + ":59:/000000000002\n"
+                + "JOAN SURNAME\n"
+                + "FOO AVENUE 456\n"
+                + "2000 BAR CITY\n"
+                + ":70:PENSION PAYMENT MAR 2019\n"
+                + ":33B:CHF3000,\n"
+                + ":71G:EUR5,\n"
+                +
+
+                // sequence C
+                ":32A:090828EUR3135,\n"
+                + ":19:3125,\n"
+                + ":71G:EUR10,\n"
+                + "-}";
+
+        // call translation
+        final String csv = MyFormatEngine.translate(fin, table);
+
+        // print the created output
+        System.out.println(csv);
+        /*
+           HR,5362/MPB,1234567890,FOOBAR CORP
+           TX,123,EUR,1250.0
+           TX,124,EUR,1875.0
+           FR,EUR,3135.0
+        */
+    }
+}
