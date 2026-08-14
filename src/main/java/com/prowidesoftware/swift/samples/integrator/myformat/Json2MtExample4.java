@@ -61,6 +61,7 @@ public class Json2MtExample4 {
             + "      \"eligibleBalance\": \"1000.00\"\n"
             + "    },\n"
             + "    \"dates\": {\n"
+            + "      \"announcementDate\": \"2026-08-05T10:30:00\",\n"
             + "      \"exDate\": \"2026-09-01\",\n"
             + "      \"recordDate\": \"2026-09-02\",\n"
             + "      \"paymentDate\": \"2026-09-15\"\n"
@@ -114,6 +115,19 @@ public class Json2MtExample4 {
                 new Transformation(Key.formatMTDecimal)));
 
         // sequence D - corporate action details
+        // Field 98a option E holds the date and the time (plus optional decimals and UTC offset) in
+        // separate components, so a date-time source value is mapped with two rules targeting the
+        // same field: the first creates :98E::ANOU// with the date component, and the second, in
+        // UPDATE mode, completes the created field with the time component
+        t.add(new MappingRule(
+                "corporateAction.dates.announcementDate",
+                "D/98E/ANOU/2",
+                new Transformation(Key.formatDateTime, "yyyy-MM-dd'T'HH:mm:ss", "yyyyMMdd")));
+        t.add(new MappingRule(
+                "corporateAction.dates.announcementDate",
+                "D/98E/ANOU/3",
+                WriteMode.UPDATE,
+                new Transformation(Key.formatDateTime, "yyyy-MM-dd'T'HH:mm:ss", "HHmmss")));
         t.add(new MappingRule(
                 "corporateAction.dates.exDate",
                 "D/98A/XDTE/2",
@@ -189,6 +203,7 @@ public class Json2MtExample4 {
          * :16S:ACCTINFO
          * :16S:USECU
          * :16R:CADETL
+         * :98E::ANOU//20260805103000
          * :98A::XDTE//20260901
          * :98A::RDTE//20260902
          * :16S:CADETL
