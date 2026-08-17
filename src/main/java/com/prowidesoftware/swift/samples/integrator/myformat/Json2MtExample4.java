@@ -62,6 +62,7 @@ public class Json2MtExample4 {
             + "    },\n"
             + "    \"dates\": {\n"
             + "      \"announcementDate\": \"2026-08-05T10:30:00\",\n"
+            + "      \"announcementUtcOffset\": \"-05:00\",\n"
             + "      \"exDate\": \"2026-09-01\",\n"
             + "      \"recordDate\": \"2026-09-02\",\n"
             + "      \"paymentDate\": \"2026-09-15\"\n"
@@ -128,6 +129,21 @@ public class Json2MtExample4 {
                 "D/98E/ANOU/3",
                 WriteMode.UPDATE,
                 new Transformation(Key.formatDateTime, "yyyy-MM-dd'T'HH:mm:ss", "HHmmss")));
+        // the optional UTC offset goes in components 5 (sign, present only for negative offsets,
+        // hence the ifMatches guard) and 6, producing :98E::ANOU//20260805103000/N0500. The offset
+        // is a separate source field on purpose: formatDateTime would shift a date-time carrying
+        // an embedded offset to the JVM default time zone
+        t.add(new MappingRule(
+                "corporateAction.dates.announcementUtcOffset",
+                "D/98E/ANOU/5",
+                WriteMode.UPDATE,
+                new Transformation(Key.ifMatches, "^-"),
+                new Transformation(Key.fixed, "N")));
+        t.add(new MappingRule(
+                "corporateAction.dates.announcementUtcOffset",
+                "D/98E/ANOU/6",
+                WriteMode.UPDATE,
+                new Transformation(Key.removeAll, "[-+:]")));
         t.add(new MappingRule(
                 "corporateAction.dates.exDate",
                 "D/98A/XDTE/2",
@@ -203,7 +219,7 @@ public class Json2MtExample4 {
          * :16S:ACCTINFO
          * :16S:USECU
          * :16R:CADETL
-         * :98E::ANOU//20260805103000
+         * :98E::ANOU//20260805103000/N0500
          * :98A::XDTE//20260901
          * :98A::RDTE//20260902
          * :16S:CADETL
