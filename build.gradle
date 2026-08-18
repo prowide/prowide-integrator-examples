@@ -74,7 +74,8 @@ tasks.register('listExamples') {
             if (!f.name.endsWith('.java')) return
             def text = f.text
             if (!(text =~ /\bpublic\s+(?:static\s+)?(?:final\s+)?(?:static\s+)?void\s+main\s*\(/)) return
-            def rel = root.toPath().relativize(f.toPath()).toString()
+            // normalize Windows separators so grouping and FQCN building work on any OS
+            def rel = root.toPath().relativize(f.toPath()).toString().replace(File.separatorChar, '/' as char)
             def fqcn = 'com.prowidesoftware.swift.samples.integrator.' +
                     rel.replace('/', '.').replace('.java', '')
             def module = rel.contains('/') ? rel.substring(0, rel.indexOf('/')) : '(root)'

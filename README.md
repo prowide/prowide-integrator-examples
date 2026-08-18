@@ -44,12 +44,15 @@ Examples are organized by Integrator module. Trials are typically scoped to a
 subset of modules — `./gradlew doctor` tells you which examples will work in
 your environment.
 
-| Module        | Package                                                     | Highlights                                            |
-|---------------|-------------------------------------------------------------|-------------------------------------------------------|
-| SDK           | `com.prowidesoftware.swift.samples.integrator.sdk`          | MX creation/parsing, MT JSON/POJO, BIC directory, LAU |
-| Validation    | `com.prowidesoftware.swift.samples.integrator.validation`   | MT/MX validation, custom rules, NAK creation          |
-| Translations  | `com.prowidesoftware.swift.samples.integrator.translations` | MT ↔ MX translations                                  |
-| MyFormat      | `com.prowidesoftware.swift.samples.integrator.myformat`     | CSV/XML/JSON ↔ MT/MX conversions, MT940 round-trip    |
+| Module        | Package                                                     | Highlights                                                          |
+|---------------|-------------------------------------------------------------|---------------------------------------------------------------------|
+| SDK           | `com.prowidesoftware.swift.samples.integrator.sdk`          | Format detection, MX creation/parsing, printouts, MtPath, LAU, BIC directory |
+| Validation    | `com.prowidesoftware.swift.samples.integrator.validation`   | MT/MX validation, custom rules and schemas, NAK creation            |
+| Translations  | `com.prowidesoftware.swift.samples.integrator.translations` | MT ↔ MX translations, paged and bulk, truncation/coverage reports   |
+| MyFormat      | `com.prowidesoftware.swift.samples.integrator.myformat`     | CSV/XML/JSON/fixed-length ↔ MT/MX conversions, custom transformers  |
+| CBPR+         | `com.prowidesoftware.swift.samples.integrator.cbpr`         | Restricted model parsing, CBPR+ validation and translations         |
+| SCORE         | `com.prowidesoftware.swift.samples.integrator.score`        | MT798 envelope parsing, sub-message scheme validation               |
+| SIC           | `com.prowidesoftware.swift.samples.integrator.sic`          | Swiss RTGS model parsing, validation and translations               |
 
 The placeholder root example, `VersionChecker`, is the same code as the
 `doctor` task — run either to confirm your setup.

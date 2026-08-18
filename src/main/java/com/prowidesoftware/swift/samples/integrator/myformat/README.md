@@ -42,5 +42,16 @@ Programmatic examples
 ---------------------
 
 These build the mapping rules in code instead of loading a spreadsheet: `Csv2MtExample2`, `Csv2MxExample5`,
-`Json2MtExample4`, `Mt2CsvProgrammaticExample`, `Mt2JsonExample1`, `Mt2JsonExample2`, `Mt2MxExample` and
-`Mx2CsvExample`. `Csv2MxExample1` and `Csv2MxExample3` do both, loading a sheet and then adding rules in code.
+`Json2MtExample4`, `Mt2CsvProgrammaticExample`, `Mt2JsonExample1`, `Mt2JsonExample2`, `Mt2MxExample`,
+`Mx2CsvExample`, `Mx2MtMyFormatExample`, `TransformationsShowcaseExample` (a tour of the transformation
+functions using the verbose execution log), `CustomTransformerExample`, `FixedLen2MxExample`,
+`Mx2FixedLenExample` and `MxBuilderExample`. `Csv2MxExample1` and `Csv2MxExample3` do both, loading a sheet
+and then adding rules in code.
+
+Other table sources
+-------------------
+
+The same four column table can be kept outside a spreadsheet: `MappingTableCsvLoaderExample` loads it from
+plain CSV text and `MappingTableDatabaseExample` from a database (`pw_mapping_rule` table, in-memory Derby in
+the example). `ConditionalMappingExample` shows how to express conditions in a table of any of these sources:
+there is no conditions column, guards in the transformation pipeline decide which rule writes.
