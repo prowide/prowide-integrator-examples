@@ -55,3 +55,13 @@ The same four column table can be kept outside a spreadsheet: `MappingTableCsvLo
 plain CSV text and `MappingTableDatabaseExample` from a database (`pw_mapping_rule` table, in-memory Derby in
 the example). `ConditionalMappingExample` shows how to express conditions in a table of any of these sources:
 there is no conditions column, guards in the transformation pipeline decide which rule writes.
+
+Removing elements
+-----------------
+
+The `DELETE` write mode (MyFormat 10.3.18 or later) removes elements from the target. The target cell locates the
+element and the source with its transformations is an optional guard: a blank source deletes unconditionally.
+`MtDeleteExample`, `MxDeleteExample` and `JsonDeleteExample` enable `seedFromSource`, so the output is a copy of
+the source minus the deleted fields, elements or members; the MT one prints the per rule deleted count from the
+verbose execution log. `CreateThenDeleteExample` builds a new MT from JSON and removes a field created by an
+earlier rule when a condition spanning two source values holds.
