@@ -6,6 +6,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 ## [Unreleased]
 
 ### Added
+- MyFormat: `MtDeleteExample`, `MxDeleteExample`, `JsonDeleteExample` and `CreateThenDeleteExample` — the `DELETE` write mode on seeded MT, MX and JSON messages, guards, and the create then delete pattern. Requires MyFormat 10.3.18 or later.
 - Translations: `Mt103Pacs008TranslationExample`, `Pacs008Mt103TranslationExample`, `Camt053Mt940TranslationExample`, `PagedTranslationExample`, `BulkTranslationExample`, `ClearingSystemTranslationExample` and `TranslatorConfigurationExample` — factory provider based translations for the main payment pairs, truncation and coverage reports, paged and bulk modes, and the field 103 clearing dispatcher.
 - Validation: `MtValidationEngineExample`, `MxValidationEngineFactoryExample`, `MxValidationCustomRulesExample` and `MxValidationConfigurationExample` — the current MT and MX validation entry points, custom MX rules, and the external code set and missing data element options.
 - SDK: `SwiftMessageFactoryFormatsExample`, `MxExpandedPrintoutExample`, `Block4XmlExample`, `MtSanitizerExample`, `ExternalCodeSetsExample` and `LauVerificationExample`.
